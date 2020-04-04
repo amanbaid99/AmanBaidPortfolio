@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { EducationComponent } from './components/education/education.component';
-import { PlanguagesComponent } from './components/planguages/planguages.component';
 import { InterestsComponent } from './components/interests/interests.component';
+import { SkillsComponent } from './components/skills/skills.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +15,8 @@ import { InterestsComponent } from './components/interests/interests.component';
     NavbarComponent,
     ExperienceComponent,
     EducationComponent,
-    PlanguagesComponent,
-    InterestsComponent
+    InterestsComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,
