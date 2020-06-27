@@ -7,11 +7,11 @@ import{Title,Meta}from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MyPortfolio';
+  title = 'Aman Baid';
 
   
   constructor(private titleService:Title, private meta:Meta){
-    titleService.setTitle('My Personal Blog')
+    titleService.setTitle('Aman Baid')
     
     meta.updateTag({name:'viewport',content:'width=device-width, initial-scale=1, shrink-to-fit=no'});
     meta.addTag({name:'description',content:'This is My Personal Blog'},true);
