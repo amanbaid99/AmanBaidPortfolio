@@ -22,7 +22,7 @@
     "dependencies": "0.0.1",
     "firebase": "^7.13.2",
     "rxjs": "~6.5.4",
-    "startbootstrap-resume": "^5.0.8",
+    "startbootstrap-resume": "^7.0.6",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
