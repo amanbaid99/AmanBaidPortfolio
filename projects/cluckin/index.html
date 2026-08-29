@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Cluckin Dashboard — QSR Data Platform — Aman Baid</title>
+<meta name="description" content="Case study: giving a multi-outlet QSR brand visibility into food wastage and inventory turnover with a Google Sheets data pipeline and Looker Studio dashboards. Reduced food wastage by 12%.">
+<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/cluckin/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Aman Baid">
+<meta property="og:title" content="Cluckin Dashboard — QSR Data Platform — Aman Baid">
+<meta property="og:description" content="A multi-outlet QSR brand had no visibility into food wastage or inventory turnover. I built the pipeline and dashboards that gave them one — and cut wastage 12%.">
+<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/cluckin/">
+<meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#fbfaf8">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+
+<script src="../../assets/js/analytics.js" defer></script>
+<script src="../../assets/js/main.js" defer></script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__name" href="../../">Aman Baid</a>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__links">
+        <a href="../../#about">About</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../../#projects">Projects</a>
+        <a href="../../#contact">Contact</a>
+      </div>
+      <a class="btn btn--ghost btn--sm" href="../../assets/resume/aman-baid-resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <article>
+
+    <div class="container">
+      <div class="case-hero">
+        <a class="back-link" href="../../#projects"><span aria-hidden="true">←</span> All projects</a>
+        <p class="case-hero__meta">
+          <span>Aug 2025</span> · <span>Client engagement</span>
+        </p>
+        <h1 class="case-hero__title">Cluckin Dashboard — QSR Data Platform</h1>
+        <p class="case-hero__standfirst">
+          A multi-outlet quick-service restaurant brand was losing money to food wastage
+          and couldn't see where. I built the pipeline and dashboards that made the problem
+          visible per outlet — and actionable.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <section class="case-block">
+        <h2 class="case-block__title">Problem</h2>
+        <div class="case-block__body">
+          <p>
+            Cluckin operates across multiple outlets, but had no visibility into food
+            wastage or inventory turnover at any of them. Stock data existed, scattered
+            and inconsistent, but nothing rolled it up into a view anyone could act on.
+          </p>
+          <p>
+            Without an outlet-level picture, wastage was treated as a fixed cost of doing
+            business rather than something with identifiable causes. There was no way to
+            tell a structural problem from a one-off bad week, or a badly-stocked outlet
+            from a well-run one.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title">Approach</h2>
+        <div class="case-block__body">
+          <p>
+            I started with the data itself, building a cleaning pipeline to get the raw
+            outlet records into a consistent, trustworthy shape. Reporting on messy inputs
+            would have produced numbers nobody believed, and a dashboard nobody trusts is
+            a dashboard nobody opens.
+          </p>
+          <p>
+            From there I <strong>segmented outlets by order frequency and inventory
+            turnover</strong>. That was the key move: it separated outlets with genuinely
+            different operating patterns, so high-volume and low-volume locations could be
+            judged against the right benchmark instead of a single company-wide average
+            that flattered some and unfairly flagged others.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title">What I built</h2>
+        <div class="case-block__body">
+          <ul>
+            <li><strong>A data-cleaning pipeline</strong> on Google Sheets, normalising inconsistent outlet-level inventory and order records into a reliable reporting base.</li>
+            <li><strong>An outlet segmentation model</strong> grouping locations by order frequency and inventory turnover, so comparisons were like-for-like.</li>
+            <li><strong>Looker Studio dashboards</strong> surfacing wastage and turnover per outlet and per segment — built for the operations team to read directly, not for an analyst to interpret for them.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title">Outcome</h2>
+        <div class="case-block__body">
+          <ul class="impact-list">
+            <li>
+              <strong>Reduced food wastage by 12%</strong>
+              <span>Wastage moved from an accepted cost to a tracked, managed metric with visible causes.</span>
+            </li>
+            <li>
+              <strong>Outlet-level visibility, for the first time</strong>
+              <span>Operations could compare locations against the right peer group and see which needed intervention.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title">Tech used</h2>
+        <div class="case-block__body">
+          <ul class="tags">
+            <li class="tag">Looker Studio</li>
+            <li class="tag">Google Sheets pipeline</li>
+            <li class="tag">Data cleaning</li>
+            <li class="tag">Segmentation analysis</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="next-project">
+        <p><a href="../fitness-coaching-platform/">Next project: AI-Assisted Fitness Coaching Platform <span aria-hidden="true">→</span></a></p>
+      </section>
+
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p>© <span data-current-year>2026</span> Aman Baid</p>
+    <p><a href="mailto:amanbaid99@gmail.com">amanbaid99@gmail.com</a> · <a href="https://www.linkedin.com/in/aman-baid" rel="noopener">LinkedIn</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

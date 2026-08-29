@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>AI-Assisted Fitness Coaching Platform — Aman Baid</title>
+<meta name="description" content="Case study: rapid-prototyping an AI tool that drafts personalised training plans from client intake data and each coach's own methodology, with a human coach approving before delivery.">
+<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/fitness-coaching-platform/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Aman Baid">
+<meta property="og:title" content="AI-Assisted Fitness Coaching Platform — Aman Baid">
+<meta property="og:description" content="Coaches were hand-building every plan or falling back on templates. Instead of writing a spec, I prototyped it — an AI drafter with a human coach in the loop.">
+<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/fitness-coaching-platform/">
+<meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#fbfaf8">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+
+<script src="../../assets/js/analytics.js" defer></script>
+<script src="../../assets/js/main.js" defer></script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__name" href="../../">Aman Baid</a>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__links">
+        <a href="../../#about">About</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../../#projects">Projects</a>
+        <a href="../../#contact">Contact</a>
+      </div>
+      <a class="btn btn--ghost btn--sm" href="../../assets/resume/aman-baid-resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <article>
+
+    <div class="container">
+      <div class="case-hero">
+        <a class="back-link" href="../../#projects"><span aria-hidden="true">←</span> All projects</a>
+        <p class="case-hero__meta">
+          <span>2026</span> · <span>Solo build</span>
+        </p>
+        <h1 class="case-hero__title">AI-Assisted Fitness Coaching Platform</h1>
+        <p class="case-hero__standfirst">
+          Fitness coaches face a hard trade-off: individualised plans that eat their week,
+          or templates that scale but don't fit anyone. I prototyped a way to get both —
+          AI drafts the plan, the coach still signs it off.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <section class="case-block">
+        <h2 class="case-block__title">Problem</h2>
+        <div class="case-block__body">
+          <p>
+            Coaches were spending significant time manually building individualised plans
+            for each client — time that doesn't scale and isn't billable in proportion to
+            the effort. The alternative most of them fell back on was a one-size-fits-all
+            template, which is fast but produces exactly the generic experience clients
+            leave over.
+          </p>
+          <p>
+            The interesting constraint: a coach's value isn't just the plan, it's their
+            specific training methodology. Any tool that generated plans from generic
+            fitness knowledge would replace the coach's judgement with something blander
+            than what they already had.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title">Approach</h2>
+        <div class="case-block__body">
+          <p>
+            Rather than write a specification document and hand it over, I
+            <strong>rapid-prototyped the tool directly</strong>. For a product whose whole
+            question is "does the generated plan actually feel like this coach wrote it?",
+            a working prototype answers that in a session; a spec document never can.
+          </p>
+          <p>
+            The design decision that followed: the AI generates a <strong>draft</strong>,
+            not a deliverable. Every plan is reviewed and finalised by a human coach before
+            it reaches a client. That keeps the coach's judgement — and accountability —
+            in the loop on something as consequential as someone's training, while still
+            removing the blank-page work that was consuming their time.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title">What I built</h2>
+        <div class="case-block__body">
+          <ul>
+            <li><strong>An AI plan generator</strong> that produces personalised plans from client intake data <em>and</em> the individual coach's training methodology — so output reflects how that coach actually works, not a generic model of fitness.</li>
+            <li><strong>Three synced dashboards</strong> — user, coach and admin — on a Supabase backend, each seeing the same underlying state from its own perspective.</li>
+            <li><strong>A human-in-the-loop review step</strong>: the AI draft goes to the coach, who edits and approves before anything is delivered to the client.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title">Outcome</h2>
+        <div class="case-block__body">
+          <ul class="impact-list">
+            <li>
+              <strong>Reduced plan-creation time</strong>
+              <span>Coaches start from a tailored draft instead of a blank page.</span>
+            </li>
+            <li>
+              <strong>Individualised plans replaced generic templates</strong>
+              <span>The scalable option is now the personalised one, rather than the compromise.</span>
+            </li>
+            <li>
+              <strong>Coach judgement preserved</strong>
+              <span>Nothing reaches a client without a human coach reviewing and finalising it.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title">Tech used</h2>
+        <div class="case-block__body">
+          <ul class="tags">
+            <li class="tag">Supabase</li>
+            <li class="tag">LLM plan generation</li>
+            <li class="tag">Rapid prototyping</li>
+            <li class="tag">Multi-role dashboards</li>
+            <li class="tag">Human-in-the-loop design</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="next-project">
+        <p><a href="../swaswasthya/">Next project: Swaswasthya Wellness Platform <span aria-hidden="true">→</span></a></p>
+      </section>
+
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p>© <span data-current-year>2026</span> Aman Baid</p>
+    <p><a href="mailto:amanbaid99@gmail.com">amanbaid99@gmail.com</a> · <a href="https://www.linkedin.com/in/aman-baid" rel="noopener">LinkedIn</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
