@@ -71,8 +71,9 @@ projects/fitness-coaching-platform/         Case study
 assets/css/style.css                        All styling (design tokens at the top)
 assets/js/main.js                           Scroll reveals, sticky-header hairline, footer year
 assets/js/analytics.js                      PostHog loader (inert until keyed)
-assets/img/og-image.png                     1200×630 LinkedIn/social preview card
-assets/img/favicon.svg
+assets/img/og-image.jpg                     1200×630 LinkedIn/social preview card
+assets/img/aman-baid.jpg|.webp              Hero portrait (@2x variants alongside)
+assets/img/favicon.svg                      AB monogram, matches the header mark
 assets/resume/aman-baid-resume.pdf          ← replace this
 404.html                                    Styled not-found page Pages serves automatically
 robots.txt, sitemap.xml, .nojekyll

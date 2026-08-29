@@ -14,7 +14,7 @@
 <meta property="og:title" content="Aman Baid — Product Manager">
 <meta property="og:description" content="Product Manager turning data into decisions — and shipping the product myself with AI tools.">
 <meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/">
-<meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.png">
+<meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Aman Baid — Product Manager, Mumbai">
@@ -51,7 +51,10 @@
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__name" href="./">Aman Baid</a>
+    <a class="site-header__name" href="./">
+      <span class="logo-mark" aria-hidden="true">AB</span>
+      <span>Aman Baid</span>
+    </a>
     <nav class="nav" aria-label="Primary">
       <div class="nav__links">
         <a href="#about">About</a>
@@ -68,17 +71,30 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="container">
-      <p class="hero__eyebrow">Product Manager · Mumbai, India</p>
-      <h1 class="hero__name">Aman Baid</h1>
-      <p class="hero__positioning">
-        Turning <strong>data into decisions</strong> — and
-        <strong>shipping the product myself</strong> with AI tools.
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href="assets/resume/aman-baid-resume.pdf">View Resume</a>
-        <a class="btn btn--ghost" href="#contact">Get in Touch</a>
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <p class="hero__eyebrow">Product Manager · Mumbai, India</p>
+        <h1 class="hero__name">Aman Baid</h1>
+        <p class="hero__positioning">
+          Turning <strong>data into decisions</strong> — and
+          <strong>shipping the product myself</strong> with AI tools.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="assets/resume/aman-baid-resume.pdf">View Resume</a>
+          <a class="btn btn--ghost" href="#contact">Get in Touch</a>
+        </div>
       </div>
+
+      <figure class="hero__portrait">
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/img/aman-baid.webp 1x, assets/img/aman-baid@2x.webp 2x">
+          <img src="assets/img/aman-baid.jpg"
+               srcset="assets/img/aman-baid.jpg 1x, assets/img/aman-baid@2x.jpg 2x"
+               width="400" height="500" alt="Aman Baid"
+               fetchpriority="high" decoding="async">
+        </picture>
+      </figure>
     </div>
   </section>
 

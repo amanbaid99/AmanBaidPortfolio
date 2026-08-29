@@ -142,12 +142,30 @@ li:last-child { margin-bottom: 0; }
 }
 
 .site-header__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: -0.01em;
   color: var(--text);
 }
 .site-header__name:hover { text-decoration: none; color: var(--accent); }
+
+/* AB monogram. Matches the favicon so the tab and the page agree. */
+.logo-mark {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
 
 .nav {
   display: flex;
@@ -197,6 +215,30 @@ li:last-child { margin-bottom: 0; }
 
 .hero {
   padding-block: clamp(4rem, 12vw, 8rem) clamp(3.5rem, 9vw, 6rem);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero__portrait { margin: 0; width: 340px; }
+
+.hero__portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 10px;
+  background: var(--bg-band);   /* holds the space while the image loads */
+}
+
+/* Stacked: the portrait moves above the name and shrinks to an avatar, so it
+   never pushes the positioning statement below the fold on a phone. */
+@media (max-width: 56rem) {
+  .hero__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero__portrait { order: -1; width: 124px; }
 }
 
 .hero__eyebrow {
