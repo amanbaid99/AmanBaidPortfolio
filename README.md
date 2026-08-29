@@ -113,6 +113,9 @@ relative paths in it would resolve against the wrong directory.
 
 ## Design notes
 
+- No card/panel containers: sections are separated by hairline rules and
+  whitespace rather than bordered boxes. Projects are a numbered editorial
+  list, contact details are hairline rows, skills are plain wrapped text.
 - Icons are one inline SVG sprite per page (`<symbol>` + `<use>`) — no icon
   library, no extra request. To add one, add a `<symbol>` to the sprite block at
   the top of `<body>` and reference it with

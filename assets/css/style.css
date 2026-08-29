@@ -243,12 +243,9 @@ li:last-child { margin-bottom: 0; }
 }
 
 .status-chip {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.35rem 0.8rem 0.35rem 0.6rem;
-  border: 1px solid var(--border-strong); border-radius: 999px;
-  background: var(--surface);
-  font-size: 0.8125rem; font-weight: 500; color: var(--text-muted);
-  margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.02em;
+  color: var(--text-muted); margin: 0 0 1.5rem;
 }
 .status-chip__dot {
   width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
@@ -306,44 +303,17 @@ li:last-child { margin-bottom: 0; }
 
 /* Portrait: an offset accent outline anchors it instead of letting it float. */
 .portrait { position: relative; width: 340px; flex: none; margin: 0; }
-.portrait::before {
-  content: ""; position: absolute;
-  inset: 1.25rem -1.25rem -1.25rem 1.25rem;
-  border: 1.5px solid var(--accent); border-radius: var(--radius-lg);
-  opacity: .3;
-}
 .portrait__img {
-  position: relative;
   width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
   background: var(--bg-band);
-  box-shadow: var(--shadow-lg);
   transition: transform .5s var(--ease);
 }
 .portrait:hover .portrait__img { transform: translateY(-4px); }
 
-.portrait__badge {
-  position: absolute; left: -1.5rem; bottom: 2rem; z-index: 2;
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  padding: 0.5rem 0.85rem;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); box-shadow: var(--shadow-md);
-  font-size: 0.8125rem; font-weight: 500; color: var(--text-muted);
-  white-space: nowrap;
-}
-.portrait__badge .icon { color: var(--accent); }
-
 @media (max-width: 58rem) {
   .hero__inner { grid-template-columns: 1fr; gap: 2rem; }
   .portrait { order: -1; width: 132px; }
-  /* At avatar size the offset frame and the overlapping badge just crowd the
-     photo, so drop the frame and let the badge sit underneath instead. */
-  .portrait::before { display: none; }
-  .portrait__badge {
-    position: static; margin-top: .65rem;
-    font-size: .75rem; padding: .3rem .6rem; box-shadow: var(--shadow-sm);
-  }
   .hero__metrics { gap: 1.25rem 1.75rem; }   /* row gap: rows were colliding */
   .metric__value { font-size: 1.375rem; }
   .metric__label { max-width: 11rem; }
@@ -371,20 +341,15 @@ li:last-child { margin-bottom: 0; }
 }
 .skill-group__head .icon { color: var(--accent); }
 
-.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }
-
-.tag {
-  font-size: 0.875rem; line-height: 1.4; margin: 0;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid var(--border); border-radius: 999px;
-  background: var(--surface); color: var(--text-muted);
-  transition: border-color .2s var(--ease), color .2s var(--ease),
-              background-color .2s var(--ease), transform .2s var(--ease);
+/* Plain wrapped text instead of a wall of bordered pills. Separated by space
+   rather than a middot: a positioned separator orphans at the start of a
+   wrapped line, and an inline one strands at the end. Space never does. */
+.tags {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 0.15rem 1.6rem; list-style: none; padding: 0; margin: 0;
+  font-size: 0.9375rem; line-height: 1.7;
 }
-.tag:hover {
-  border-color: var(--accent); color: var(--accent);
-  background: var(--accent-soft); transform: translateY(-2px);
-}
+.tag { margin: 0; color: var(--text-muted); }
 
 /* --- experience ----------------------------------------------------------- */
 
@@ -446,83 +411,78 @@ li:last-child { margin-bottom: 0; }
 
 /* --- projects ------------------------------------------------------------- */
 
-.cards {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  gap: 1.5rem;
-}
+/* An editorial list, not a grid of boxes: an index number, the content, and a
+   hairline between entries. Nothing is enclosed. */
+.projects { list-style: none; margin: 0; padding: 0; }
 
-.card {
-  position: relative; display: flex; flex-direction: column;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 1.75rem;
-  overflow: hidden;
-  transition: border-color .28s var(--ease), transform .28s var(--ease),
-              box-shadow .28s var(--ease);
+.project {
+  position: relative;
+  display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) 2rem;
+  gap: 0 1.5rem; align-items: start;
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--border);
+  margin: 0;
+  transition: border-color .3s var(--ease);
 }
-/* Accent bar that wipes in along the top edge on hover. */
-.card::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px;
-  background: var(--accent);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .35s var(--ease);
-}
-.card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-.card:hover::before { transform: scaleX(1); }
+.project:last-child { border-bottom: 1px solid var(--border); }
+.project:hover { border-top-color: var(--accent); }
+.project:last-child:hover { border-bottom-color: var(--accent); }
 
-.card__icon {
-  width: 2.75rem; height: 2.75rem; border-radius: var(--radius);
-  background: var(--accent-soft); color: var(--accent);
-  display: grid; place-items: center; margin-bottom: 1.25rem;
-  transition: background-color .28s var(--ease), transform .28s var(--ease);
+.project__index {
+  font-size: 0.8125rem; font-weight: 600;
+  color: var(--text-faint); font-variant-numeric: tabular-nums;
+  padding-top: 0.35rem;
+  transition: color .3s var(--ease);
 }
-.card__icon .icon { width: 1.375rem; height: 1.375rem; }
-.card:hover .card__icon { background: var(--accent); color: #fff; transform: scale(1.05); }
+.project:hover .project__index { color: var(--accent); }
 
-.card__meta {
+.project__meta {
   display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
-  font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--text-faint); margin-bottom: 0.65rem;
+  font-size: 0.75rem; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--text-faint); margin: 0 0 0.5rem;
 }
 
-.card__title { font-size: 1.1875rem; margin: 0 0 0.65rem; }
-.card__title a { color: var(--text); }
-.card__title a:hover { color: var(--accent); text-decoration: none; }
-/* Stretched link: the whole card is clickable, keyboard focus stays on the <a>. */
-.card__title a::after { content: ""; position: absolute; inset: 0; }
-
-.card__summary { color: var(--text-muted); font-size: 0.9375rem; margin: 0 0 1.25rem; }
-
-.card__impact {
-  display: flex; align-items: flex-start; gap: 0.5rem;
-  font-size: 0.9375rem; font-weight: 500; color: var(--text);
-  margin: auto 0 1.25rem; padding: 0.7rem 0.85rem;
-  background: var(--accent-tint); border-radius: var(--radius);
+.project__title {
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  margin: 0 0 0.6rem;
 }
-.card__impact .icon { color: var(--accent); margin-top: 0.22em; }
+.project__title a { color: var(--text); transition: color .25s var(--ease); }
+.project__title a:hover { color: var(--accent); text-decoration: none; }
+/* Stretched link: the whole row is clickable, focus stays on the <a>. */
+.project__title a::after { content: ""; position: absolute; inset: 0; }
 
-.card__link {
-  font-size: 0.9375rem; font-weight: 500;
-  display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0;
+.project__summary {
+  color: var(--text-muted); font-size: 0.9375rem;
+  margin: 0 0 0.85rem; max-width: 46rem;
 }
-.card__link .icon { transition: transform .28s var(--ease); }
-.card:hover .card__link .icon { transform: translateX(4px); }
 
-.pill {
-  display: inline-flex; align-items: center; gap: 0.3rem;
-  font-size: 0.6875rem; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 0.15rem 0.55rem; border-radius: 999px;
-  background: var(--accent-soft); color: var(--accent);
+.project__impact {
+  display: inline-flex; align-items: flex-start; gap: 0.5rem;
+  font-size: 0.9375rem; font-weight: 500; color: var(--text); margin: 0;
 }
-.pill__dot {
+.project__impact .icon { color: var(--accent); margin-top: 0.28em; }
+
+.project__go {
+  align-self: center; color: var(--text-faint);
+  display: grid; place-items: center;
+  transition: color .3s var(--ease), transform .3s var(--ease);
+}
+.project:hover .project__go { color: var(--accent); transform: translateX(5px); }
+
+.live {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  color: var(--accent); font-weight: 600;
+}
+.live__dot {
   width: 5px; height: 5px; border-radius: 50%; background: currentColor;
   animation: pulse-soft 2s ease-in-out infinite;
 }
-@keyframes pulse-soft { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+@keyframes pulse-soft { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+@media (max-width: 40rem) {
+  .project { grid-template-columns: 2.25rem minmax(0, 1fr); gap: 0 1rem; }
+  .project__go { display: none; }
+}
 
 /* --- contact -------------------------------------------------------------- */
 
@@ -533,38 +493,34 @@ li:last-child { margin-bottom: 0; }
 
 .contact__list {
   list-style: none; padding: 0; margin: 0;
-  /* 2-up on desktop: 4-up squeezed emails and URLs into mid-word breaks. */
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr)); gap: 1rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 0 3rem;
+  /* Rows carry a top hairline; this closes the bottom of every column at once,
+     which :last-child cannot do across a multi-column grid. */
+  border-bottom: 1px solid var(--border);
 }
 
 .contact__item {
-  margin: 0; display: flex; align-items: center; gap: 0.9rem;
-  padding: 1rem 1.15rem;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: border-color .2s var(--ease), transform .2s var(--ease),
-              box-shadow .2s var(--ease);
+  display: grid; grid-template-columns: 1.5rem 5.5rem minmax(0, 1fr);
+  gap: 0.9rem; align-items: baseline;
+  margin: 0; padding-block: 1rem;
+  border-top: 1px solid var(--border);
 }
-.contact__item:hover {
-  border-color: var(--border-strong); transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.contact__icon {
-  width: 2.25rem; height: 2.25rem; border-radius: 8px; flex: none;
-  background: var(--accent-soft); color: var(--accent);
-  display: grid; place-items: center;
-}
+.contact__item .icon { color: var(--accent); align-self: center; }
 
 .contact__key {
-  display: block; font-size: 0.6875rem; font-weight: 600;
+  font-size: 0.6875rem; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint);
 }
-/* break-word only splits a word that genuinely cannot fit, unlike
-   word-break, which was hyphen-less-splitting emails that had room. */
-.contact__value { display: block; font-size: 0.9375rem; overflow-wrap: break-word; }
+.contact__value { font-size: 0.9375rem; overflow-wrap: break-word; }
 .contact__value a { color: var(--text); }
 .contact__value a:hover { color: var(--accent); }
+
+@media (max-width: 30rem) {
+  .contact__item { grid-template-columns: 1.5rem minmax(0, 1fr); }
+  .contact__key { grid-column: 2; }
+  .contact__value { grid-column: 2; }
+}
 
 /* --- footer --------------------------------------------------------------- */
 
@@ -621,13 +577,12 @@ li:last-child { margin-bottom: 0; }
 .case-block__body p, .case-block__body li { color: var(--text-muted); }
 .case-block__body strong { color: var(--text); font-weight: 600; }
 
-.impact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+.impact-list { list-style: none; padding: 0; margin: 0; }
 .impact-list li {
-  margin: 0; padding: 1rem 1.15rem;
-  background: var(--surface); border: 1px solid var(--border);
-  border-left: 2px solid var(--accent);
-  border-radius: var(--radius);
+  margin: 0; padding-block: 1rem;
+  border-top: 1px solid var(--border);
 }
+.impact-list li:last-child { border-bottom: 1px solid var(--border); }
 .impact-list strong { display: block; font-size: 1.0625rem; color: var(--text); }
 .impact-list span { color: var(--text-muted); font-size: 0.9375rem; }
 
