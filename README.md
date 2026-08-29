@@ -69,7 +69,7 @@ projects/swaswasthya/index.html             Case study
 projects/cluckin/index.html                 Case study
 projects/fitness-coaching-platform/         Case study
 assets/css/style.css                        All styling (design tokens at the top)
-assets/js/main.js                           Scroll reveals, sticky-header hairline, footer year
+assets/js/main.js                           Reveals, metric count-up, nav scroll-spy, footer year
 assets/js/analytics.js                      PostHog loader (inert until keyed)
 assets/img/og-image.jpg                     1200×630 LinkedIn/social preview card
 assets/img/aman-baid.jpg|.webp              Hero portrait (@2x variants alongside)
@@ -110,6 +110,19 @@ directly, so the `/projects/<name>/` clean URLs resolve.
 Ordinary internal links are relative, so navigation keeps working either way.
 `404.html` is the exception: GitHub serves it for a missing URL at any depth, so
 relative paths in it would resolve against the wrong directory.
+
+## Design notes
+
+- Icons are one inline SVG sprite per page (`<symbol>` + `<use>`) — no icon
+  library, no extra request. To add one, add a `<symbol>` to the sprite block at
+  the top of `<body>` and reference it with
+  `<svg class="icon"><use href="#i-name"></use></svg>`.
+- Animation is JS-gated: `main.js` adds a `js` class to `<html>`, and every
+  hidden-then-revealed rule is scoped to `.js`. With JS off nothing is ever
+  hidden. Two independent safety nets force content visible if an animation
+  fails to run, so the page can never be left blank.
+- `prefers-reduced-motion` disables all of it, and the metric counters render
+  their final values straight from the HTML.
 
 ## Notes
 
