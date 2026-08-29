@@ -1,12 +1,17 @@
 name: Deploy to GitHub Pages
 
+# Manual trigger only.
+#
+# This repo currently publishes via Settings > Pages > "Deploy from a branch",
+# which is GitHub's own build and needs no workflow. This file is kept for the
+# day you switch Source to "GitHub Actions" instead.
+#
+# Do NOT add a push trigger while Source is set to "Deploy from a branch":
+# actions/deploy-pages only works when Source is "GitHub Actions", so the run
+# would fail every time. Switch Source first, then add:
+#   push:
+#     branches: [master]
 on:
-  push:
-    branches:
-      # master only. GitHub creates the `github-pages` environment with a
-      # deployment branch rule limited to the default branch, so a run from
-      # any other branch is rejected before a runner is even assigned.
-      - master
   workflow_dispatch:
 
 # Permissions the deploy needs. GITHUB_TOKEN gets nothing beyond these.

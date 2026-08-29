@@ -30,26 +30,36 @@ script, so the site stays fast and cookie-free by default.
 
 ## Deployment
 
-Deployment is automatic. `.github/workflows/deploy-pages.yml` publishes the site
-to GitHub Pages on every push to `master`, and turns Pages on for the repo the
-first time it runs — there is nothing to click in Settings.
+The site publishes from **Settings → Pages → Deploy from a branch**, pointed at
+branch `claude/aman-baid-portfolio-f1z4g5`, folder `/ (root)`.
 
-There is no build step: the repo root *is* the site, so the workflow just uploads
-it. A deploy takes about a minute; watch it under the repo's **Actions** tab.
+There is no build step — the repo root *is* the site, and `.nojekyll` tells
+GitHub to serve the files as-is rather than running them through Jekyll. Push to
+that branch and the site republishes in about a minute.
 
-The site publishes from **`master` only**. That isn't a preference — GitHub
-creates the `github-pages` environment with a deployment branch rule limited to
-the repo's default branch, and rejects a deploy from any other branch before it
-even starts. So the site goes live when this work is merged to `master`, not
-before.
+**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/
 
-To re-publish without pushing a commit: **Actions → Deploy to GitHub Pages →
-Run workflow**, with `master` selected.
+### When you merge this work into `master`
 
-If you would rather not use Actions at all, this also works as a plain
-branch deploy (**Settings → Pages → Deploy from a branch**, root folder) —
-the `.nojekyll` file is what stops GitHub running the files through Jekyll in
-that mode.
+Branch-deploy keeps publishing from whatever branch is selected, so after a merge
+the site would still be served from the old feature branch. Repoint it:
+**Settings → Pages → Branch → `master`**.
+
+### Optional: switching to an Actions-based deploy
+
+`.github/workflows/deploy-pages.yml` is set to **manual trigger only**
+(`workflow_dispatch`) and does nothing on its own. It exists for the day you'd
+rather deploy through Actions than from a branch. To switch:
+
+1. **Settings → Pages → Source → GitHub Actions**
+2. Add a push trigger to the workflow (the file has the snippet in a comment)
+
+Order matters: `actions/deploy-pages` only works when Source is "GitHub Actions".
+Running it while Source is "Deploy from a branch" fails every time.
+
+Note that GitHub restricts the `github-pages` *environment* to the repo's default
+branch, so an Actions deploy only works from `master` — that is why this branch
+publishes via branch-deploy instead, which has no such restriction.
 
 ## Structure
 
@@ -66,7 +76,7 @@ assets/img/favicon.svg
 assets/resume/aman-baid-resume.pdf          ← replace this
 404.html                                    Styled not-found page Pages serves automatically
 robots.txt, sitemap.xml, .nojekyll
-.github/workflows/deploy-pages.yml          Publishes to GitHub Pages on push
+.github/workflows/deploy-pages.yml          Optional Actions deploy; manual trigger only
 ```
 
 ## Editing content
