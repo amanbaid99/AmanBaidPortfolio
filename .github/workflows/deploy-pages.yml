@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+      # Lets the site go live from this branch before it's merged.
+      # Safe to delete this line once the work is on master.
+      - claude/aman-baid-portfolio-f1z4g5
+  workflow_dispatch:
+
+# Permissions the deploy needs. GITHUB_TOKEN gets nothing beyond these.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it, so the live site is
+# never left half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      # enablement: true turns GitHub Pages on for the repo if it isn't
+      # already, so there is no manual step in Settings.
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # No build step — the repo root is the site. This action excludes
+      # .git and .github from the uploaded artifact.
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -28,16 +28,27 @@ script, so the site stays fast and cookie-free by default.
 
 ---
 
-## Enabling GitHub Pages
+## Deployment
 
-Repo **Settings → Pages → Build and deployment**:
+Deployment is automatic. `.github/workflows/deploy-pages.yml` publishes the site
+to GitHub Pages on every push, and turns Pages on for the repo the first time it
+runs — there is nothing to click in Settings.
 
-- **Source:** Deploy from a branch
-- **Branch:** `master` (or whichever branch holds this code), folder `/ (root)`
+There is no build step: the repo root *is* the site, so the workflow just uploads
+it. A deploy takes about a minute; watch it under the repo's **Actions** tab.
 
-Save, wait a minute, and the site is live at the URL above. There's no build
-step — GitHub serves these files directly. `.nojekyll` stops GitHub from running
-the files through Jekyll first.
+The workflow currently deploys from `master` **and** from the
+`claude/aman-baid-portfolio-f1z4g5` branch, so the site can go live before that
+branch is merged. Once it is merged, delete the second branch line from the
+workflow's `on.push.branches` list so only `master` publishes.
+
+To re-publish without pushing a commit: **Actions → Deploy to GitHub Pages →
+Run workflow**.
+
+If you would rather not use Actions at all, this also works as a plain
+branch deploy (**Settings → Pages → Deploy from a branch**, root folder) —
+the `.nojekyll` file is what stops GitHub running the files through Jekyll in
+that mode.
 
 ## Structure
 
@@ -52,7 +63,9 @@ assets/js/analytics.js                      PostHog loader (inert until keyed)
 assets/img/og-image.png                     1200×630 LinkedIn/social preview card
 assets/img/favicon.svg
 assets/resume/aman-baid-resume.pdf          ← replace this
+404.html                                    Styled not-found page Pages serves automatically
 robots.txt, sitemap.xml, .nojekyll
+.github/workflows/deploy-pages.yml          Publishes to GitHub Pages on push
 ```
 
 ## Editing content
@@ -77,10 +90,14 @@ directly, so the `/projects/<name>/` clean URLs resolve.
 1. Add a `CNAME` file at the repo root containing just the domain, e.g. `amanbaid.com`
 2. Point the domain's DNS at GitHub Pages
 3. Find-and-replace `https://amanbaid99.github.io/AmanBaidPortfolio` with the new
-   origin across the four HTML files, `robots.txt` and `sitemap.xml` — those are
-   the canonical, Open Graph and sitemap URLs, which must be absolute
+   origin across the four page HTML files, `robots.txt` and `sitemap.xml` — those
+   are the canonical, Open Graph and sitemap URLs, which must be absolute
+4. In `404.html`, replace the `/AmanBaidPortfolio/` path prefix with `/`. A custom
+   domain serves the site from the root, not from a repo subpath
 
-All internal links are relative, so navigation keeps working either way.
+Ordinary internal links are relative, so navigation keeps working either way.
+`404.html` is the exception: GitHub serves it for a missing URL at any depth, so
+relative paths in it would resolve against the wrong directory.
 
 ## Notes
 
