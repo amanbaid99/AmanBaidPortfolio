@@ -31,19 +31,20 @@ script, so the site stays fast and cookie-free by default.
 ## Deployment
 
 Deployment is automatic. `.github/workflows/deploy-pages.yml` publishes the site
-to GitHub Pages on every push, and turns Pages on for the repo the first time it
-runs — there is nothing to click in Settings.
+to GitHub Pages on every push to `master`, and turns Pages on for the repo the
+first time it runs — there is nothing to click in Settings.
 
 There is no build step: the repo root *is* the site, so the workflow just uploads
 it. A deploy takes about a minute; watch it under the repo's **Actions** tab.
 
-The workflow currently deploys from `master` **and** from the
-`claude/aman-baid-portfolio-f1z4g5` branch, so the site can go live before that
-branch is merged. Once it is merged, delete the second branch line from the
-workflow's `on.push.branches` list so only `master` publishes.
+The site publishes from **`master` only**. That isn't a preference — GitHub
+creates the `github-pages` environment with a deployment branch rule limited to
+the repo's default branch, and rejects a deploy from any other branch before it
+even starts. So the site goes live when this work is merged to `master`, not
+before.
 
 To re-publish without pushing a commit: **Actions → Deploy to GitHub Pages →
-Run workflow**.
+Run workflow**, with `master` selected.
 
 If you would rather not use Actions at all, this also works as a plain
 branch deploy (**Settings → Pages → Deploy from a branch**, root folder) —

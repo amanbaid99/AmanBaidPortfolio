@@ -3,10 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
+      # master only. GitHub creates the `github-pages` environment with a
+      # deployment branch rule limited to the default branch, so a run from
+      # any other branch is rejected before a runner is even assigned.
       - master
-      # Lets the site go live from this branch before it's merged.
-      # Safe to delete this line once the work is on master.
-      - claude/aman-baid-portfolio-f1z4g5
   workflow_dispatch:
 
 # Permissions the deploy needs. GITHUB_TOKEN gets nothing beyond these.
