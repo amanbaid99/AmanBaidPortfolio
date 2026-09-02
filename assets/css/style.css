@@ -191,6 +191,8 @@ li:last-child { margin-bottom: 0; }
   gap: 1.5rem; min-height: 4.25rem;
 }
 
+.site-header__name--static { cursor: default; }
+
 .site-header__name {
   display: inline-flex; align-items: center; gap: 0.65rem;
   font-family: var(--heading); font-weight: 800;
@@ -206,7 +208,7 @@ li:last-child { margin-bottom: 0; }
   letter-spacing: 0.02em;
   transition: background-color .25s var(--ease);
 }
-.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
+a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 .nav { display: flex; align-items: center; gap: 2rem; }
 .nav__links { display: flex; gap: 1.75rem; }
@@ -414,9 +416,15 @@ li:last-child { margin-bottom: 0; }
   color: var(--ink-3); margin-top: 0.6rem; line-height: 1.5;
 }
 
+/* The hero stacks well before the metrics need to: at tablet widths there is
+   still room for three columns, and stacking them there wasted the page. */
 @media (max-width: 62rem) {
   .hero__inner { grid-template-columns: 1fr; gap: 2rem; align-items: start; }
   .portrait { order: -1; width: 168px; }
+  .metric__value { font-size: 1.875rem; }
+}
+
+@media (max-width: 44rem) {
   .hero__metrics { grid-template-columns: 1fr; }
   .metric { padding: 1.1rem 0; border-top: 1px solid var(--line); }
   .metric:first-child { border-top: 0; }
@@ -847,3 +855,172 @@ li:last-child { margin-bottom: 0; }
   .site-header, .hero__actions, .site-footer { display: none; }
   body { background: #fff; font-size: 11pt; }
 }
+
+/* --- calculator ----------------------------------------------------------- */
+
+.calc { border-top: 1px solid var(--line); }
+
+.calc__tabs { display: flex; flex-wrap: wrap; gap: 0; }
+.calc__tab {
+  appearance: none; background: none; border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 1.1rem 1.5rem 1.1rem 0; margin-right: 2rem;
+  font-family: var(--font); font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-3); cursor: pointer;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.calc__tab:hover { color: var(--ink); }
+.calc__tab.is-active { color: var(--ink); border-bottom-color: var(--accent); }
+
+.calc__panel { padding-top: 2.25rem; }
+
+.calc__grid {
+  display: grid; grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: 3rem; align-items: start;
+}
+@media (max-width: 60rem) { .calc__grid { grid-template-columns: 1fr; gap: 2.25rem; } }
+
+/* --- fields --------------------------------------------------------------- */
+
+.field + .field { margin-top: 1.5rem; }
+
+.field__label {
+  display: block; font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  margin-bottom: 0.5rem;
+}
+.field__value { display: flex; align-items: baseline; gap: 0.4rem; }
+.field__num {
+  appearance: none; -moz-appearance: textfield;
+  width: 7.5rem; padding: 0.2rem 0;
+  background: none; border: 0; border-bottom: 1px solid var(--line);
+  font-family: var(--display); font-size: 1.75rem; font-weight: 400;
+  color: var(--ink); line-height: 1.1;
+}
+.field__num::-webkit-outer-spin-button,
+.field__num::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.field__num:focus { outline: 0; border-bottom-color: var(--accent); }
+.field__unit { font-size: 0.8125rem; color: var(--ink-3); }
+
+.field__range {
+  appearance: none; width: 100%; height: 2px; margin-top: 0.9rem;
+  background: var(--line); cursor: pointer;
+}
+.field__range::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--bg); cursor: pointer;
+}
+.field__range::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--bg); cursor: pointer;
+}
+.field__scale {
+  display: flex; justify-content: space-between;
+  font-size: 0.625rem; color: var(--ink-3); margin-top: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+.field__group {
+  margin: 2rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--line);
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+}
+
+/* --- stat readouts -------------------------------------------------------- */
+
+.stats {
+  list-style: none; margin: 0 0 2rem; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.stat { margin: 0; padding: 1.15rem 1.25rem 1.15rem 0; }
+.stat + .stat { border-left: 1px solid var(--line); padding-left: 1.25rem; }
+.stat__key {
+  display: block; font-size: 0.625rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  margin-bottom: 0.4rem;
+}
+.stat__val {
+  display: block; font-family: var(--display); font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+  font-weight: 400; line-height: 1; color: var(--ink);
+}
+.stat__sub {
+  display: block; font-size: 0.6875rem; color: var(--ink-3); margin-top: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+.stat--lead .stat__val { color: var(--accent); }
+/* Colour keys match the chart series so the two readings agree. */
+.stat--a .stat__key { color: #2a8560; }
+.stat--b .stat__key { color: #b4552f; }
+
+@media (max-width: 40rem) {
+  .stats { grid-template-columns: 1fr; }
+  .stat { padding: 0.9rem 0; border-top: 1px solid var(--line); }
+  .stat:first-child { border-top: 0; }
+  .stat + .stat { border-left: 0; padding-left: 0; }
+}
+
+/* --- chart ---------------------------------------------------------------- */
+
+.chart__legend {
+  display: flex; flex-wrap: wrap; gap: 1.25rem;
+  list-style: none; padding: 0; margin: 0 0 0.85rem;
+  font-size: 0.75rem; color: var(--ink-2);
+}
+.chart__legend li { display: flex; align-items: center; gap: 0.45rem; margin: 0; }
+.chart__key { width: 14px; height: 3px; flex: none; }
+
+.chart__plot { position: relative; }
+.chart__svg { width: 100%; height: auto; aspect-ratio: 720 / 300; display: block; overflow: visible; }
+.chart__grid  { stroke: var(--line); stroke-width: 1; }
+.chart__line  { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart__area  { opacity: .10; stroke: none; }
+.chart__tick  { font-size: 10px; fill: var(--ink-3); font-family: var(--font); }
+.chart__endlabel { font-size: 11px; font-weight: 600; font-family: var(--font); }
+.chart__cursor { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 3 3; }
+
+.chart__tip {
+  position: absolute; top: 0; transform: translateX(-50%);
+  background: var(--ink); color: var(--bg);
+  padding: 0.5rem 0.7rem; font-size: 0.6875rem; line-height: 1.5;
+  pointer-events: none; white-space: nowrap; z-index: 3;
+}
+.chart__tip strong { display: block; margin-bottom: 0.2rem; }
+.chart__tip span { display: flex; align-items: center; gap: 0.4rem; }
+.chart__tip i { width: 8px; height: 2px; flex: none; }
+
+.chart__table { margin-top: 1.25rem; font-size: 0.8125rem; }
+.chart__table summary {
+  cursor: pointer; list-style: none; color: var(--ink-2);
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding-block: 0.5rem; border-top: 1px solid var(--line);
+}
+.chart__table summary::-webkit-details-marker { display: none; }
+.chart__table summary:hover { color: var(--ink); }
+.chart__tablewrap { overflow-x: auto; padding-bottom: 0.5rem; }
+.chart__table table { border-collapse: collapse; width: 100%; min-width: 22rem; }
+.chart__table th, .chart__table td {
+  text-align: right; padding: 0.4rem 0.75rem 0.4rem 0;
+  border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums;
+  color: var(--ink-2); font-weight: 400;
+}
+.chart__table thead th {
+  text-align: right; font-size: 0.625rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+}
+.chart__table tbody th { text-align: left; color: var(--ink); font-weight: 600; }
+
+.calc__caveat { max-width: none; margin-top: 2.5rem; }
+.calc__caveat em { font-style: italic; }
+
+.chart { margin-top: 0.5rem; }
+
+/* The step-up result sits apart from the head-to-head on purpose: it comes from
+   paying in more, not from the plan performing better. */
+.stepup {
+  margin: 0 0 1.75rem; padding: 1rem 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.9375rem; color: var(--ink-2); max-width: 44rem;
+}
+.stepup strong { color: var(--ink); font-weight: 600; }

@@ -137,6 +137,35 @@ Ordinary internal links are relative, so navigation keeps working either way.
 `404.html` is the exception: GitHub serves it for a missing URL at any depth, so
 relative paths in it would resolve against the wrong directory.
 
+## The finance page is standalone
+
+`finances/` is written to be linked to directly and read on its own. The
+wordmark in its header is **not** a link, there is no "back to Aman Baid" CTA,
+and its footer carries no cross-section navigation — the only links out are the
+stylesheet and favicon. If you ever want it rejoined to the rest of the site,
+re-link `.site-header__name` and restore the `site-footer__nav` block.
+
+### Calculator
+
+`assets/js/calculator.js` powers two tabs. It is dependency-free and the rest of
+the page works without it (there is a `<noscript>` note).
+
+The maths is a month-by-month projection with the contribution at the start of
+each month; it reproduces the closed-form SIP formula exactly.
+
+The comparison tab is deliberately **contribution-neutral**: both columns pay in
+the same amount and assume the same expected return, so the gap shown is
+behaviour (stopping during a fall, switching between schemes) and not one side
+investing more. The step-up figure is reported *separately*, with its own
+paid-in number, because it works by putting in more money — folding it into the
+head-to-head would have made planning look far better than it is. Keep it that
+way: an implied return promise is exactly what an MFD must not publish.
+
+Chart colours (`#2a8560` / `#b4552f`) were validated for colour-blind separation.
+They land in the WARN band, which is only permissible with secondary encoding —
+hence the dashed second line, the legend, direct end-labels and the table view.
+If you change either colour, re-check it before shipping.
+
 ## Design notes
 
 - **Warm cream ground, terracotta accent.** Serif display (Instrument Serif) for

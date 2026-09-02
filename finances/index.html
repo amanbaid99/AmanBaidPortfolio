@@ -28,6 +28,7 @@
 
 <script src="../assets/js/analytics.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/calculator.js" defer></script>
 </head>
 
 <body class="theme-finance">
@@ -58,14 +59,15 @@
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__name" href="../">
+    <span class="site-header__name site-header__name--static">
       <span class="logo-mark" aria-hidden="true">AB</span>
       <span>Aman Baid</span>
-    </a>
+    </span>
     <nav class="nav" aria-label="Primary">
       <div class="nav__links">
         <a href="#services">Services</a>
         <a href="#process">How it works</a>
+        <a href="#calculator">Calculator</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </div>
@@ -80,7 +82,6 @@
 
   <section class="hero hero--sub">
     <div class="container">
-      <a class="back-link" href="../"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> Aman Baid</a>
       <p class="status-chip hero-in">
         <span class="status-chip__dot" aria-hidden="true"></span>
         Launching soon
@@ -186,10 +187,208 @@
     </div>
   </section>
 
+
+  <section class="section section--alt" id="calculator">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="section__label"><span class="section__num">03</span>Calculator</p>
+        <h2 class="section__title">Run the numbers <span class="tt">yourself</span></h2>
+        <p class="section__intro">
+          Two tools. The first is the ordinary SIP maths. The second is the one that
+          actually matters — what staying with a plan is worth against starting,
+          stopping, and chasing whatever did well last year.
+        </p>
+      </div>
+
+      <div class="calc" data-calc>
+        <div class="calc__tabs" role="tablist" aria-label="Calculator">
+          <button class="calc__tab is-active" id="tab-sip" role="tab" type="button"
+                  aria-selected="true" aria-controls="panel-sip">SIP calculator</button>
+          <button class="calc__tab" id="tab-compare" role="tab" type="button"
+                  aria-selected="false" aria-controls="panel-compare">With a plan vs without</button>
+        </div>
+
+        <noscript>
+          <p class="notice"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg><span>The calculator needs JavaScript. Everything else on this page works without it.</span></p>
+        </noscript>
+
+        <div class="calc__panel" id="panel-sip" role="tabpanel" aria-labelledby="tab-sip">
+          <div class="calc__grid">
+            <div class="calc__controls">
+              <div class="field">
+                <label class="field__label" for="in-sip-amount">Monthly investment</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-sip-amount" data-num="sip-amount"
+                         type="number" inputmode="decimal" min="500" max="200000" step="500" value="10000">
+                  <span class="field__unit">₹</span>
+                </div>
+                <input class="field__range" data-range="sip-amount" type="range"
+                       min="500" max="200000" step="500" value="10000"
+                       aria-labelledby="in-sip-amount" tabindex="-1">
+                <div class="field__scale"><span>500</span><span>200000</span></div>
+              </div>
+              <div class="field">
+                <label class="field__label" for="in-sip-years">Time period</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-sip-years" data-num="sip-years"
+                         type="number" inputmode="decimal" min="1" max="30" step="1" value="10">
+                  <span class="field__unit">years</span>
+                </div>
+                <input class="field__range" data-range="sip-years" type="range"
+                       min="1" max="30" step="1" value="10"
+                       aria-labelledby="in-sip-years" tabindex="-1">
+                <div class="field__scale"><span>1</span><span>30</span></div>
+              </div>
+              <div class="field">
+                <label class="field__label" for="in-sip-rate">Expected return</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-sip-rate" data-num="sip-rate"
+                         type="number" inputmode="decimal" min="6" max="18" step="0.5" value="12">
+                  <span class="field__unit">% p.a.</span>
+                </div>
+                <input class="field__range" data-range="sip-rate" type="range"
+                       min="6" max="18" step="0.5" value="12"
+                       aria-labelledby="in-sip-rate" tabindex="-1">
+                <div class="field__scale"><span>6</span><span>18</span></div>
+              </div>
+            </div>
+            <div class="calc__output">
+              <ul class="stats">
+                <li class="stat"><span class="stat__key">You pay in</span><span class="stat__val" data-out="sip-invested">—</span></li>
+                <li class="stat"><span class="stat__key">Est. growth</span><span class="stat__val" data-out="sip-returns">—</span></li>
+                <li class="stat stat--lead"><span class="stat__key">Projected value</span><span class="stat__val" data-out="sip-total">—</span><span class="stat__sub" data-out="sip-total-full"></span></li>
+              </ul>
+              <div class="chart" data-chart="sip"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc__panel" id="panel-compare" role="tabpanel" aria-labelledby="tab-compare" hidden>
+          <div class="calc__grid">
+            <div class="calc__controls">
+              <div class="field">
+                <label class="field__label" for="in-cmp-amount">Monthly investment</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-cmp-amount" data-num="cmp-amount"
+                         type="number" inputmode="decimal" min="500" max="200000" step="500" value="10000">
+                  <span class="field__unit">₹</span>
+                </div>
+                <input class="field__range" data-range="cmp-amount" type="range"
+                       min="500" max="200000" step="500" value="10000"
+                       aria-labelledby="in-cmp-amount" tabindex="-1">
+                <div class="field__scale"><span>500</span><span>200000</span></div>
+              </div>
+              <div class="field">
+                <label class="field__label" for="in-cmp-years">Time period</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-cmp-years" data-num="cmp-years"
+                         type="number" inputmode="decimal" min="1" max="30" step="1" value="15">
+                  <span class="field__unit">years</span>
+                </div>
+                <input class="field__range" data-range="cmp-years" type="range"
+                       min="1" max="30" step="1" value="15"
+                       aria-labelledby="in-cmp-years" tabindex="-1">
+                <div class="field__scale"><span>1</span><span>30</span></div>
+              </div>
+              <div class="field">
+                <label class="field__label" for="in-cmp-rate">Expected return</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-cmp-rate" data-num="cmp-rate"
+                         type="number" inputmode="decimal" min="6" max="18" step="0.5" value="12">
+                  <span class="field__unit">% p.a.</span>
+                </div>
+                <input class="field__range" data-range="cmp-rate" type="range"
+                       min="6" max="18" step="0.5" value="12"
+                       aria-labelledby="in-cmp-rate" tabindex="-1">
+                <div class="field__scale"><span>6</span><span>18</span></div>
+              </div>
+              <p class="field__group">What happens without a plan</p>
+              <div class="field">
+                <label class="field__label" for="in-cmp-pause">Months you stop during a fall</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-cmp-pause" data-num="cmp-pause"
+                         type="number" inputmode="decimal" min="0" max="24" step="1" value="8">
+                  <span class="field__unit">months</span>
+                </div>
+                <input class="field__range" data-range="cmp-pause" type="range"
+                       min="0" max="24" step="1" value="8"
+                       aria-labelledby="in-cmp-pause" tabindex="-1">
+                <div class="field__scale"><span>0</span><span>24</span></div>
+              </div>
+              <div class="field">
+                <label class="field__label" for="in-cmp-drag">Drag from switching &amp; chasing</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-cmp-drag" data-num="cmp-drag"
+                         type="number" inputmode="decimal" min="0" max="3" step="0.25" value="1.5">
+                  <span class="field__unit">% p.a.</span>
+                </div>
+                <input class="field__range" data-range="cmp-drag" type="range"
+                       min="0" max="3" step="0.25" value="1.5"
+                       aria-labelledby="in-cmp-drag" tabindex="-1">
+                <div class="field__scale"><span>0</span><span>3</span></div>
+              </div>
+              <p class="field__group">Separate, on top</p>
+              <div class="field">
+                <label class="field__label" for="in-cmp-step">Annual step-up</label>
+                <div class="field__value">
+                  <input class="field__num" id="in-cmp-step" data-num="cmp-step"
+                         type="number" inputmode="decimal" min="0" max="20" step="1" value="10">
+                  <span class="field__unit">%</span>
+                </div>
+                <input class="field__range" data-range="cmp-step" type="range"
+                       min="0" max="20" step="1" value="10"
+                       aria-labelledby="in-cmp-step" tabindex="-1">
+                <div class="field__scale"><span>0</span><span>20</span></div>
+              </div>
+            </div>
+            <div class="calc__output">
+              <ul class="stats stats--compare">
+                <li class="stat stat--b">
+                  <span class="stat__key">Without a plan</span>
+                  <span class="stat__val" data-out="cmp-unplanned">—</span>
+                  <span class="stat__sub" data-out="cmp-unplanned-inv"></span>
+                </li>
+                <li class="stat stat--a">
+                  <span class="stat__key">With a plan</span>
+                  <span class="stat__val" data-out="cmp-planned">—</span>
+                  <span class="stat__sub" data-out="cmp-planned-inv"></span>
+                </li>
+                <li class="stat stat--lead">
+                  <span class="stat__key">Behaviour gap</span>
+                  <span class="stat__val" data-out="cmp-gap">—</span>
+                  <span class="stat__sub" data-out="cmp-gap-sub"></span>
+                </li>
+              </ul>
+              <p class="stepup">
+                Raising the SIP <strong data-out="cmp-step-pct">—</strong> a year as your income
+                grows takes the planned figure to <strong data-out="cmp-step">—</strong> — but that
+                is because you pay in <strong data-out="cmp-step-inv">—</strong>, not because the
+                plan earns more.
+              </p>
+              <div class="chart" data-chart="compare"></div>
+            </div>
+          </div>
+
+          <p class="notice calc__caveat">
+            <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg>
+            <span>
+              <strong>What this does and doesn't model.</strong> Both columns pay in the same
+              amount each month and assume the <em>same</em> expected return — I am not claiming
+              to pick better funds, and nobody can promise that. The gap is only what stopping
+              during a fall and switching between schemes tends to cost. Every assumption above
+              is yours to change. It is an illustration, not a projection, and not a guarantee
+              of any return.
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="why">
     <div class="container">
       <div class="section__head reveal">
-        <p class="section__label"><span class="section__num">03</span>Why me</p>
+        <p class="section__label"><span class="section__num">04</span>Why me</p>
         <h2 class="section__title">I'd rather show you <span class="tt">the numbers than a pitch</span></h2>
       </div>
       <div class="prose reveal">
@@ -214,7 +413,7 @@
   <section class="section section--alt" id="faq">
     <div class="container">
       <div class="section__head reveal">
-        <p class="section__label"><span class="section__num">04</span>FAQ</p>
+        <p class="section__label"><span class="section__num">05</span>FAQ</p>
         <h2 class="section__title">The questions <span class="tt">worth asking</span></h2>
       </div>
 
@@ -246,7 +445,7 @@
   <section class="section" id="contact">
     <div class="container">
       <div class="section__head reveal">
-        <p class="section__label"><span class="section__num">05</span>Contact</p>
+        <p class="section__label"><span class="section__num">06</span>Contact</p>
         <h2 class="section__title">Start with <span class="tt">a conversation</span></h2>
       </div>
       <p class="contact__lead reveal">
@@ -300,7 +499,6 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <p>© <span data-current-year>2026</span> Aman Baid</p>
-    <p class="site-footer__nav"><a href="../">Home</a> · <a href="../pm/">Product</a> · <span aria-current="page">Finance</span></p>
     <p>
       <a href="mailto:amanbaid99@gmail.com">amanbaid99@gmail.com</a> ·
       <a href="https://www.linkedin.com/in/aman-baid" rel="noopener">LinkedIn</a>
