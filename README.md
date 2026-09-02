@@ -2,7 +2,7 @@
 
 Personal portfolio site. Static HTML/CSS, no build step, no dependencies.
 
-**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/
+**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/ (`/pm/` and `/finances/` for the two sections)
 
 ---
 
@@ -37,7 +37,7 @@ There is no build step — the repo root *is* the site, and `.nojekyll` tells
 GitHub to serve the files as-is rather than running them through Jekyll. Push to
 that branch and the site republishes in about a minute.
 
-**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/
+**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/ (`/pm/` and `/finances/` for the two sections)
 
 ### When you merge this work into `master`
 
@@ -63,22 +63,48 @@ publishes via branch-deploy instead, which has no such restriction.
 
 ## Structure
 
+Three sections, all static HTML:
+
 ```
-index.html                                  Home — hero, about, experience, projects, contact
-projects/swaswasthya/index.html             Case study
-projects/cluckin/index.html                 Case study
-projects/fitness-coaching-platform/         Case study
-assets/css/style.css                        All styling (design tokens at the top)
-assets/js/main.js                           Reveals, metric count-up, nav scroll-spy, footer year
-assets/js/analytics.js                      PostHog loader (inert until keyed)
-assets/img/og-image.jpg                     1200×630 LinkedIn/social preview card
-assets/img/aman-baid.jpg|.webp              Hero portrait (@2x variants alongside)
-assets/img/favicon.svg                      AB monogram, matches the header mark
-assets/resume/aman-baid-resume.pdf          ← replace this
-404.html                                    Styled not-found page Pages serves automatically
+index.html                    Personal hub — who I am, routes into the two sections
+pm/index.html                 Product management portfolio
+pm/projects/<slug>/           One case study per project (3)
+finances/index.html           Mutual fund distribution
+404.html                      Styled not-found page Pages serves automatically
+
+assets/css/style.css          All styling (design tokens at the top)
+assets/js/main.js             Reveals, metric count-up, nav scroll-spy, footer year
+assets/js/analytics.js        PostHog loader (inert until keyed)
+assets/img/                   Portrait (webp + jpg, @2x), OG card, favicon
+assets/resume/                ← replace the placeholder PDF here
 robots.txt, sitemap.xml, .nojekyll
-.github/workflows/deploy-pages.yml          Optional Actions deploy; manual trigger only
+.github/workflows/            Optional Actions deploy; manual trigger only
 ```
+
+URLs are lowercase (`/pm/`, not `/PM`). GitHub Pages is case-sensitive and a
+static site cannot redirect between the two, so mixed casing would be a
+permanent 404.
+
+Each page carries its own copy of the header, footer and icon sprite — there is
+no build step and no templating. **If you change the nav or footer, change it in
+all seven HTML files.**
+
+## Before the finance page goes public
+
+`finances/index.html` is written for someone who is *not yet* registered. It says
+so on the page, and the disclosures block has placeholders marked in accent
+colour with a dashed underline (`.todo`). Before it is public:
+
+1. Fill in your **ARN number** in the Disclosures section and remove
+   "(registration in progress)" and the `todo` spans
+2. Remove the "Launching soon" chip and the notice paragraph in the hero
+3. Re-read the disclosures against current AMFI/SEBI guidance — the wording
+   there is a reasonable starting point, not legal advice, and requirements
+   change
+
+The page deliberately makes no return promises and states plainly that you are a
+distributor paid by commission, not a SEBI-registered investment adviser. Keep it
+that way.
 
 ## Editing content
 

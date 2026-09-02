@@ -639,3 +639,116 @@ li:last-child { margin-bottom: 0; }
   .site-header, .hero__actions, .site-footer, .hero::before, .hero::after { display: none; }
   body { background: #fff; font-size: 11pt; }
 }
+
+/* --- section pages (pm, finances) ----------------------------------------- */
+
+/* Sub-page hero: single column, no portrait, tighter than the home hero. */
+.hero--sub { padding-block: 2.5rem clamp(2.5rem, 6vw, 4rem); }
+.hero--sub .hero__name { font-size: clamp(2.25rem, 6vw, 3.25rem); margin-bottom: 1rem; }
+.hero--sub .hero__positioning { max-width: 36rem; }
+/* flex (not inline-flex) so the chip that follows starts a new line */
+.hero--sub .back-link { display: flex; width: max-content; margin-bottom: 1.75rem; }
+
+.section--tight { padding-block: 3rem; }
+
+.site-footer__nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.site-footer__nav [aria-current="page"] { color: var(--text-muted); }
+
+/* Inline caveat — a rule and an icon, not a tinted panel. */
+.notice {
+  display: flex; align-items: flex-start; gap: 0.65rem;
+  max-width: 36rem; margin: 0 0 2rem;
+  padding-left: 0.9rem; border-left: 2px solid var(--accent);
+  font-size: 0.9375rem; color: var(--text-muted);
+}
+.notice .icon { color: var(--accent); margin-top: 0.3em; }
+.notice strong { color: var(--text); font-weight: 600; }
+
+/* --- checklist ------------------------------------------------------------ */
+
+.checklist { list-style: none; margin: 0; padding: 0; }
+.checklist li {
+  position: relative; padding-left: 1.6rem;
+  color: var(--text-muted); margin-bottom: 0.7rem;
+  font-size: 0.9375rem;
+}
+.checklist li:last-child { margin-bottom: 0; }
+.checklist .icon {
+  position: absolute; left: 0; top: 0.4em;
+  color: var(--accent); width: 1rem; height: 1rem;
+}
+.checklist strong { color: var(--text); font-weight: 600; }
+
+/* --- process steps -------------------------------------------------------- */
+
+.steps { list-style: none; margin: 0; padding: 0; }
+
+.step {
+  display: grid; grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0 1.5rem; align-items: start;
+  padding-block: 2rem;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+.step:last-child { border-bottom: 1px solid var(--border); }
+
+.step__index {
+  font-size: 0.8125rem; font-weight: 600; color: var(--accent);
+  font-variant-numeric: tabular-nums; padding-top: 0.3rem;
+}
+.step__title { font-size: 1.125rem; margin: 0 0 0.4rem; }
+.step__body { color: var(--text-muted); font-size: 0.9375rem; margin: 0; max-width: 44rem; }
+
+@media (max-width: 40rem) {
+  .step { grid-template-columns: 2.25rem minmax(0, 1fr); gap: 0 1rem; }
+}
+
+/* --- FAQ ------------------------------------------------------------------ */
+
+.faq { max-width: 46rem; }
+
+.faq__item { border-top: 1px solid var(--border); }
+.faq__item:last-child { border-bottom: 1px solid var(--border); }
+
+.faq__item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding-block: 1.15rem;
+  font-size: 1.0625rem; font-weight: 500; color: var(--text);
+  cursor: pointer; list-style: none;
+  transition: color .2s var(--ease);
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary:hover { color: var(--accent); }
+
+.faq__chevron {
+  color: var(--text-faint); flex: none;
+  transform: rotate(90deg);                 /* arrow-right pointing down */
+  transition: transform .25s var(--ease), color .2s var(--ease);
+}
+.faq__item[open] .faq__chevron { transform: rotate(-90deg); color: var(--accent); }
+
+.faq__answer { padding-bottom: 1.25rem; max-width: var(--measure); }
+.faq__answer p { color: var(--text-muted); font-size: 0.9375rem; }
+.faq__answer strong { color: var(--text); font-weight: 600; }
+
+/* --- disclosures ---------------------------------------------------------- */
+
+.disclosure {
+  border-top: 1px solid var(--border);
+  padding-top: 1.75rem;
+  max-width: 46rem;
+  font-size: 0.8125rem; line-height: 1.65; color: var(--text-faint);
+}
+.disclosure__title {
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-faint); margin: 0 0 0.85rem;
+}
+.disclosure p { margin-bottom: 0.75rem; }
+.disclosure strong { color: var(--text-muted); font-weight: 600; }
+
+/* Marks a value that must be filled in before the page goes public. */
+.todo {
+  color: var(--accent);
+  border-bottom: 1px dashed currentColor;
+}
