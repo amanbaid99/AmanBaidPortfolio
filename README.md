@@ -139,22 +139,22 @@ relative paths in it would resolve against the wrong directory.
 
 ## Design notes
 
-- **Editorial monochrome.** Off-white ground (`--bg`), near-black ink, solid
-  black bands, sharp corners everywhere. Oversized display type does the work
-  that colour usually does.
-- **Two typefaces.** Archivo (700–900) for display headings, Inter for body and
-  UI. Both come from one Google Fonts request.
-- **One accent, background-only.** `--acid` (#ceea34) has no contrast as a text
-  colour, so it is only ever a block *behind* dark text — the highlight in the
-  hero, the "Live"/"Soon" tags, the status dot, the placeholder markers in the
-  finance disclosures. Never set it as `color`.
-- **The portrait is greyscale** by default and returns to colour on hover, so a
-  colour photograph sits inside the monochrome system.
-
-
-- No card/panel containers: sections are separated by hairline rules and
-  whitespace rather than bordered boxes. Projects are a numbered editorial
-  list, contact details are hairline rows, skills are plain wrapped text.
+- **Warm cream ground, terracotta accent.** Serif display (Instrument Serif) for
+  the name and section headings, Archivo for sub-headings, Inter for body. All
+  three arrive in one Google Fonts request.
+- **The finance section runs green.** `finances/index.html` has
+  `class="theme-finance"` on `<body>`, which overrides `--accent` and its two
+  tints. Everything else — icons, numerals, highlights, tags — picks that up
+  automatically. To re-tint either side, change those variables and nothing else.
+- **Two-tone section headings**: the second line is wrapped in
+  `<span class="tt">` and takes the accent.
+- **The portrait is a circle on an offset accent disc.** The references use
+  cut-out PNGs; with a rectangular photo the disc would be completely hidden, so
+  the photo is clipped to a circle and the disc offset behind it leaves a
+  crescent. The photo is greyscale, returning to colour on hover.
+- **The seal** is CSS-rotated text on an SVG `textPath`. It is hidden below
+  62rem, where it covered a third of the face and duplicated the status chip
+  directly beneath it.
 - Icons are one inline SVG sprite per page (`<symbol>` + `<use>`) — no icon
   library, no extra request. To add one, add a `<symbol>` to the sprite block at
   the top of `<body>` and reference it with

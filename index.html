@@ -19,11 +19,11 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f1f0ec">
+<meta name="theme-color" content="#f6f2ea">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 
 <script src="assets/js/analytics.js" defer></script>
@@ -93,6 +93,8 @@
 <main id="main">
 
   <section class="hero">
+    <div class="rail rail--left" aria-hidden="true"><span>Product Management</span><i></i><span>Data &amp; Growth</span></div>
+    <div class="rail rail--right" aria-hidden="true"><span>Mutual Funds</span><i></i><span>Mumbai, India</span></div>
     <div class="container hero__inner">
       <div class="hero__text">
         <p class="status-chip hero-in">
@@ -136,6 +138,13 @@
                width="400" height="500" alt="Aman Baid"
                fetchpriority="high" decoding="async">
         </picture>
+        <div class="seal" aria-hidden="true">
+          <svg class="seal__ring" viewBox="0 0 100 100">
+            <defs><path id="sealpath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+            <text><textPath href="#sealpath" startOffset="0%">Open to new roles · Mumbai, India · Available now · </textPath></text>
+          </svg>
+          <span class="seal__core">Open<br>to work</span>
+        </div>
       </figure>
     </div>
   </section>
@@ -143,7 +152,7 @@
   <section class="band" id="work">
     <div class="container">
       <p class="section__label reveal">What I do</p>
-      <h2 class="section__title reveal">Two things,<br>one habit</h2>
+      <h2 class="section__title reveal">Two things,<span class="tt">one habit</span></h2>
       <p class="section__intro reveal">
         Both come down to the same instinct: get the numbers in front of you before
         deciding. One applies it to products, the other to money.
@@ -179,7 +188,7 @@
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">About</p>
-        <h2 class="section__title">A bit about me</h2>
+        <h2 class="section__title">A bit <span class="tt">about me</span></h2>
       </div>
       <div class="prose reveal">
         <p>
@@ -206,7 +215,7 @@
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Contact</p>
-        <h2 class="section__title">Get in touch</h2>
+        <h2 class="section__title">Get <span class="tt">in touch</span></h2>
       </div>
       <p class="contact__lead reveal">
         Open to Product Manager roles, freelance product and data engagements, and
