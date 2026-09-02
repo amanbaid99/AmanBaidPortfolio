@@ -148,6 +148,11 @@ relative paths in it would resolve against the wrong directory.
   automatically. To re-tint either side, change those variables and nothing else.
 - **Two-tone section headings**: the second line is wrapped in
   `<span class="tt">` and takes the accent.
+- **Section labels are numbered pills** with an accent dot. They are the only
+  rounded element in an otherwise square system, deliberately — so they read as
+  a marker rather than a change of language. The number lives in
+  `<span class="section__num">` and is per-page, so renumber if you add or
+  reorder a section.
 - **The portrait is a circle on an offset accent disc.** The references use
   cut-out PNGs; with a rectangular photo the disc would be completely hidden, so
   the photo is clipped to a circle and the disc offset behind it leaves a

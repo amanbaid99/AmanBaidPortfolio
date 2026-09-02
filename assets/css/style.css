@@ -93,7 +93,7 @@ li:last-child { margin-bottom: 0; }
 /* --- shared type ---------------------------------------------------------- */
 
 /* Wide-tracked micro caps — the connective tissue of the whole layout. */
-.eyebrow, .section__label, .card__meta, .project__meta, .contact__key,
+.eyebrow, .card__meta, .project__meta, .contact__key,
 .skill-group__head, .case-hero__meta, .role__period, .case-block__title {
   font-size: 0.6875rem;
   font-weight: 600;
@@ -133,8 +133,26 @@ li:last-child { margin-bottom: 0; }
 .section--tight { padding-block: 3rem; }
 .section--alt { background: var(--bg-alt); }
 
-.section__head { margin-bottom: 3rem; }
-.section__label { display: block; margin: 0 0 1rem; }
+.section__head { margin-bottom: 3.5rem; }
+/* Outlined pill with a dot and an index — borrowed from the Visa Travels
+   reference. Deliberately the only rounded element in an otherwise square
+   system, so it reads as a marker rather than a change of language. */
+.section__label {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0 0 1.25rem;
+}
+.section__label::before {
+  content: ""; flex: none;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+}
+.section__num { color: var(--accent); font-variant-numeric: tabular-nums; }
 
 .section__title {
   font-family: var(--display);
@@ -415,7 +433,10 @@ li:last-child { margin-bottom: 0; }
 
 /* Full-bleed dark section — the strongest structural device in the references. */
 .band { background: var(--black); color: var(--on-dark); padding-block: 5rem; }
-.band .section__label { color: var(--on-dark-2); }
+.band .section__label {
+  color: var(--on-dark-2);
+  background: transparent; border-color: var(--line-dark);
+}
 .band .section__title { color: var(--on-dark); }
 .band .section__intro { color: var(--on-dark-2); }
 
