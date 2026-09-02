@@ -19,11 +19,11 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#fbfaf8">
+<meta name="theme-color" content="#f1f0ec">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 
 <script src="assets/js/analytics.js" defer></script>
@@ -102,17 +102,15 @@
         <h1 class="hero__name hero-in">Aman Baid</h1>
         <p class="hero__role hero-in">Product Manager · Mumbai, India</p>
         <p class="hero__positioning hero-in">
-          I turn <strong>data into decisions</strong> — and build the product myself
-          with AI tools. Alongside that, I'm setting up a
+          I turn <span class="mark">data into decisions</span> — and build the product
+          myself with AI tools. Alongside that, I'm setting up a
           <strong>mutual fund distribution</strong> practice.
         </p>
         <div class="hero__actions hero-in">
           <a class="btn btn--primary" href="pm/">
             <svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg> See my product work
           </a>
-          <a class="btn btn--ghost" href="#contact">
-            <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg> Get in Touch
-          </a>
+          <a class="link-under" href="#contact">Get in touch <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
         <ul class="hero__metrics hero-in">
           <li class="metric">
@@ -142,51 +140,38 @@
     </div>
   </section>
 
-  <section class="section section--band" id="work">
+  <section class="band" id="work">
     <div class="container">
-      <div class="section__head reveal">
-        <p class="section__label">What I do</p>
-        <h2 class="section__title">Two things, and they share a habit</h2>
-        <p class="section__intro">
-          Both come down to the same instinct: get the numbers in front of you before
-          deciding. One applies it to products, the other to money.
-        </p>
-      </div>
+      <p class="section__label reveal">What I do</p>
+      <h2 class="section__title reveal">Two things,<br>one habit</h2>
+      <p class="section__intro reveal">
+        Both come down to the same instinct: get the numbers in front of you before
+        deciding. One applies it to products, the other to money.
+      </p>
 
-      <ol class="projects">
-        <li class="project reveal">
-          <span class="project__index" aria-hidden="true">01</span>
-          <div class="project__body">
-            <p class="project__meta"><span>Product management</span></p>
-            <h3 class="project__title"><a href="pm/">Product work &amp; case studies</a></h3>
-            <p class="project__summary">
-              5+ years across product, growth and operations in B2C, B2B SaaS and
-              HealthTech — plus three products I scoped, built and shipped myself,
-              each written up in full.
-            </p>
-            <p class="project__impact"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg><span>Experience, skills and three case studies</span></p>
-          </div>
-          <span class="project__go" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+      <ul class="band__grid">
+        <li class="band-item reveal">
+          <span class="band-item__index">01 — Product management</span>
+          <h3 class="band-item__title"><a href="pm/">Product work<br>&amp; case studies</a></h3>
+          <p class="band-item__body">
+            5+ years across product, growth and operations in B2C, B2B SaaS and
+            HealthTech — plus three products I scoped, built and shipped myself,
+            each written up in full.
+          </p>
+          <span class="band-item__go">See the work <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
         </li>
 
-        <li class="project reveal">
-          <span class="project__index" aria-hidden="true">02</span>
-          <div class="project__body">
-            <p class="project__meta">
-              <span>Personal finance</span>
-              <span class="live"><span class="live__dot" aria-hidden="true"></span>Setting up</span>
-            </p>
-            <h3 class="project__title"><a href="finances/">Mutual fund distribution</a></h3>
-            <p class="project__summary">
-              Helping people invest against actual goals rather than tips — SIPs set up
-              properly, portfolios reviewed on a schedule, and plain answers about what
-              things cost.
-            </p>
-            <p class="project__impact"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg><span>What I'll offer, how it works, and what it costs you</span></p>
-          </div>
-          <span class="project__go" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+        <li class="band-item reveal">
+          <span class="band-item__index">02 — Personal finance</span>
+          <h3 class="band-item__title"><a href="finances/">Mutual fund<br>distribution</a><span class="band-item__tag">Soon</span></h3>
+          <p class="band-item__body">
+            Helping people invest against actual goals rather than tips — SIPs set up
+            properly, portfolios reviewed on a schedule, and plain answers about what
+            things cost.
+          </p>
+          <span class="band-item__go">See the plan <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
         </li>
-      </ol>
+      </ul>
     </div>
   </section>
 
@@ -217,7 +202,7 @@
     </div>
   </section>
 
-  <section class="section section--band" id="contact">
+  <section class="section section--alt" id="contact">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Contact</p>

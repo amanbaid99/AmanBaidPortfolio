@@ -139,6 +139,19 @@ relative paths in it would resolve against the wrong directory.
 
 ## Design notes
 
+- **Editorial monochrome.** Off-white ground (`--bg`), near-black ink, solid
+  black bands, sharp corners everywhere. Oversized display type does the work
+  that colour usually does.
+- **Two typefaces.** Archivo (700–900) for display headings, Inter for body and
+  UI. Both come from one Google Fonts request.
+- **One accent, background-only.** `--acid` (#ceea34) has no contrast as a text
+  colour, so it is only ever a block *behind* dark text — the highlight in the
+  hero, the "Live"/"Soon" tags, the status dot, the placeholder markers in the
+  finance disclosures. Never set it as `color`.
+- **The portrait is greyscale** by default and returns to colour on hover, so a
+  colour photograph sits inside the monochrome system.
+
+
 - No card/panel containers: sections are separated by hairline rules and
   whitespace rather than bordered boxes. Projects are a numbered editorial
   list, contact details are hairline rows, skills are plain wrapped text.
