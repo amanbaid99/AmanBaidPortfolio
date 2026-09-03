@@ -4,30 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Cluckin Dashboard — QSR Data Platform — Aman Baid</title>
-<meta name="description" content="Case study: giving a multi-outlet QSR brand visibility into food wastage and inventory turnover with a Google Sheets data pipeline and Looker Studio dashboards. Reduced food wastage by 12%.">
-<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/pm/projects/cluckin/">
+<title>Swaswasthya Wellness Platform — Aman Baid</title>
+<meta name="description" content="Case study: scoping, building and deploying a live wellness platform solo — discovery workshops, a Supabase admin panel, an SEO blog, interactive tools and AWS EC2 hosting.">
+<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/swaswasthya/">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aman Baid">
-<meta property="og:title" content="Cluckin Dashboard — QSR Data Platform — Aman Baid">
-<meta property="og:description" content="A multi-outlet QSR brand had no visibility into food wastage or inventory turnover. I built the pipeline and dashboards that gave them one — and cut wastage 12%.">
-<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/pm/projects/cluckin/">
+<meta property="og:title" content="Swaswasthya Wellness Platform — Aman Baid">
+<meta property="og:description" content="A client needed a live wellness platform, but the requirements weren't scoped. I ran discovery directly with them, then designed, coded and deployed the whole thing solo.">
+<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/swaswasthya/">
 <meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#f6f2ea">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="../../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
 
-<script src="../../../assets/js/analytics.js" defer></script>
-<script src="../../../assets/js/main.js" defer></script>
+<script src="../../assets/js/analytics.js" defer></script>
+<script src="../../assets/js/main.js" defer></script>
 </head>
 
 <body>
@@ -58,7 +58,7 @@
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__name" href="../../../">
+    <a class="site-header__name" href="../../">
       <span class="logo-mark" aria-hidden="true">AB</span>
       <span>Aman Baid</span>
     </a>
@@ -69,7 +69,7 @@
         <a href="../../#projects">Projects</a>
         <a href="../../#contact">Contact</a>
       </div>
-      <a class="btn btn--ghost btn--sm" href="../../../assets/resume/aman-baid-resume.pdf"><svg class="icon icon--sm icon--dip" aria-hidden="true"><use href="#i-download"></use></svg> Resume</a>
+      <a class="btn btn--ghost btn--sm" href="../../assets/resume/aman-baid-resume.pdf"><svg class="icon icon--sm icon--dip" aria-hidden="true"><use href="#i-download"></use></svg> Resume</a>
     </nav>
   </div>
 </header>
@@ -81,14 +81,15 @@
       <div class="case-hero">
         <a class="back-link" href="../../#projects"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All projects</a>
         <p class="case-hero__meta">
-          <span>Aug 2025</span> · <span>Client engagement</span>
+          <span>2026 · Ongoing</span> · <span>Solo build</span> <span class="live"><span class="live__dot" aria-hidden="true"></span>Live</span>
         </p>
-        <h1 class="case-hero__title">Cluckin Dashboard — QSR Data Platform</h1>
+        <h1 class="case-hero__title">Swaswasthya Wellness Platform</h1>
         <p class="case-hero__standfirst">
-          A multi-outlet quick-service restaurant brand was losing money to food wastage
-          and couldn't see where. I built the pipeline and dashboards that made the problem
-          visible per outlet — and actionable.
+          A wellness client wanted to be online. What they actually needed was a working
+          product — lead capture, content, an admin panel they could run themselves. I ran
+          the discovery, then designed, coded and deployed the whole thing solo.
         </p>
+        <a class="btn btn--primary" href="https://swaswasthya.com" rel="noopener">Visit swaswasthya.com <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
       </div>
     </div>
 
@@ -98,15 +99,10 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg> Problem</h2>
         <div class="case-block__body">
           <p>
-            Cluckin operates across multiple outlets, but had no visibility into food
-            wastage or inventory turnover at any of them. Stock data existed, scattered
-            and inconsistent, but nothing rolled it up into a view anyone could act on.
-          </p>
-          <p>
-            Without an outlet-level picture, wastage was treated as a fixed cost of doing
-            business rather than something with identifiable causes. There was no way to
-            tell a structural problem from a one-off bad week, or a badly-stocked outlet
-            from a well-run one.
+            The client came in asking for a website. But the requirements weren't scoped
+            at the outset — there was no clarity on who the site was for, what it needed to
+            do beyond existing, or how they'd keep it alive once it launched. Building
+            straight to the brief would have produced a brochure that went stale in a month.
           </p>
         </div>
       </section>
@@ -115,17 +111,14 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg> Approach</h2>
         <div class="case-block__body">
           <p>
-            I started with the data itself, building a cleaning pipeline to get the raw
-            outlet records into a consistent, trustworthy shape. Reporting on messy inputs
-            would have produced numbers nobody believed, and a dashboard nobody trusts is
-            a dashboard nobody opens.
+            I ran discovery workshops directly with the client instead of taking the initial
+            ask at face value. That surfaced the real requirements: they needed inbound leads,
+            not traffic; they needed to publish content without calling a developer; and they
+            needed something to give visitors a reason to engage on the first visit.
           </p>
           <p>
-            From there I <strong>segmented outlets by order frequency and inventory
-            turnover</strong>. That was the key move: it separated outlets with genuinely
-            different operating patterns, so high-volume and low-volume locations could be
-            judged against the right benchmark instead of a single company-wide average
-            that flattered some and unfairly flagged others.
+            That reframing set the scope for everything I built — and moved the project from
+            "a website" to a platform with a growth loop attached.
           </p>
         </div>
       </section>
@@ -134,9 +127,12 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layers"></use></svg> What I built</h2>
         <div class="case-block__body">
           <ul>
-            <li><strong>A data-cleaning pipeline</strong> on Google Sheets, normalising inconsistent outlet-level inventory and order records into a reliable reporting base.</li>
-            <li><strong>An outlet segmentation model</strong> grouping locations by order frequency and inventory turnover, so comparisons were like-for-like.</li>
-            <li><strong>Looker Studio dashboards</strong> surfacing wastage and turnover per outlet and per segment — built for the operations team to read directly, not for an analyst to interpret for them.</li>
+            <li><strong>The full site, solo</strong> — designed and coded end to end using AI tools (Claude), from layout through to production code.</li>
+            <li><strong>Supabase-powered admin panel</strong> so the client can manage their own content without a developer in the loop.</li>
+            <li><strong>Blog</strong> built for organic and AI-driven SEO visibility — the long-term acquisition channel rather than paid spend.</li>
+            <li><strong>Interactive tools</strong> — BMI and calorie calculators that give a first-time visitor immediate value, with WhatsApp lead capture attached to convert that attention.</li>
+            <li><strong>PostHog instrumentation</strong> tracking real user journeys, so decisions about what to build next come from behaviour rather than opinion.</li>
+            <li><strong>Deployment and infrastructure</strong> — running on AWS EC2 with SSL I configured myself.</li>
           </ul>
         </div>
       </section>
@@ -146,13 +142,29 @@
         <div class="case-block__body">
           <ul class="impact-list">
             <li>
-              <strong>Reduced food wastage by 12%</strong>
-              <span>Wastage moved from an accepted cost to a tracked, managed metric with visible causes.</span>
+              <strong>Live in production</strong>
+              <span>Shipped and running at swaswasthya.com, self-hosted on AWS EC2.</span>
             </li>
             <li>
-              <strong>Outlet-level visibility, for the first time</strong>
-              <span>Operations could compare locations against the right peer group and see which needed intervention.</span>
+              <strong>Client-operable</strong>
+              <span>Content and leads are managed by the client through the admin panel — no ongoing developer dependency.</span>
             </li>
+            <li>
+              <strong>Instrumented from day one</strong>
+              <span>PostHog journey tracking means the roadmap is driven by observed behaviour, not guesses.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"></use></svg> What's next</h2>
+        <div class="case-block__body">
+          <p>In the pipeline:</p>
+          <ul>
+            <li>Razorpay payment integration</li>
+            <li>Class booking and calendar</li>
+            <li>AI-generated diet plans with a human nutritionist in the loop</li>
           </ul>
         </div>
       </section>
@@ -161,16 +173,19 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-code"></use></svg> Tech used</h2>
         <div class="case-block__body">
           <ul class="tags">
-            <li class="tag">Looker Studio</li>
-            <li class="tag">Google Sheets pipeline</li>
-            <li class="tag">Data cleaning</li>
-            <li class="tag">Segmentation analysis</li>
+            <li class="tag">Supabase</li>
+            <li class="tag">AWS EC2</li>
+            <li class="tag">SSL / Nginx</li>
+            <li class="tag">PostHog</li>
+            <li class="tag">Claude (AI-assisted development)</li>
+            <li class="tag">SEO</li>
+            <li class="tag">WhatsApp lead capture</li>
           </ul>
         </div>
       </section>
 
       <section class="next-project">
-        <p><a href="../fitness-coaching-platform/">Next project: AI-Assisted Fitness Coaching Platform <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></p>
+        <p><a href="../cluckin/">Next project: Cluckin Dashboard — QSR Data Platform <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></p>
       </section>
 
     </div>
@@ -180,9 +195,6 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <p>© <span data-current-year>2026</span> Aman Baid</p>
-    <p class="site-footer__nav">
-      <a href="../../../">Home</a> · <a href="../../">Product</a> · <a href="../../../finances/">Finance</a>
-    </p>
     <p>
       <a href="mailto:amanbaid99@gmail.com">amanbaid99@gmail.com</a> ·
       <a href="https://www.linkedin.com/in/aman-baid" rel="noopener">LinkedIn</a>

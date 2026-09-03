@@ -2,7 +2,7 @@
 
 Personal portfolio site. Static HTML/CSS, no build step, no dependencies.
 
-**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/ (`/pm/` and `/finances/` for the two sections)
+**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/
 
 ---
 
@@ -37,7 +37,7 @@ There is no build step — the repo root *is* the site, and `.nojekyll` tells
 GitHub to serve the files as-is rather than running them through Jekyll. Push to
 that branch and the site republishes in about a minute.
 
-**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/ (`/pm/` and `/finances/` for the two sections)
+**Live:** https://amanbaid99.github.io/AmanBaidPortfolio/
 
 ### When you merge this work into `master`
 
@@ -66,10 +66,8 @@ publishes via branch-deploy instead, which has no such restriction.
 Three sections, all static HTML:
 
 ```
-index.html                    Personal hub — who I am, routes into the two sections
-pm/index.html                 Product management portfolio
-pm/projects/<slug>/           One case study per project (3)
-finances/index.html           Mutual fund distribution
+index.html                    The whole portfolio — about, experience, projects, contact
+projects/<slug>/              One case study per project (3)
 404.html                      Styled not-found page Pages serves automatically
 
 assets/css/style.css          All styling (design tokens at the top)
@@ -81,30 +79,17 @@ robots.txt, sitemap.xml, .nojekyll
 .github/workflows/            Optional Actions deploy; manual trigger only
 ```
 
-URLs are lowercase (`/pm/`, not `/PM`). GitHub Pages is case-sensitive and a
-static site cannot redirect between the two, so mixed casing would be a
-permanent 404.
-
 Each page carries its own copy of the header, footer and icon sprite — there is
 no build step and no templating. **If you change the nav or footer, change it in
-all seven HTML files.**
+all five HTML files.**
 
-## Before the finance page goes public
+## The finance site lives on its own branch
 
-`finances/index.html` is written for someone who is *not yet* registered. It says
-so on the page, and the disclosures block has placeholders marked in accent
-colour with a dashed underline (`.todo`). Before it is public:
-
-1. Fill in your **ARN number** in the Disclosures section and remove
-   "(registration in progress)" and the `todo` spans
-2. Remove the "Launching soon" chip and the notice paragraph in the hero
-3. Re-read the disclosures against current AMFI/SEBI guidance — the wording
-   there is a reasonable starting point, not legal advice, and requirements
-   change
-
-The page deliberately makes no return promises and states plainly that you are a
-distributor paid by commission, not a SEBI-registered investment adviser. Keep it
-that way.
+The mutual fund distribution page, its SIP calculator and the green theme are on
+the **`finance`** branch, not here. That work is intact — it was moved aside so
+this branch could be just the product management portfolio. When you buy a
+domain for the finance business, start from that branch (or copy it into its own
+repo); it was already built to stand alone, with no links back to this site.
 
 ## Editing content
 
@@ -137,46 +122,18 @@ Ordinary internal links are relative, so navigation keeps working either way.
 `404.html` is the exception: GitHub serves it for a missing URL at any depth, so
 relative paths in it would resolve against the wrong directory.
 
-## The finance page is standalone
-
-`finances/` is written to be linked to directly and read on its own. The
-wordmark in its header is **not** a link, there is no "back to Aman Baid" CTA,
-and its footer carries no cross-section navigation — the only links out are the
-stylesheet and favicon. If you ever want it rejoined to the rest of the site,
-re-link `.site-header__name` and restore the `site-footer__nav` block.
-
-### Calculator
-
-`assets/js/calculator.js` powers two tabs. It is dependency-free and the rest of
-the page works without it (there is a `<noscript>` note).
-
-The maths is a month-by-month projection with the contribution at the start of
-each month; it reproduces the closed-form SIP formula exactly.
-
-The comparison tab is deliberately **contribution-neutral**: both columns pay in
-the same amount and assume the same expected return, so the gap shown is
-behaviour (stopping during a fall, switching between schemes) and not one side
-investing more. The step-up figure is reported *separately*, with its own
-paid-in number, because it works by putting in more money — folding it into the
-head-to-head would have made planning look far better than it is. Keep it that
-way: an implied return promise is exactly what an MFD must not publish.
-
-Chart colours (`#2a8560` / `#b4552f`) were validated for colour-blind separation.
-They land in the WARN band, which is only permissible with secondary encoding —
-hence the dashed second line, the legend, direct end-labels and the table view.
-If you change either colour, re-check it before shipping.
-
 ## Design notes
 
 - **Warm cream ground, terracotta accent.** Serif display (Instrument Serif) for
   the name and section headings, Archivo for sub-headings, Inter for body. All
   three arrive in one Google Fonts request.
-- **The finance section runs green.** `finances/index.html` has
-  `class="theme-finance"` on `<body>`, which overrides `--accent` and its two
-  tints. Everything else — icons, numerals, highlights, tags — picks that up
-  automatically. To re-tint either side, change those variables and nothing else.
 - **Two-tone section headings**: the second line is wrapped in
   `<span class="tt">` and takes the accent.
+- **The contact section is the black band**, closing the page on the dark
+  surface. `.band .contact__*` rules flip the inks for it.
+- **Projects with nothing public to show** carry a `.project__note` line (and a
+  `.case-notice` on the case study) saying so plainly, rather than leaving a
+  reader wondering why there is no link.
 - **Section labels are numbered pills** with an accent dot. They are the only
   rounded element in an otherwise square system, deliberately — so they read as
   a marker rather than a change of language. The number lives in

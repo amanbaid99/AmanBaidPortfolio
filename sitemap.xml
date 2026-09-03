@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/</loc><priority>1.0</priority></url>
-  <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/pm/</loc><priority>0.9</priority></url>
-  <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/finances/</loc><priority>0.9</priority></url>
-  <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/pm/projects/swaswasthya/</loc><priority>0.7</priority></url>
-  <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/pm/projects/cluckin/</loc><priority>0.7</priority></url>
-  <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/pm/projects/fitness-coaching-platform/</loc><priority>0.7</priority></url>
+  <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/projects/swaswasthya/</loc><priority>0.8</priority></url>
+  <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/projects/cluckin/</loc><priority>0.8</priority></url>
+  <url><loc>https://amanbaid99.github.io/AmanBaidPortfolio/projects/fitness-coaching-platform/</loc><priority>0.8</priority></url>
 </urlset>
