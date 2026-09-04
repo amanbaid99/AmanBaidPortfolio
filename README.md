@@ -6,15 +6,9 @@ Personal portfolio site. Static HTML/CSS, no build step, no dependencies.
 
 ---
 
-## Before you go live — 2 things to swap in
+## Before you go live — 1 thing to swap in
 
-### 1. The resume PDF
-
-`assets/resume/aman-baid-resume.pdf` is currently a **placeholder**. Replace that
-file with the real resume, keeping the exact same path and filename — every
-"Resume" link on the site already points at it, so no HTML needs editing.
-
-### 2. PostHog analytics (optional)
+### PostHog analytics (optional)
 
 Analytics is wired up but switched off. Open `assets/js/analytics.js` and set:
 
@@ -26,7 +20,32 @@ var POSTHOG_HOST = "https://us.i.posthog.com";   // or https://eu.i.posthog.com
 Until the key is filled in the file does nothing and loads no third-party
 script, so the site stays fast and cookie-free by default.
 
----
+## The resume link
+
+Every "Resume" button points at a **Google Drive folder**:
+
+```
+https://drive.google.com/drive/folders/1PFP0w0olTXfbqnrkjfdH5UMLwqahR0_S
+```
+
+The folder is shared as "Anyone with the link → Viewer", and holds the current
+resume PDF. To publish a new version, drop it in the folder and delete the old
+one — the link never changes and no code needs editing. There is no resume PDF
+in this repo any more.
+
+Two things to keep in mind:
+
+- **Don't change the folder's sharing setting.** If it stops being "Anyone with
+  the link", every Resume button turns into a request-access screen for
+  recruiters, and nothing on the site will warn you.
+- **Keep one file in it.** The link opens a folder listing, so a visitor sees
+  whatever is in there. One clearly-named PDF reads fine; three drafts does not.
+
+If you would rather the button opened the PDF straight away instead of a folder
+listing, link the file itself and update it with Drive's *Manage versions*
+(right-click the file → Manage versions → Upload new version), which keeps the
+same URL. That is a nicer click for a recruiter but only survives if you always
+update through Manage versions rather than deleting and re-uploading.
 
 ## Deployment
 
@@ -63,7 +82,7 @@ publishes via branch-deploy instead, which has no such restriction.
 
 ## Structure
 
-Three sections, all static HTML:
+Five static HTML pages, no build step:
 
 ```
 index.html                    The whole portfolio — about, experience, projects, contact
@@ -74,7 +93,6 @@ assets/css/style.css          All styling (design tokens at the top)
 assets/js/main.js             Reveals, metric count-up, nav scroll-spy, footer year
 assets/js/analytics.js        PostHog loader (inert until keyed)
 assets/img/                   Portrait (webp + jpg, @2x), OG card, favicon
-assets/resume/                ← replace the placeholder PDF here
 robots.txt, sitemap.xml, .nojekyll
 .github/workflows/            Optional Actions deploy; manual trigger only
 ```
