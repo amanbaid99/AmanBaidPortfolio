@@ -779,3 +779,46 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   letter-spacing: 0.14em; text-transform: uppercase;
   fill: var(--ink-3); text-anchor: middle;
 }
+
+/* GitHub link in the header, sitting between the nav and the Resume button. */
+.nav__icon {
+  display: inline-grid; place-items: center;
+  width: 2.25rem; height: 2.25rem; color: var(--ink-2);
+  transition: color .2s var(--ease);
+}
+.nav__icon:hover { color: var(--ink); }
+/* At 360px the wordmark, toggle, icon and Resume button no longer fit; GitHub
+   moves into the menu panel instead of being dropped. */
+@media (max-width: 48rem) { .nav__icon { display: none; } }
+
+/* --- credentials ---------------------------------------------------------- */
+
+.creds { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.cred {
+  display: grid; grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 0 1.5rem; align-items: baseline;
+  margin: 0; padding-block: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+.cred__year {
+  font-family: var(--display); font-size: 1.25rem; font-weight: 400;
+  color: var(--accent); line-height: 1;
+}
+.cred__title {
+  font-family: var(--heading); font-size: 1.0625rem; font-weight: 600;
+  letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 0.2rem;
+}
+.cred__org { font-size: 0.875rem; color: var(--ink-2); margin: 0; }
+
+@media (max-width: 34rem) {
+  .cred { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+
+/* Links row on a side build. */
+.project__links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.1rem 0 0; }
+.project__links .link-under { font-size: 0.625rem; }
+.notice code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em; background: var(--surface);
+  padding: 0.1em 0.35em; border: 1px solid var(--line);
+}
