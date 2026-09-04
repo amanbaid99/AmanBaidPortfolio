@@ -19,6 +19,7 @@
     initCounters();
     initScrollSpy();
     initHeaderShadow();
+    initNav();
     initFooterYear();
   });
 
@@ -138,6 +139,36 @@
       window.requestAnimationFrame(update);
     }, { passive: true });
     update();
+  }
+
+  /* Mobile nav is a <details>, so it already opens and closes without JS.
+     This only adds what a bare disclosure lacks: Escape, outside click, and
+     closing after you follow a link. */
+  function initNav() {
+    var nav = document.querySelector(".nav__toggle");
+    if (!nav) return;
+
+    function close() { nav.removeAttribute("open"); }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" || !nav.hasAttribute("open")) return;
+      close();
+      var summary = nav.querySelector("summary");
+      if (summary) summary.focus();
+    });
+
+    document.addEventListener("click", function (e) {
+      if (nav.hasAttribute("open") && !nav.contains(e.target)) close();
+    });
+
+    nav.querySelectorAll(".nav__panel a").forEach(function (a) {
+      a.addEventListener("click", close);
+    });
+
+    // Leaving the mobile breakpoint with the panel open would strand it.
+    var mq = window.matchMedia("(min-width: 48.0625rem)");
+    (mq.addEventListener ? mq.addEventListener.bind(mq, "change") : mq.addListener.bind(mq))(
+      function (e) { if (e.matches) close(); });
   }
 
   function initFooterYear() {

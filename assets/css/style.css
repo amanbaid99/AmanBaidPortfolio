@@ -13,7 +13,7 @@
   --black:      #16150f;
   --ink:        #16150f;
   --ink-2:      #5c574c;
-  --ink-3:      #918a7c;
+  --ink-3:      #6b6455;   /* WCAG AA: 5.25:1 on --bg, 4.85 on --bg-alt, 5.87 on white */
   --line:       #ddd5c5;
   --line-dark:  #3a382f;
   --on-dark:    #f6f2ea;
@@ -174,7 +174,7 @@ li:last-child { margin-bottom: 0; }
 
 
 .site-header__name {
-  display: inline-flex; align-items: center; gap: 0.65rem;
+  display: inline-flex; align-items: center; gap: 0.65rem; white-space: nowrap;
   font-family: var(--heading); font-weight: 800;
   font-size: 0.9375rem; letter-spacing: 0.02em; text-transform: uppercase;
   color: var(--ink);
@@ -210,7 +210,54 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .nav__links a:hover::after, .nav__links a.is-active::after { transform: scaleX(1); }
 .nav__links a.is-active { color: var(--ink); }
 
-@media (max-width: 48rem) { .nav__links { display: none; } }
+/* --- mobile nav ------------------------------------------------------------
+   A <details> disclosure, so the links are reachable with JavaScript off.
+   main.js only adds the niceties: Escape, outside-click, and close-on-follow. */
+
+.nav__toggle { display: none; }          /* replaced by the inline links on wide screens */
+
+@media (max-width: 48rem) {
+  .nav__links { display: none; }
+  .nav { gap: 0.6rem; }
+  .site-header__inner { gap: 0.75rem; }
+
+  .nav__toggle { display: block; position: relative; }
+  /* Icon-only: at 390px a "Menu" label pushed the wordmark onto two lines.
+     The accessible name comes from aria-label on the summary. */
+  .nav__toggle > summary {
+    list-style: none; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem;
+    border: 1px solid var(--ink); color: var(--ink);
+  }
+  .nav__toggle > summary::-webkit-details-marker { display: none; }
+  /* Open state tints rather than inverts. Inverting made the icon depend on
+     currentColor inheriting through <use>, which did not paint reliably; the
+     open panel and aria-expanded already signal state. */
+  .nav__toggle[open] > summary { background: var(--bg-alt); }
+  /* Explicit stroke, so the icon never depends on inherited colour. */
+  .nav__toggle > summary .icon { stroke: var(--ink); }
+
+  .nav__panel {
+    position: absolute; right: 0; top: calc(100% + 0.6rem); z-index: 60;
+    min-width: 12rem;
+    background: var(--bg); border: 1px solid var(--ink);
+    padding: 0.5rem 0;
+    box-shadow: 0 12px 32px rgba(21,22,26,.14);
+  }
+  .nav__panel a {
+    display: block; padding: 0.7rem 1.1rem;
+    font-size: 0.6875rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2);
+  }
+  .nav__panel a:hover, .nav__panel a:focus-visible { background: var(--bg-alt); color: var(--ink); }
+}
+
+/* No JS: the panel is a plain open/closed disclosure, which already works. */
+@media (prefers-reduced-motion: no-preference) {
+  .nav__toggle[open] .nav__panel { animation: navIn .18s var(--ease); }
+  @keyframes navIn { from { opacity: 0; transform: translateY(-4px); } }
+}
 
 /* --- buttons -------------------------------------------------------------- */
 
@@ -566,7 +613,9 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   list-style: none; padding: 0; margin: 0;
   /* 26rem forces two columns at container width: at 20rem it fitted three,
      leaving a single stranded row. */
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  /* min() lets the track shrink below 26rem on narrow screens; a bare
+     minmax(26rem,…) forces a 416px column and overflows a 375px viewport. */
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
   gap: 0 3rem; border-bottom: 1px solid var(--line);
 }
 .contact__item {
@@ -705,3 +754,28 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 }
 .project__note .icon { margin-top: 0.28em; color: var(--ink-3); }
 .case-notice { max-width: var(--measure); margin-bottom: 0; }
+
+/* --- case figure / flow diagram ------------------------------------------- */
+
+.case-figure { margin: 0 0 0.5rem; padding-block: 2.5rem 0; }
+.case-figure svg { width: 100%; height: auto; display: block; max-width: 34rem; }
+.case-figure figcaption {
+  margin-top: 1rem; max-width: var(--measure);
+  font-size: 0.8125rem; color: var(--ink-3); line-height: 1.6;
+}
+
+/* Diagram parts take their colour from tokens, never hardcoded hex. */
+.flow__box   { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.flow__box--accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.flow__line  { stroke: var(--line); stroke-width: 1.5; fill: none; }
+.flow__arrow { fill: var(--ink-3); }
+.flow__label {
+  font-family: var(--font); font-size: 13px; font-weight: 500;
+  fill: var(--ink); text-anchor: middle;
+}
+.flow__label--accent { fill: var(--accent); font-weight: 600; }
+.flow__sub {
+  font-family: var(--font); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  fill: var(--ink-3); text-anchor: middle;
+}
