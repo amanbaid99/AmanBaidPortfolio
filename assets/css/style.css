@@ -675,6 +675,12 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   max-width: var(--measure); margin: 0 0 2rem;
 }
 
+/* Case heroes carry up to two calls to action (live demo + source). Same
+   shape as .hero__actions, tighter gap because both children are buttons. */
+.case-hero__actions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem;
+}
+
 .case-block { padding-block: 2.75rem; border-top: 1px solid var(--line); }
 .case-block__title { display: flex; align-items: center; gap: 0.55rem; margin: 0 0 1.25rem; color: var(--accent); }
 .case-block__body { max-width: var(--measure); }
@@ -731,7 +737,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 }
 
 @media print {
-  .site-header, .hero__actions, .site-footer { display: none; }
+  .site-header, .hero__actions, .case-hero__actions, .site-footer { display: none; }
   body { background: #fff; font-size: 11pt; }
 }
 
