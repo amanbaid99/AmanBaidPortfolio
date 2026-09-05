@@ -347,6 +347,9 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   max-width: 30rem; margin: 0 0 2.25rem;
 }
 .hero__positioning strong { color: var(--ink); font-weight: 600; }
+/* The highlight carries side padding, so a mid-phrase line break left a
+   stranded word and a visible gap before the following comma. */
+.hero__positioning .mark { white-space: nowrap; }
 
 .hero__actions {
   display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;
