@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Crave — Aman Baid</title>
-<meta name="description" content="Case study: a prototype that puts one natural-language box in front of three ordering surfaces — food delivery, grocery delivery and restaurant reservations — and routes the request to the right one.">
+<meta name="description" content="Case study: a prototype that puts one natural-language box in front of three ordering surfaces (food delivery, grocery delivery and restaurant reservations) and routes the request to the right one.">
 <link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/crave/">
 
 <meta property="og:type" content="article">
@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aman Baid — Product Manager, Mumbai">
+<meta property="og:image:alt" content="Aman Baid, Product Manager in Mumbai">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
@@ -93,14 +93,14 @@
 
     <div class="container">
       <div class="case-hero">
-        <a class="back-link" href="../../#projects"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All projects</a>
+        <a class="back-link" href="../../#prototypes"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All prototypes</a>
         <p class="case-hero__meta">
           <span>2026</span> &#183; <span>Solo build</span> <span class="live"><span class="live__dot" aria-hidden="true"></span>Live demo</span>
         </p>
         <h1 class="case-hero__title">Crave</h1>
         <p class="case-hero__standfirst">
           One natural-language box in front of three different ordering surfaces. You
-          describe what you want in plain English &mdash; Crave works out whether that&#8217;s a
+          describe what you want in plain English. Crave works out whether that&#8217;s a
           food delivery, a grocery run or a table booking, pulls out the details, and
           assembles the order.
         </p>
@@ -110,7 +110,7 @@
         </div>
         <p class="project__note" style="margin-top:1.1rem">
           <svg class="icon icon--sm" aria-hidden="true"><use href="#i-zap"></use></svg>
-          <span>No sign-in and no API key &mdash; click one of the example requests and watch it route.</span>
+          <span>No sign-in and no API key. Click one of the example requests and watch it route.</span>
         </p>
       </div>
     </div>
@@ -158,7 +158,7 @@
         </svg>
         <figcaption>
           The routing decision is the product, so the interface shows it happening rather than
-          hiding it behind a spinner. The last step is a handoff, not a purchase &mdash; Crave
+          hiding it behind a spinner. The last step is a handoff, not a purchase. Crave
           never takes a payment.
         </figcaption>
       </figure>
@@ -169,7 +169,7 @@
           <p>
             Most ordering apps make you know where you&#8217;re going before you start. You have to
             decide it&#8217;s a delivery order, or a grocery order, or a reservation, and open the
-            right app first &mdash; even though the thing in your head was never sorted that way.
+            right app first, even though the thing in your head was never sorted that way.
             &#8220;I want to make mac and cheese, order all the ingredients&#8221; is one intention that
             happens to land in a grocery basket; &#8220;team dinner for 8 near Koramangala&#8221; is one
             intention that happens to land in a booking.
@@ -195,7 +195,7 @@
             <strong>found / substituted / not-found</strong> pattern is a single reusable
             component rather than three per-flow implementations, so an out-of-stock swap reads
             identically everywhere it appears. Second, Crave assembles carts but
-            <strong>never takes a payment</strong> &mdash; every flow ends in a handoff to the
+            <strong>never takes a payment</strong>. Every flow ends in a handoff to the
             platform&#8217;s own checkout. The service interface deliberately exposes no
             order-placement tool and touches no payment instrument, which makes &#8220;nothing happens
             without you&#8221; a property of the architecture rather than a policy the code chooses
@@ -208,10 +208,10 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layers"></use></svg> What I built</h2>
         <div class="case-block__body">
           <ul>
-            <li><strong>Three complete workflows behind one box.</strong> A preference reorder recalls your saved usual and asks &mdash; never assumes &mdash; whether to save any edits. A recipe request decomposes a dish into an ingredient list and checks each item against a catalog, resolving what&#8217;s in stock, what needs substituting and what simply isn&#8217;t available. A group request ranks venues against a per-head budget with bookable time slots.</li>
+            <li><strong>Three complete workflows behind one box.</strong> A preference reorder recalls your saved usual and asks whether to save any edits rather than assuming. A recipe request decomposes a dish into an ingredient list and checks each item against a catalog, resolving what&#8217;s in stock, what needs substituting and what simply isn&#8217;t available. A group request ranks venues against a per-head budget with bookable time slots.</li>
             <li><strong>One reusable resolution component</strong> for found / substituted / not-found, shared across all three flows instead of reimplemented per flow.</li>
             <li><strong>Zero-configuration intent routing.</strong> Two interchangeable engines sit behind one typed contract: Claude with structured outputs when an API key is present, a local rule-based router when it isn&#8217;t. Nothing to set up before you can try it.</li>
-            <li><strong>One source tree, two builds.</strong> The same code produces a server build and a fully static export, the latter deployed automatically to GitHub Pages &mdash; which is what makes the public demo runnable with no key.</li>
+            <li><strong>One source tree, two builds.</strong> The same code produces a server build and a fully static export, the latter deployed automatically to GitHub Pages, which is what makes the public demo runnable with no key.</li>
           </ul>
         </div>
       </section>
@@ -222,7 +222,7 @@
           <ul class="impact-list">
             <li>
               <strong>A prototype built to show the working, not the workings</strong>
-              <span>The point is that you can type a sentence and watch it resolve into the right order. It is a working prototype, not a shipped product with real merchants behind it &mdash; so there are no adoption or conversion numbers here to claim.</span>
+              <span>The point is that you can type a sentence and watch it resolve into the right order. It is a working prototype, not a shipped product with real merchants behind it, so there are no adoption or conversion numbers here to claim.</span>
             </li>
             <li>
               <strong>Routing made legible instead of magical</strong>

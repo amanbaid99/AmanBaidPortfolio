@@ -11,12 +11,12 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aman Baid">
 <meta property="og:title" content="AI-Assisted Fitness Coaching Platform — Aman Baid">
-<meta property="og:description" content="Coaches were hand-building every plan or falling back on templates. Instead of writing a spec, I prototyped it — an AI drafter with a human coach in the loop.">
+<meta property="og:description" content="Coaches were hand-building every plan or falling back on templates. Instead of writing a spec, I prototyped it: an AI drafter with a human coach in the loop.">
 <meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/fitness-coaching-platform/">
 <meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aman Baid — Product Manager, Mumbai">
+<meta property="og:image:alt" content="Aman Baid, Product Manager in Mumbai">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
@@ -93,14 +93,14 @@
 
     <div class="container">
       <div class="case-hero">
-        <a class="back-link" href="../../#projects"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All projects</a>
+        <a class="back-link" href="../../#prototypes"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All prototypes</a>
         <p class="case-hero__meta">
           <span>2026</span> · <span>Solo build</span> <span class="live"><span class="live__dot" aria-hidden="true"></span>Live</span>
         </p>
         <h1 class="case-hero__title">AI-Assisted Fitness Coaching Platform</h1>
         <p class="case-hero__standfirst">
           Fitness coaches face a hard trade-off: individualised plans that eat their week,
-          or templates that scale but don't fit anyone. I prototyped a way to get both —
+          or templates that scale but don't fit anyone. I prototyped a way to get both:
           AI drafts the plan, the coach still signs it off.
         </p>
         <a class="btn btn--primary" href="https://amanbaid99.github.io/fitnessTracker/" target="_blank" rel="noopener">Open the live demo <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
@@ -154,7 +154,7 @@
         <div class="case-block__body">
           <p>
             Coaches were spending significant time manually building individualised plans
-            for each client — time that doesn't scale and isn't billable in proportion to
+            for each client, time that doesn't scale and isn't billable in proportion to
             the effort. The alternative most of them fell back on was a one-size-fits-all
             template, which is fast but produces exactly the generic experience clients
             leave over.
@@ -180,7 +180,7 @@
           <p>
             The design decision that followed: the AI generates a <strong>draft</strong>,
             not a deliverable. Every plan is reviewed and finalised by a human coach before
-            it reaches a client. That keeps the coach's judgement — and accountability —
+            it reaches a client. That keeps the coach's judgement and accountability
             in the loop on something as consequential as someone's training, while still
             removing the blank-page work that was consuming their time.
           </p>
@@ -191,10 +191,10 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layers"></use></svg> What I built</h2>
         <div class="case-block__body">
           <ul>
-            <li><strong>An AI plan generator</strong> that produces personalised plans from client intake data <em>and</em> the individual coach's training methodology — so output reflects how that coach actually works, not a generic model of fitness.</li>
-            <li><strong>Three synced dashboards</strong> — user, coach and admin — on a Supabase backend, each seeing the same underlying state from its own perspective.</li>
+            <li><strong>An AI plan generator</strong> that produces personalised plans from client intake data <em>and</em> the individual coach's training methodology, so output reflects how that coach actually works rather than a generic model of fitness.</li>
+            <li><strong>Three synced dashboards</strong> (user, coach and admin) on a Supabase backend, each seeing the same underlying state from its own perspective.</li>
             <li><strong>A human-in-the-loop review step</strong>: the AI draft goes to the coach, who edits and approves before anything is delivered to the client.</li>
-            <li><strong>Plan generation on the Claude API</strong>, with <strong>two validation checks standing between the model and the coach</strong>. A draft has to clear both. If either fails, nothing is shown &mdash; the coach gets an error and a prompt to regenerate, rather than a plan of unknown quality wearing the same interface as a good one.</li>
+            <li><strong>Plan generation on the Claude API</strong>, with <strong>two validation checks standing between the model and the coach</strong>. A draft has to clear both. If either fails, nothing is shown. The coach gets an error and a prompt to regenerate, rather than a plan of unknown quality wearing the same interface as a good one.</li>
             <li><strong>Per-step caching through the pipeline</strong>, so a regeneration retry resumes from the step that failed instead of re-running the whole thing. That is the difference between a retry costing seconds and tokens, and costing the coach&#8217;s patience.</li>
           </ul>
         </div>
@@ -206,11 +206,11 @@
           <ul class="impact-list">
             <li>
               <strong>The draft-then-review loop, working end to end</strong>
-              <span>A coach starts from a tailored draft rather than a blank page. This is a working prototype, not a deployed product — the figure for how much time that saves in practice isn&#8217;t mine to claim yet.</span>
+              <span>A coach starts from a tailored draft rather than a blank page. This is a working prototype, not a deployed product, so the figure for how much time that saves in practice isn&#8217;t mine to claim yet.</span>
             </li>
             <li>
               <strong>Output shaped by the coach&#8217;s own methodology</strong>
-              <span>The draft reflects how that specific coach trains people, rather than a generic model of fitness — which is the whole reason to build it this way.</span>
+              <span>The draft reflects how that specific coach trains people, rather than a generic model of fitness, which is the whole reason to build it this way.</span>
             </li>
             <li>
               <strong>Approval is structural, not a policy</strong>
@@ -218,7 +218,7 @@
             </li>
             <li>
               <strong>Quality gating, not just generation</strong>
-              <span>The interesting part of an AI feature is rarely the prompt &mdash; it is what happens when the output isn&#8217;t good enough. Here that path is explicit: the draft fails its checks, nothing is shown, and the retry is cheap because the earlier steps are cached.</span>
+              <span>The interesting part of an AI feature is rarely the prompt. It is what happens when the output isn&#8217;t good enough. Here that path is explicit: the draft fails its checks, nothing is shown, and the retry is cheap because the earlier steps are cached.</span>
             </li>
           </ul>
         </div>

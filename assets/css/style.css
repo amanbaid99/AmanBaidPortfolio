@@ -117,9 +117,9 @@ li:last-child { margin-bottom: 0; }
 .section--alt { background: var(--bg-alt); }
 
 .section__head { margin-bottom: 3.5rem; }
-/* Outlined pill with a dot and an index — borrowed from the Visa Travels
-   reference. Deliberately the only rounded element in an otherwise square
-   system, so it reads as a marker rather than a change of language. */
+/* Outlined pill with a dot, borrowed from the Visa Travels reference.
+   Deliberately the only rounded element in an otherwise square system, so it
+   reads as a marker rather than a change of language. */
 .section__label {
   display: inline-flex; align-items: center; gap: 0.55rem;
   padding: 0.4rem 0.9rem 0.4rem 0.7rem;
@@ -135,8 +135,6 @@ li:last-child { margin-bottom: 0; }
   width: 6px; height: 6px; border-radius: 50%;
   background: var(--accent);
 }
-.section__num { color: var(--accent); font-variant-numeric: tabular-nums; }
-
 .section__title {
   font-family: var(--display);
   font-size: clamp(2rem, 4.6vw, 3.25rem);
@@ -432,8 +430,11 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 }
 .metric__label {
   display: block; font-size: 0.6875rem; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink-3); margin-top: 0.6rem; line-height: 1.5;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); margin-top: 0.7rem; line-height: 1.55;
+  /* Labels are written to two lines. Reserving both keeps the rules and the
+     strip's baseline even when one of them happens to fit on a single line. */
+  min-height: calc(2 * 1.55em);
 }
 
 /* The hero stacks well before the metrics need to: at tablet widths there is
@@ -482,10 +483,16 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 .tags {
   display: flex; flex-wrap: wrap; align-items: baseline;
-  gap: 0.15rem 1.5rem; list-style: none; padding: 0; margin: 0;
-  font-size: 0.9375rem; line-height: 1.8;
+  gap: 0 0.7rem; list-style: none; padding: 0; margin: 0;
+  font-size: 0.9375rem; line-height: 1.9;
 }
 .tag { margin: 0; color: var(--ink-2); }
+/* Separator goes after the item, not before the next one: as a ::before it
+   wrapped onto the following line and left an orphan dot in the margin. */
+.tag:not(:last-child)::after {
+  content: "\00B7";
+  color: var(--accent); opacity: 0.5; margin-left: 0.7rem;
+}
 
 /* --- experience ----------------------------------------------------------- */
 
