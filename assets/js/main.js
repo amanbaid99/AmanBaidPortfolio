@@ -15,6 +15,8 @@
   }, 1600);
 
   document.addEventListener("DOMContentLoaded", function () {
+    initSplitHeadings();
+    initTenure();
     initReveal();
     initCounters();
     initScrollSpy();
@@ -55,6 +57,88 @@
 
   function show(list) {
     Array.prototype.forEach.call(list, function (el) { el.classList.add("is-visible"); });
+  }
+
+  /* Wrap every word of the display headings so they can rise in sequence.
+     Done in JS on purpose: with JS off the headings are ordinary text, and
+     nothing here can leave one hidden because the CSS is .js-scoped. */
+  function initSplitHeadings() {
+    if (reduced || !("IntersectionObserver" in window)) return;
+
+    var heads = document.querySelectorAll(".hero__name, .section__title, .case-hero__title");
+    if (!heads.length) return;
+
+    Array.prototype.forEach.call(heads, function (h) {
+      splitWords(h);
+      h.classList.add("split");
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("split-in");
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.15 });
+
+    Array.prototype.forEach.call(heads, function (h) { observer.observe(h); });
+
+    // Same contract as initReveal: a heading must never stay hidden because a
+    // callback did not fire.
+    window.setTimeout(function () {
+      Array.prototype.forEach.call(heads, function (h) { h.classList.add("split-in"); });
+    }, 2000);
+
+    /* Rebuild the heading as <span class="w"><i>word</i></span> pairs, keeping
+       inline elements (the .tt and .mark spans) intact around their words. */
+    function splitWords(root) {
+      var i = 0;
+      walk(root);
+
+      function walk(node) {
+        var kids = Array.prototype.slice.call(node.childNodes);
+        kids.forEach(function (child) {
+          if (child.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            child.nodeValue.split(/(\s+)/).forEach(function (piece) {
+              if (!piece) return;
+              if (/^\s+$/.test(piece)) { frag.appendChild(document.createTextNode(piece)); return; }
+              var outer = document.createElement("span");
+              outer.className = "w";
+              var inner = document.createElement("i");
+              inner.style.transitionDelay = Math.min(i++, 12) * 45 + "ms";
+              inner.textContent = piece;
+              outer.appendChild(inner);
+              frag.appendChild(outer);
+            });
+            node.replaceChild(frag, child);
+          } else if (child.nodeType === 1) {
+            walk(child);
+          }
+        });
+      }
+    }
+  }
+
+  /* Years of experience, counted from the first day rather than typed in, so
+     the number is right forever without anyone remembering to edit it. Runs
+     before initCounters, which reads the data-count-to this sets. With JS off
+     the figure in the HTML stands. */
+  function initTenure() {
+    var els = document.querySelectorAll("[data-since]");
+    Array.prototype.forEach.call(els, function (el) {
+      var parts = (el.getAttribute("data-since") || "").split("-");
+      var start = new Date(+parts[0], (+parts[1] || 1) - 1, 1);
+      if (isNaN(start)) return;
+
+      var now = new Date();
+      var years = now.getFullYear() - start.getFullYear();
+      if (now.getMonth() < start.getMonth()) years -= 1;
+      if (years < 1) return;
+
+      el.setAttribute("data-count-to", years);
+      el.textContent = years + (el.getAttribute("data-count-suffix") || "");
+    });
   }
 
   /* Count the hero metrics up when they first scroll into view. */
