@@ -194,6 +194,8 @@
             <li><strong>An AI plan generator</strong> that produces personalised plans from client intake data <em>and</em> the individual coach's training methodology — so output reflects how that coach actually works, not a generic model of fitness.</li>
             <li><strong>Three synced dashboards</strong> — user, coach and admin — on a Supabase backend, each seeing the same underlying state from its own perspective.</li>
             <li><strong>A human-in-the-loop review step</strong>: the AI draft goes to the coach, who edits and approves before anything is delivered to the client.</li>
+            <li><strong>Plan generation on the Claude API</strong>, with <strong>two validation checks standing between the model and the coach</strong>. A draft has to clear both. If either fails, nothing is shown &mdash; the coach gets an error and a prompt to regenerate, rather than a plan of unknown quality wearing the same interface as a good one.</li>
+            <li><strong>Per-step caching through the pipeline</strong>, so a regeneration retry resumes from the step that failed instead of re-running the whole thing. That is the difference between a retry costing seconds and tokens, and costing the coach&#8217;s patience.</li>
           </ul>
         </div>
       </section>
@@ -214,6 +216,10 @@
               <strong>Approval is structural, not a policy</strong>
               <span>There is no path in the prototype that delivers a plan without a coach reviewing it first.</span>
             </li>
+            <li>
+              <strong>Quality gating, not just generation</strong>
+              <span>The interesting part of an AI feature is rarely the prompt &mdash; it is what happens when the output isn&#8217;t good enough. Here that path is explicit: the draft fails its checks, nothing is shown, and the retry is cheap because the earlier steps are cached.</span>
+            </li>
           </ul>
         </div>
       </section>
@@ -227,12 +233,14 @@
             <li class="tag">Rapid prototyping</li>
             <li class="tag">Multi-role dashboards</li>
             <li class="tag">Human-in-the-loop design</li>
+            <li class="tag">Claude API</li>
+            <li class="tag">Output validation</li>
           </ul>
         </div>
       </section>
 
       <section class="next-project">
-        <p><a href="../crave/">Next project: Crave <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></p>
+        <p><a href="../jira-duplicate-detection/">Next project: Duplicate Ticket Detection Model <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></p>
       </section>
 
     </div>

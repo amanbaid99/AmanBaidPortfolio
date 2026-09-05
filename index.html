@@ -86,7 +86,6 @@
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
-        <a href="#side-builds">Side builds</a>
         <a href="#contact">Contact</a>
       </div>
       <details class="nav__toggle">
@@ -95,7 +94,6 @@
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
-          <a href="#side-builds">Side builds</a>
           <a href="#contact">Contact</a>
           <a href="https://github.com/amanbaid99" rel="noopener" target="_blank">GitHub</a>
         </div>
@@ -233,6 +231,10 @@
               <li class="tag">Figma</li>
               <li class="tag">Jira</li>
               <li class="tag">Supabase</li>
+              <li class="tag">Claude Code</li>
+              <li class="tag">Claude API</li>
+              <li class="tag">Cursor</li>
+              <li class="tag">AWS EC2</li>
               <li class="tag">LLM Workflow Automation</li>
               <li class="tag">ML Experiment Integration</li>
               <li class="tag">MoEngage</li>
@@ -311,8 +313,8 @@
         <p class="section__label"><span class="section__num">03</span>Projects</p>
         <h2 class="section__title">Products I've <span class="tt">shipped end to end</span></h2>
         <p class="section__intro">
-          Each of these I scoped, built and shipped myself — discovery through
-          deployment. Open any one for the full problem, approach and outcome.
+          Client platforms, internal tools and prototypes — scoped, built and
+          shipped by me. Open any one for the full problem, approach and outcome.
         </p>
       </div>
 
@@ -348,26 +350,49 @@
             </div>
             <span class="project__go" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </li>
-      </ol>
-    </div>
-  </section>
-
-
-  <section class="section section--alt" id="side-builds">
-    <div class="container">
-      <div class="section__head reveal">
-        <p class="section__label"><span class="section__num">04</span>Side builds</p>
-        <h2 class="section__title">Things I build <span class="tt">on my own time</span></h2>
-        <p class="section__intro">
-          Small products I scope and ship myself with AI-assisted development — the
-          habit behind cutting revamp time-to-market from 3–6 months to under 4 weeks
-          at work.
-        </p>
-      </div>
-
-      <ol class="projects">
           <li class="project reveal">
-            <span class="project__index" aria-hidden="true">01</span>
+            <span class="project__index" aria-hidden="true">04</span>
+            <div class="project__body">
+              <p class="project__meta"><span>Crimson Interactive (Enago)</span> &#183; <span>Internal tool</span></p>
+              <h3 class="project__title"><a href="projects/jira-duplicate-detection/">Duplicate Ticket Detection Model</a></h3>
+              <p class="project__summary">Jira ticket volume was growing and duplicates were putting the team through the same work twice. I built a model in Python to detect them.</p>
+              <p class="project__impact"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg><span>Caught 24% of duplicate tickets</span></p>
+              <ul class="tags" style="margin-top:0.85rem">
+                <li class="tag">Python</li>
+                <li class="tag">Cursor</li>
+              </ul>
+            </div>
+            <span class="project__go" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+          </li>
+          <li class="project reveal">
+            <span class="project__index" aria-hidden="true">05</span>
+            <div class="project__body">
+              <p class="project__meta"><span>Crimson Interactive (Enago)</span> &#183; <span>Internal tool</span></p>
+              <h3 class="project__title"><a href="projects/translation-qa-workflow/">Translation QA Workflow</a></h3>
+              <p class="project__summary">Translation output needed consistency checking &mdash; including leaving certain fixed terms, like product and service names, untranslated. I built an n8n workflow that checks against a do-not-translate glossary and re-checks its own work across three passes.</p>
+              <p class="project__impact"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg><span>More consistent output, less manual review</span></p>
+              <ul class="tags" style="margin-top:0.85rem">
+                <li class="tag">n8n</li>
+              </ul>
+            </div>
+            <span class="project__go" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+          </li>
+          <li class="project reveal">
+            <span class="project__index" aria-hidden="true">06</span>
+            <div class="project__body">
+              <p class="project__meta"><span>Freelance</span> &#183; <span>Solo build</span></p>
+              <h3 class="project__title"><a href="projects/404found/">404Found &mdash; Website Audit &amp; Outreach Tool</a></h3>
+              <p class="project__summary">A friend&#8217;s web development company needed a way to find and approach businesses running outdated or underperforming sites. I built an n8n workflow that researches each prospect, generates a website audit, and drafts the outreach email.</p>
+              <p class="project__impact"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg><span>Every drafted email is vetted by the founder &#8212; nothing sends on its own</span></p>
+              <ul class="tags" style="margin-top:0.85rem">
+                <li class="tag">n8n</li>
+                <li class="tag">Apollo</li>
+              </ul>
+            </div>
+            <span class="project__go" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+          </li>
+          <li class="project reveal">
+            <span class="project__index" aria-hidden="true">07</span>
             <div class="project__body">
               <p class="project__meta"><span>2026</span> &#183; <span>Solo build</span> <span class="live"><span class="live__dot" aria-hidden="true"></span>Live demo</span></p>
               <h3 class="project__title"><a href="projects/crave/">Crave</a></h3>
@@ -396,7 +421,7 @@
   <section class="section" id="certifications">
     <div class="container">
       <div class="section__head reveal">
-        <p class="section__label"><span class="section__num">05</span>Credentials</p>
+        <p class="section__label"><span class="section__num">04</span>Credentials</p>
         <h2 class="section__title">Education <span class="tt">&amp; certifications</span></h2>
       </div>
 
@@ -449,7 +474,7 @@
 
   <section class="band" id="contact">
     <div class="container">
-      <p class="section__label reveal"><span class="section__num">06</span>Contact</p>
+      <p class="section__label reveal"><span class="section__num">05</span>Contact</p>
       <h2 class="section__title reveal">Get <span class="tt">in touch</span></h2>
       <p class="section__intro reveal">
         I&#8217;m looking for <strong>Product Manager or Senior APM roles</strong> in B2C,

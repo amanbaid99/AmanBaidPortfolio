@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Swaswasthya Wellness Platform — Aman Baid</title>
-<meta name="description" content="Case study: scoping, building and deploying a live wellness platform solo — discovery workshops, a Supabase admin panel, an SEO blog, interactive tools and AWS EC2 hosting.">
-<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/swaswasthya/">
+<title>Translation QA Workflow — Aman Baid</title>
+<meta name="description" content="Case study: an n8n workflow built at Crimson Interactive (Enago) that checks translation consistency against a do-not-translate glossary across three passes.">
+<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/translation-qa-workflow/">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aman Baid">
-<meta property="og:title" content="Swaswasthya Wellness Platform — Aman Baid">
-<meta property="og:description" content="A client needed a live wellness platform, but the requirements weren't scoped. I ran discovery directly with them, then designed, coded and deployed the whole thing solo.">
-<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/swaswasthya/">
+<meta property="og:title" content="Translation QA Workflow — Aman Baid">
+<meta property="og:description" content="Some terms — product and service names — are never supposed to be translated. An n8n workflow that enforces that, and re-checks its own work.">
+<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/translation-qa-workflow/">
 <meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -94,16 +94,13 @@
     <div class="container">
       <div class="case-hero">
         <a class="back-link" href="../../#projects"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All projects</a>
-        <p class="case-hero__meta">
-          <span>2026 · Ongoing</span> · <span>Solo build</span> <span class="live"><span class="live__dot" aria-hidden="true"></span>Live</span>
-        </p>
-        <h1 class="case-hero__title">Swaswasthya Wellness Platform</h1>
+        <p class="case-hero__meta"><span>Crimson Interactive (Enago)</span> &#183; <span>Internal tool</span></p>
+        <h1 class="case-hero__title">Translation QA Workflow</h1>
         <p class="case-hero__standfirst">
-          A wellness client wanted to be online. What they actually needed was a working
-          product — lead capture, content, an admin panel they could run themselves. I ran
-          the discovery, then designed, coded and deployed the whole thing solo.
+          Translations needed consistency checking &mdash; and some terms, like product and
+          service names, were never supposed to be translated at all. I built a workflow
+          that enforces both.
         </p>
-        <a class="btn btn--primary" href="https://swaswasthya.com" rel="noopener">Visit swaswasthya.com <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
       </div>
     </div>
 
@@ -113,10 +110,12 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg> Problem</h2>
         <div class="case-block__body">
           <p>
-            The client came in asking for a website. But the requirements weren't scoped
-            at the outset — there was no clarity on who the site was for, what it needed to
-            do beyond existing, or how they'd keep it alive once it launched. Building
-            straight to the brief would have produced a brochure that went stale in a month.
+            Translation output needed consistency checking. Part of that is ordinary
+            quality &mdash; does the translation hold together. The other part is
+            specific: certain fixed terms, like product and service names, are never
+            supposed to be translated at all. A pass that quietly renders a service name
+            into another language is wrong in a way a general quality read won&#8217;t
+            always catch.
           </p>
         </div>
       </section>
@@ -125,35 +124,16 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg> Approach</h2>
         <div class="case-block__body">
           <p>
-            I ran discovery workshops directly with the client instead of taking the initial
-            ask at face value. That surfaced the real requirements: they needed inbound leads,
-            not traffic; they needed to publish content without calling a developer; and they
-            needed something to give visitors a reason to engage on the first visit.
+            I built an <strong>n8n workflow</strong> with two parts working together.
           </p>
-          <p>
-            That reframing set the scope for everything I built — and moved the project from
-            "a website" to a platform with a growth loop attached.
-          </p>
-          <p>
-            On the design side I worked from references rather than taste. I researched how
-            the industry presents itself &mdash; what the credible players in wellness
-            actually look like &mdash; and used that to <strong>direct Claude on the visual
-            direction</strong>, instead of accepting whatever a first draft produced.
-          </p>
-        </div>
-      </section>
-
-      <section class="case-block">
-        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layers"></use></svg> What I built</h2>
-        <div class="case-block__body">
           <ul>
-            <li><strong>The full site, solo</strong> — designed and coded end to end with <strong>Claude Code</strong>, from layout through to production code.</li>
-            <li><strong>Supabase-powered admin panel</strong> so the client can manage their own content without a developer in the loop.</li>
-            <li><strong>Blog</strong> built for organic and AI-driven SEO visibility — the long-term acquisition channel rather than paid spend.</li>
-            <li><strong>Interactive tools</strong> — BMI and calorie calculators that give a first-time visitor immediate value, with WhatsApp lead capture attached to convert that attention.</li>
-            <li><strong>PostHog instrumentation</strong> tracking real user journeys, so decisions about what to build next come from behaviour rather than opinion.</li>
-            <li><strong>Deployment and infrastructure</strong> — running on AWS EC2 with SSL I configured myself.</li>
+            <li><strong>A do-not-translate glossary</strong> defines the terms that have to survive translation untouched, so the rule is written down in one place rather than living in a reviewer&#8217;s head.</li>
+            <li><strong>A three-pass check and recheck</strong> runs over the translation rather than issuing a single verdict &mdash; anything a pass misses gets two more chances to surface.</li>
           </ul>
+          <p class="project__note">
+            <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg>
+            <span>Internal workflow, so there is nothing public to link to.</span>
+          </p>
         </div>
       </section>
 
@@ -162,29 +142,13 @@
         <div class="case-block__body">
           <ul class="impact-list">
             <li>
-              <strong>Live in production</strong>
-              <span>Shipped and running at swaswasthya.com, self-hosted on AWS EC2.</span>
+              <strong>More consistent translation output</strong>
+              <span>Fixed terms come through intact, and the same checks apply every time rather than depending on who reviewed which batch.</span>
             </li>
             <li>
-              <strong>Client-operable</strong>
-              <span>Content and leads are managed by the client through the admin panel — no ongoing developer dependency.</span>
+              <strong>Less manual review</strong>
+              <span>The workflow absorbs the mechanical part of the check. I don&#8217;t have a measured figure for either of these, so I&#8217;m not going to put one here.</span>
             </li>
-            <li>
-              <strong>Instrumented from day one</strong>
-              <span>PostHog journey tracking means the roadmap is driven by observed behaviour, not guesses.</span>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="case-block">
-        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"></use></svg> What's next</h2>
-        <div class="case-block__body">
-          <p>In the pipeline:</p>
-          <ul>
-            <li>Razorpay payment integration</li>
-            <li>Class booking and calendar</li>
-            <li>AI-generated diet plans with a human nutritionist in the loop</li>
           </ul>
         </div>
       </section>
@@ -193,25 +157,19 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-code"></use></svg> Tech used</h2>
         <div class="case-block__body">
           <ul class="tags">
-            <li class="tag">Supabase</li>
-            <li class="tag">AWS EC2</li>
-            <li class="tag">SSL / Nginx</li>
-            <li class="tag">PostHog</li>
-            <li class="tag">Claude Code</li>
-            <li class="tag">SEO</li>
-            <li class="tag">WhatsApp lead capture</li>
+            <li class="tag">n8n</li>
+            <li class="tag">LLM Workflow Automation</li>
           </ul>
         </div>
       </section>
 
       <section class="next-project">
-        <p><a href="../cluckin/">Next project: Cluckin Dashboard — QSR Data Platform <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></p>
+        <p><a href="../404found/">Next project: 404Found — Website Audit &amp; Outreach Tool <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></p>
       </section>
 
     </div>
   </article>
 </main>
-
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <p>© <span data-current-year>2026</span> Aman Baid</p>
