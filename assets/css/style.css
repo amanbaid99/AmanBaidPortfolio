@@ -244,7 +244,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
     box-shadow: 0 12px 32px rgba(21,22,26,.14);
   }
   .nav__panel a {
-    display: block; padding: 0.7rem 1.1rem;
+    display: block; padding: 0.9rem 1.15rem;
     font-size: 0.6875rem; font-weight: 600;
     letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2);
   }
@@ -511,12 +511,65 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   .metric__value { font-size: 1.875rem; }
 }
 
+/* Desktop's 6rem section padding is 96px top and bottom, which on a 390px
+   phone is a quarter of the viewport of nothing, six times over. The rhythm
+   still needs to read as separation, so it comes down rather than out. */
+@media (max-width: 44rem) {
+  .section { padding-block: 3.5rem; }
+  .band { padding-block: 3.5rem; }
+  .section__head { margin-bottom: 2.25rem; }
+  .project { padding-block: 2rem; }
+  .role { padding-block: 2rem; }
+  .case-hero { padding-block: 1.75rem 1.5rem; }
+  .case-block { padding-block: 2rem; }
+
+  .next-project { padding-block: 2.25rem; }
+}
+
+/* 10px uppercase with wide tracking is the one size that stops being legible
+   on a phone. The 11px labels are left alone; only the smallest lift. */
+@media (max-width: 44rem) {
+  .btn--sm, .link-under, .workstrip__all, .project__links .link-under { font-size: 0.6875rem; }
+  .btn--sm { padding: 0.8rem 1.05rem; }
+}
+
+/* Touch targets. Keyed on the input device as well as the viewport, because a
+   tablet in portrait is 768px wide and still operated with a thumb.
+   These read as small uppercase links by design and padding them would push
+   their underlines off the text, so an invisible box grows the touch area
+   without moving a pixel of what you see. */
+@media (max-width: 44rem), (pointer: coarse) {
+  .link-under, .workstrip__items a, .workstrip__all, .site-header__name,
+  .back-link, .next-project a, .contact__value a, .site-footer a { position: relative; }
+
+  .link-under::before,
+  .workstrip__items a::before,
+  .workstrip__all::before,
+  .site-header__name::before,
+  .back-link::before,
+  .next-project a::before {
+    content: ""; position: absolute; inset: -11px -6px; z-index: 0;
+  }
+
+  /* Contact and footer links were 15 to 18px tall and they are the point of
+     the whole page. Vertical only, so neighbours in an inline run stay
+     separable. */
+  .contact__value a::before, .site-footer a::before {
+    content: ""; position: absolute; inset: -13px 0; z-index: 0;
+  }
+
+  .nav__toggle > summary { min-width: 44px; min-height: 44px; }
+}
+
 @media (max-width: 44rem) {
   .hero__metrics { grid-template-columns: 1fr; }
   .metric { padding: 1.1rem 0; border-top: 1px solid var(--line); }
   .metric:first-child { border-top: 0; }
   .metric + .metric { border-left: 0; padding-left: 0; }
   .metric__value { font-size: 1.75rem; }
+  /* The reserved second line exists to level three columns. Stacked, it is
+     just a gap under every label. */
+  .metric__label { min-height: 0; }
 }
 
 
@@ -660,10 +713,19 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   padding: 0.2rem 0.5rem;
 }
 .live__dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; animation: pulse-soft 2s ease-in-out infinite; }
+@media (max-width: 44rem) { .live { font-size: 0.6875rem; } }
 @keyframes pulse-soft { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
 
+/* The index column costs 56px of the 342px content width on a phone, which
+   pushed every card 56px right of the section labels, titles and intros that
+   sit at the container edge. Below 44rem the numeral joins the flow instead,
+   so the cards share the page's left edge. */
 @media (max-width: 44rem) {
-  .project { grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0 1rem; }
+  .project { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .project__index {
+    font-size: 1.125rem; padding-top: 0;
+    margin-bottom: 0.4rem; display: block;
+  }
   .project__go { display: none; }
 }
 
@@ -796,6 +858,17 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .project:hover::before { transform: scaleY(1); }
 .project__title a { display: inline-block; transition: transform .4s var(--ease); }
 .project:hover .project__title a { transform: translateX(6px); }
+/* The title text alone is a 25px-tall tap target on a phone, so there the
+   whole row becomes the target, which is what its hover state has been
+   implying anyway. Phones only: an overlay covering the card would also stop
+   anyone selecting the summary text, and with a mouse the title and the arrow
+   are easy enough to hit. The overlay sits above the static body copy to catch
+   the taps; the real links inside the card sit above the overlay so they still
+   work. */
+@media (max-width: 44rem) {
+  .project__title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .project__links { position: relative; z-index: 2; }
+}
 
 .js .reveal { opacity: 0; transform: translateY(18px); }
 .js .reveal.is-visible {
@@ -868,6 +941,20 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   font-size: 0.8125rem; color: var(--ink-3); line-height: 1.6;
 }
 
+/* The drawings use about 70% of their canvas, so inside a 342px column the
+   labels rendered at 9.7px. Full screen width on a phone, plus a lift in user
+   units below, brings that back to ~12.7px. Declared after the base rules:
+   `.case-figure { margin: 0 0 0.5rem }` above resets margin-left, and a media
+   query adds no specificity to beat it. */
+@media (max-width: 44rem) {
+  .case-figure {
+    padding-block: 1.75rem 0;
+    width: calc(100% + 3rem); margin-left: -1.5rem; margin-right: -1.5rem;
+  }
+  .case-figure svg { max-width: none; }
+  .case-figure figcaption { padding-inline: 1.5rem; }
+}
+
 /* Diagram parts take their colour from tokens, never hardcoded hex. */
 .flow__box   { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
 .flow__box--accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
@@ -884,6 +971,14 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   fill: var(--ink-3); text-anchor: middle;
 }
 
+/* Bumped in user units on phones: the figure is full-bleed there but the
+   canvas is still 460 wide, so 13px renders at 11px. Declared after the base
+   rules because a media query adds no specificity. */
+@media (max-width: 44rem) {
+  .flow__label { font-size: 15px; }
+  .flow__sub { font-size: 12px; }
+}
+
 /* GitHub link in the header, sitting between the nav and the Resume button. */
 .nav__icon {
   display: inline-grid; place-items: center;
@@ -894,6 +989,13 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 /* At 360px the wordmark, toggle, icon and Resume button no longer fit; GitHub
    moves into the menu panel instead of being dropped. */
 @media (max-width: 48rem) { .nav__icon { display: none; } }
+
+/* At 320px the wordmark, the menu and the Resume button no longer fit on one
+   row once the last two are big enough to tap. The AB mark still links home,
+   so the name is the part that gives way. */
+@media (max-width: 23rem) {
+  .site-header__name > span:not(.logo-mark) { display: none; }
+}
 
 /* --- credentials ---------------------------------------------------------- */
 
