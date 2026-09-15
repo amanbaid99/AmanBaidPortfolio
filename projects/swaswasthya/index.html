@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Swaswasthya Wellness Platform — Aman Baid</title>
-<meta name="description" content="Case study: scoping, building and deploying a live wellness platform solo: discovery workshops, a Supabase admin panel, an SEO blog, interactive tools and AWS EC2 hosting.">
+<title>Swa-Swasthya Wellness Platform — Aman Baid</title>
+<meta name="description" content="Case study: one yoga session as the whole of the discovery, then a wellness platform built and deployed solo: a Supabase admin panel, an SEO blog, interactive tools and AWS EC2 hosting.">
 <link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/swaswasthya/">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aman Baid">
-<meta property="og:title" content="Swaswasthya Wellness Platform — Aman Baid">
-<meta property="og:description" content="A client needed a live wellness platform, but the requirements weren't scoped. I ran discovery directly with them, then designed, coded and deployed the whole thing solo.">
+<meta property="og:title" content="Swa-Swasthya Wellness Platform — Aman Baid">
+<meta property="og:description" content="The brief was a website. One yoga session with the people who attend them changed it into a blog, a lead form and a platform the client runs herself.">
 <meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/swaswasthya/">
 <meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -97,11 +97,11 @@
         <p class="case-hero__meta">
           <span>2026 · Ongoing</span> · <span>Solo build</span>
         </p>
-        <h1 class="case-hero__title">Swaswasthya Wellness Platform</h1>
+        <h1 class="case-hero__title">Swa-Swasthya Wellness Platform</h1>
         <p class="case-hero__standfirst">
-          A wellness client wanted to be online. What they actually needed was a working
-          product: lead capture, content, an admin panel they could run themselves. I ran
-          the discovery, then designed, coded and deployed the whole thing solo.
+          A wellness client wanted to be online. I went to one of the yoga sessions and
+          talked to the people in the room, which is where the brief changed. Then I
+          designed, coded and deployed the whole thing solo.
         </p>
         <div class="case-hero__actions">
           <a class="btn btn--primary" href="https://swaswasthya.com" target="_blank" rel="noopener">Visit swaswasthya.com <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
@@ -142,10 +142,22 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg> Approach</h2>
         <div class="case-block__body">
           <p>
-            I ran discovery workshops directly with the client instead of taking the initial
-            ask at face value. That surfaced the real requirements: they needed inbound leads,
-            not traffic; they needed to publish content without calling a developer; and they
-            needed something to give visitors a reason to engage on the first visit.
+            Rather than take the brief at face value, I went to one of the yoga workshops
+            and spoke to the people attending it. One session, as a participant, not a
+            stakeholder meeting. That was the whole of the discovery, and it was enough.
+          </p>
+          <p>
+            What I heard: they liked the sessions. What they wanted more of was not more
+            classes but <strong>guidance on diet</strong>. Nobody in that room asked for a
+            website. They asked, without using the words, for the thing a website could
+            carry.
+          </p>
+          <p>
+            Two more things came out of the same conversation. A link is shareable in a way
+            a phone number is not, and a page about a class reads as more credible to the
+            friend it gets forwarded to than a message saying "my teacher is good". And an
+            enquiry form lets someone ask a question at eleven at night without having to
+            ring a stranger.
           </p>
           <div class="compare">
             <div class="compare__col">
@@ -155,19 +167,20 @@
               </ul>
             </div>
             <div class="compare__col compare__col--real">
-              <p class="compare__head">What discovery found</p>
+              <p class="compare__head">What the room said</p>
               <ul>
-                <li>Inbound leads, not traffic</li>
-                <li>Content they could publish without calling a developer</li>
-                <li>A reason to engage on the first visit</li>
+                <li>They wanted teaching about diet, not more classes sold to them</li>
+                <li>A link can be forwarded to a friend; word of mouth cannot</li>
+                <li>People will enquire in writing who would never phone</li>
               </ul>
             </div>
           </div>
           <p>
-            That reframing set the scope for everything I built, and moved the project from
-            "a website" to a platform with a growth loop attached. Each of the three became
-            a thing on the page: the calculators and WhatsApp capture answer the first and
-            the third, the admin panel answers the second.
+            Each of those became something on the page. The diet question became the blog,
+            which doubles as the acquisition channel because the posts answering it are the
+            same posts people search for. The sharing point is why individual posts carry
+            their own URLs worth forwarding. The enquiry point became the form and the
+            WhatsApp handoff.
           </p>
           <p>
             On the design side I worked from references rather than taste. I researched how
@@ -184,7 +197,7 @@
           <ul>
             <li><strong>The full site, solo</strong>: designed and coded end to end with <strong>Claude Code</strong>, from layout through to production code.</li>
             <li><strong>Supabase-powered admin panel</strong> so the client can manage their own content without a developer in the loop.</li>
-            <li><strong>Blog</strong> built for organic and AI-driven SEO visibility, the long-term acquisition channel rather than paid spend.</li>
+            <li><strong>A blog</strong>, written to answer the diet questions people asked at the session, using the words they would search for. It does two jobs at once: it is the thing the students wanted, and it is the acquisition channel, which is why it was worth building before anything paid.</li>
             <li><strong>Interactive tools</strong>: BMI and calorie calculators that give a first-time visitor immediate value, with WhatsApp lead capture attached to convert that attention.</li>
             <li><strong>PostHog instrumentation</strong> tracking real user journeys, so decisions about what to build next come from behaviour rather than opinion.</li>
             <li><strong>Deployment and infrastructure</strong>: running on AWS EC2 with SSL I configured myself.</li>
@@ -205,8 +218,11 @@
               <span>Content and leads are managed by the client through the admin panel, with no ongoing developer dependency.</span>
             </li>
             <li>
-              <strong>Instrumented from day one</strong>
-              <span>PostHog journey tracking means the roadmap is driven by observed behaviour, not guesses.</span>
+              <strong>Visitors up since the blog went live</strong>
+              <span>PostHog shows traffic climbing as posts go out. The absolute numbers are
+              small and I am not going to dress them up: it is a new site for a local
+              practice. What matters at this stage is that the channel works and is
+              measured, so the next decision comes from data rather than from me.</span>
             </li>
           </ul>
         </div>

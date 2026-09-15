@@ -10,7 +10,7 @@ Use the project's slug, which is its folder name under `projects/`:
 
 | Project                              | Slug                        |
 | ------------------------------------ | --------------------------- |
-| Swaswasthya Wellness Platform        | `swaswasthya`               |
+| Swa-Swasthya Wellness Platform        | `swaswasthya`               |
 | Cluckin Dashboard                    | `cluckin`                   |
 | Duplicate Ticket Detection Model     | `jira-duplicate-detection`  |
 | Translation QA Workflow              | `translation-qa-workflow`   |
