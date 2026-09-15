@@ -702,16 +702,6 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 }
 .project:hover .project__go { color: var(--ink); transform: translateX(6px); }
 
-.live {
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  background: var(--accent); color: #fff;
-  font-size: 0.625rem; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 0.2rem 0.5rem;
-}
-.live__dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; animation: pulse-soft 2s ease-in-out infinite; }
-@media (max-width: 44rem) { .live { font-size: 0.6875rem; } }
-@keyframes pulse-soft { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
 
 /* The index column costs 56px of the 342px content width on a phone, which
    pushed every card 56px right of the section labels, titles and intros that
