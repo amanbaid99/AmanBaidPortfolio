@@ -740,14 +740,16 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 
 /* Card thumbnail. A hairline and a slight zoom on hover, no frame or shadow,
-   because nothing else on the page is boxed. Deliberately not a link: the
-   title already goes there, and a second link to the same place is noise for
-   anyone using a screen reader. On touch the whole row is tappable anyway. */
+   because nothing else on the page is boxed. It is a link because a preview
+   image invites a click, and z-index 2 puts it above the row-wide tap overlay
+   that phones get. */
 .project__thumb {
-  margin: 1.25rem 0 0; max-width: 30rem;
+  display: block; margin: 1.25rem 0 0; max-width: 30rem;
   overflow: hidden; border: 1px solid var(--line);
   background: var(--bg-alt);
+  position: relative; z-index: 2;
 }
+.project__thumb:hover { border-color: var(--accent); }
 .project__thumb img {
   display: block; width: 100%; height: auto;
   transition: transform .5s var(--ease);
@@ -758,6 +760,42 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   .project__thumb img { transition: none; }
   .project:hover .project__thumb img { transform: none; }
 }
+
+/* Full-width screenshot at the top of a case study, linking to the live site.
+   The caption sits under it like .case-figure's, so the two read as the same
+   kind of object. */
+.case-shot { margin: 0 0 0.5rem; padding-block: 2.5rem 0; }
+.case-shot a {
+  display: block; overflow: hidden;
+  border: 1px solid var(--line); background: var(--bg-alt);
+}
+.case-shot img { display: block; width: 100%; height: auto; transition: transform .5s var(--ease); }
+.case-shot a:hover { border-color: var(--accent); }
+.case-shot a:hover img { transform: scale(1.015); }
+.case-shot figcaption {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.85rem; font-size: 0.8125rem; color: var(--ink-3);
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-shot img { transition: none; }
+  .case-shot a:hover img { transform: none; }
+}
+
+/* The brief against what discovery actually found: the turn the whole case
+   study rests on, so it gets its own shape rather than another paragraph. */
+.compare {
+  display: grid; gap: 1.5rem 3rem; margin-top: 1.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+}
+.compare__head {
+  margin: 0 0 0.75rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3);
+}
+.compare__col--real .compare__head { color: var(--accent); border-bottom-color: var(--accent); }
+.compare ul { list-style: none; margin: 0; padding: 0; }
+.compare li { margin: 0 0 0.6rem; font-size: 0.9375rem; color: var(--ink-2); }
 
 /* --- linkedin posts ------------------------------------------------------- */
 
