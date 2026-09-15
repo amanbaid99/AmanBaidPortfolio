@@ -799,19 +799,27 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 /* --- linkedin posts ------------------------------------------------------- */
 
-/* LinkedIn's embed is a fixed 504x(up to 1594) iframe. Stacked at full height
-   these seven run to 10,000px, so each is capped and scrolls inside its own
-   frame. The cap is the compromise: tall enough to read the opening of a post,
-   short enough that the page stays a page. */
+/* ?collapsed=1 gives LinkedIn's compact card, which is a fixed 670px tall
+   however wide it is. At the 78rem container that is three per row, each about
+   378px: narrower than LinkedIn's native 504, which the embed handles, but it
+   is the reason the minimum below is 20rem and not 31.5rem. */
 .posts {
   list-style: none; margin: 0; padding: 0;
   display: grid; gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(31.5rem, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
 }
 .post { margin: 0; }
 .post__frame {
-  display: block; width: 100%; height: 40rem;
+  display: block; width: 100%; height: 670px;
   border: 1px solid var(--line); background: var(--surface);
+}
+.posts__cta { margin: 2.25rem 0 0; }
+
+/* The home preview is exactly three, and auto-fit left the third stranded on
+   its own row between 1024 and 1280. Fixed at three from laptop width up,
+   where 3 x 304px still clears what the embed needs. */
+@media (min-width: 64rem) {
+  .posts--three { grid-template-columns: repeat(3, 1fr); }
 }
 .posts__note {
   display: flex; align-items: flex-start; gap: 0.6rem;
@@ -824,7 +832,6 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 @media (max-width: 44rem) {
   .posts { gap: 1.5rem; }
-  .post__frame { height: 34rem; }
 }
 
 /* --- endorsements --------------------------------------------------------- */
