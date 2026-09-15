@@ -214,7 +214,9 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 .nav__toggle { display: none; }          /* replaced by the inline links on wide screens */
 
-@media (max-width: 48rem) {
+/* The menu holds until 64rem. With six links the inline nav overflowed by
+   183px at 820 and 103px at 900; it only fits from about 1000px up. */
+@media (max-width: 64rem) {
   .nav__links { display: none; }
   .nav { gap: 0.6rem; }
   .site-header__inner { gap: 0.75rem; }
@@ -737,6 +739,45 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .notice strong { color: var(--ink); font-weight: 600; }
 
 
+/* --- endorsements --------------------------------------------------------- */
+
+.quotes {
+  display: grid; gap: 0 3.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+}
+.quote {
+  margin: 0; padding-block: 2rem;
+  border-top: 1px solid var(--line);
+}
+/* A drawn quote mark rather than a card: the rest of the page has no boxes,
+   and the glyph does the same job of marking this as someone else's words. */
+.quote::before {
+  content: "\201C";
+  display: block; font-family: var(--display);
+  font-size: 3.25rem; line-height: 0.6; color: var(--accent);
+  margin-bottom: 0.9rem;
+}
+.quote blockquote { margin: 0; }
+.quote blockquote p {
+  margin: 0 0 0.9rem; color: var(--ink-2);
+  font-size: 1rem; line-height: 1.65;
+}
+.quote blockquote p:last-child { margin-bottom: 1.25rem; }
+.quote figcaption { display: flex; flex-direction: column; gap: 0.2rem; }
+.quote__name {
+  font-family: var(--heading); font-weight: 700;
+  font-size: 0.9375rem; letter-spacing: -0.01em; color: var(--ink);
+}
+.quote__role {
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+}
+
+@media (max-width: 44rem) {
+  .quote { padding-block: 1.5rem; }
+  .quote::before { font-size: 2.5rem; }
+}
+
 /* --- contact -------------------------------------------------------------- */
 
 .contact__list {
@@ -983,7 +1024,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .nav__icon:hover { color: var(--ink); }
 /* At 360px the wordmark, toggle, icon and Resume button no longer fit; GitHub
    moves into the menu panel instead of being dropped. */
-@media (max-width: 48rem) { .nav__icon { display: none; } }
+@media (max-width: 64rem) { .nav__icon { display: none; } }
 
 /* At 320px the wordmark, the menu and the Resume button no longer fit on one
    row once the last two are big enough to tap. The AB mark still links home,
