@@ -739,6 +739,26 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .notice strong { color: var(--ink); font-weight: 600; }
 
 
+/* Card thumbnail. A hairline and a slight zoom on hover, no frame or shadow,
+   because nothing else on the page is boxed. Deliberately not a link: the
+   title already goes there, and a second link to the same place is noise for
+   anyone using a screen reader. On touch the whole row is tappable anyway. */
+.project__thumb {
+  margin: 1.25rem 0 0; max-width: 30rem;
+  overflow: hidden; border: 1px solid var(--line);
+  background: var(--bg-alt);
+}
+.project__thumb img {
+  display: block; width: 100%; height: auto;
+  transition: transform .5s var(--ease);
+}
+.project:hover .project__thumb img { transform: scale(1.02); }
+
+@media (prefers-reduced-motion: reduce) {
+  .project__thumb img { transition: none; }
+  .project:hover .project__thumb img { transform: none; }
+}
+
 /* --- linkedin posts ------------------------------------------------------- */
 
 /* LinkedIn's embed is a fixed 504x(up to 1594) iframe. Stacked at full height
