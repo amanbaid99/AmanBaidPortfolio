@@ -87,6 +87,7 @@ Five static HTML pages, no build step:
 ```
 index.html                    The whole portfolio — about, experience, projects, contact
 projects/<slug>/              One case study per project (8)
+writing/                      LinkedIn post embeds, lazy-loaded
 404.html                      Styled not-found page Pages serves automatically
 
 assets/css/style.css          All styling (design tokens at the top)
