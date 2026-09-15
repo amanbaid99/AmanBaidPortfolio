@@ -482,13 +482,14 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .workstrip__items a:hover::after { transform: scaleX(1); transform-origin: left; }
 .workstrip__items a:hover .workstrip__num { color: var(--ink); }
 
-.workstrip::before {
-  content: ""; order: 1; flex: 1 1 3rem; min-width: 2rem;
-  height: 1px; background: var(--line);
-  align-self: center;
-}
+/* The connector rule that used to sit here is gone. It existed to fill the
+   void left by right-aligning this link, but with four projects the row is
+   full and wraps inside the hero's text column even at 1500px, which left the
+   rule dangling after the last name instead of joining anything. The link now
+   follows the list, and lands at the left edge on the line below when the row
+   wraps. */
 .workstrip__all {
-  order: 2; flex: none;
+  flex: none;
   display: inline-flex; align-items: center; gap: 0.45rem;
   font-size: 0.6875rem; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
@@ -496,12 +497,6 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .workstrip__all .icon { transition: transform .25s var(--ease); }
 .workstrip__all:hover { color: var(--accent); }
 .workstrip__all:hover .icon { transform: translateX(4px); }
-
-/* Once the row wraps, a full-width rule on its own line is just a stray
-   line, so it goes. */
-@media (max-width: 52rem) {
-  .workstrip::before { display: none; }
-}
 
 /* The hero stacks well before the metrics need to: at tablet widths there is
    still room for three columns, and stacking them there wasted the page. */

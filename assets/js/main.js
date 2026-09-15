@@ -131,9 +131,13 @@
       var start = new Date(+parts[0], (+parts[1] || 1) - 1, 1);
       if (isNaN(start)) return;
 
+      // Rounded to the nearest year, the way people state experience out loud:
+      // 5 years 10 months is "6 years". Flooring it understated the figure for
+      // ten months of every year.
       var now = new Date();
-      var years = now.getFullYear() - start.getFullYear();
-      if (now.getMonth() < start.getMonth()) years -= 1;
+      var months = (now.getFullYear() - start.getFullYear()) * 12
+                 + (now.getMonth() - start.getMonth());
+      var years = Math.round(months / 12);
       if (years < 1) return;
 
       el.setAttribute("data-count-to", years);
