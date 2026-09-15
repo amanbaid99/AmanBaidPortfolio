@@ -824,6 +824,53 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   .posts { gap: 1.5rem; }
 }
 
+/* Education and certifications side by side rather than in one list. A B.Sc.
+   and a two-hour online course were getting identical rows, which made the
+   degree look smaller rather than the courses look bigger. */
+.creds-split {
+  display: grid; gap: 2.5rem 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+}
+.creds__head {
+  margin: 0 0 1.1rem; padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3);
+}
+
+.certs { list-style: none; margin: 0; padding: 0; }
+.cert {
+  display: grid; gap: 0.1rem 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  margin: 0; padding-block: 0.8rem;
+  border-bottom: 1px solid var(--line);
+}
+.cert:first-child { padding-top: 0; }
+.cert__name {
+  grid-column: 1; font-family: var(--heading); font-weight: 600;
+  font-size: 0.9375rem; letter-spacing: -0.01em; color: var(--ink);
+}
+.cert__org { grid-column: 1; font-size: 0.8125rem; color: var(--ink-3); }
+.cert__when::before { content: "\00B7"; margin: 0 0.35rem; color: var(--line); }
+/* The link is the point: it turns a claim into something checkable. */
+.cert__verify {
+  grid-column: 2; grid-row: 1 / span 2; align-self: center;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.625rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); white-space: nowrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.15rem; transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.cert__verify:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+@media (max-width: 30rem) {
+  /* At this width the verify link and a long title fight for the same row. */
+  .cert { grid-template-columns: minmax(0, 1fr); }
+  .cert__verify { grid-column: 1; grid-row: auto; margin-top: 0.45rem; align-self: start; }
+}
+
 /* --- endorsements --------------------------------------------------------- */
 
 .quotes {
