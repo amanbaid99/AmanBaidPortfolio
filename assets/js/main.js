@@ -15,8 +15,8 @@
   }, 1600);
 
   document.addEventListener("DOMContentLoaded", function () {
-    initSplitHeadings();
     initTenure();
+    initSplitHeadings();
     initReveal();
     initCounters();
     initScrollSpy();
@@ -124,6 +124,9 @@
      the number is right forever without anyone remembering to edit it. Runs
      before initCounters, which reads the data-count-to this sets. With JS off
      the figure in the HTML stands. */
+  var WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven",
+               "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+
   function initTenure() {
     var els = document.querySelectorAll("[data-since]");
     Array.prototype.forEach.call(els, function (el) {
@@ -139,6 +142,13 @@
                  + (now.getMonth() - start.getMonth());
       var years = Math.round(months / 12);
       if (years < 1) return;
+
+      if (el.hasAttribute("data-words")) {
+        // In a sentence the figure reads as a word, so "Six years of ...".
+        // Past WORDS it falls back to the numeral rather than printing nothing.
+        el.textContent = WORDS[years] || String(years);
+        return;
+      }
 
       el.setAttribute("data-count-to", years);
       el.textContent = years + (el.getAttribute("data-count-suffix") || "");

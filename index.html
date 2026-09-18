@@ -87,8 +87,7 @@
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#prototypes">Prototypes</a>
-        <a href="#endorsements">Endorsements</a>
-        <a href="#writing">Writing</a>
+        <a href="#case-studies">Case studies</a>
         <a href="#contact">Contact</a>
       </div>
       <details class="nav__toggle">
@@ -98,6 +97,7 @@
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#prototypes">Prototypes</a>
+          <a href="#case-studies">Case studies</a>
           <a href="#endorsements">Endorsements</a>
           <a href="#writing">Writing</a>
           <a href="#contact">Contact</a>
@@ -188,7 +188,7 @@
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">About</p>
-        <h2 class="section__title">Five years of <span class="tt">product, growth &amp; operations</span></h2>
+        <h2 class="section__title"><span data-since="2020-11" data-words="1">Six</span> years of <span class="tt">product, growth &amp; operations</span></h2>
       </div>
 
       <div class="about">
@@ -482,7 +482,79 @@
     </div>
   </section>
 
-  <section class="section" id="certifications">
+  <section class="section" id="case-studies">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="section__label">Case studies</p>
+        <h2 class="section__title">Products I don&#8217;t own, <span class="tt">taken apart</span></h2>
+        <p class="section__intro">
+          Nobody briefed these. I wrote them because the problem was interesting, which
+          makes them the clearest record of how I think when there is no backlog telling
+          me what to look at. Full write-ups on Notion.
+        </p>
+      </div>
+
+      <div class="studies reveal">
+        <article class="study">
+          <p class="study__meta"><span>Zomato &amp; Blinkit</span> &#183; <span>Feature proposal</span></p>
+          <h3 class="study__title">Selective item ordering, inside the cart</h3>
+          <div class="study__body">
+            <p>
+              When the total goes over budget the choice is binary: order everything, or
+              delete something and lose it. Deleting means leaving the cart to find the
+              item again, and on a grocery order it means tapping the minus button fifteen
+              times. I proposed a checkbox per line: uncheck to leave an item out of this
+              order without losing it.
+            </p>
+            <p class="study__insight">
+              The cart is the decision-making page. Making someone leave it to change their
+              mind is what turns a hesitation into an abandonment.
+            </p>
+            <p>
+              The write-up spends most of its length on what breaks: coupons that lapse
+              when the subtotal drops under the threshold, free-delivery minimums, combo
+              pricing, and the microcopy that has to explain each one. The impact is stated
+              as a hypothesis with the A/B test that would settle it, and the revenue
+              framed as incremental order value against take rate rather than the headline
+              cart total.
+            </p>
+          </div>
+          <p class="study__links">
+            <a class="link-under" href="https://satin-inch-1b0.notion.site/Selective-item-ordering-inside-cart-for-Zomato-Blinkit-2ecec240244d80c48873c4050b78e888" target="_blank" rel="noopener">Read the case study <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
+          </p>
+        </article>
+
+        <article class="study">
+          <p class="study__meta"><span>Scapia</span> &#183; <span>Teardown</span></p>
+          <h3 class="study__title">A credit card as a behaviour engine</h3>
+          <div class="study__body">
+            <p>
+              Rather than ask whether the card is good value, I asked what behaviour it is
+              built to produce. Spend &#8377;10,000 this month and the benefits unlock next
+              month, which rewards consistency rather than a single splurge. Unlimited
+              lounge access is not a perk so much as a filter that only frequent flyers can
+              use. Airport spending gets reframed from a place you avoid into a place that
+              pays you.
+            </p>
+            <p class="study__insight">
+              The coins look like cashback and are not. They redeem only against travel
+              booked inside the app, and the balance goes on the same card. Controlled
+              generosity, not generosity.
+            </p>
+            <p>
+              A teardown rather than a proposal: it is a record of reading someone else&#8217;s
+              incentive design closely, not of building anything.
+            </p>
+          </div>
+          <p class="study__links">
+            <a class="link-under" href="https://satin-inch-1b0.notion.site/Scapia-Credit-Card-2c8ec240244d808c8c78ff4c1aaa79c8" target="_blank" rel="noopener">Read the teardown <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="certifications">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Credentials</p>
@@ -545,7 +617,7 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="endorsements">
+  <section class="section" id="endorsements">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Endorsements</p>
@@ -596,7 +668,7 @@
     </div>
   </section>
 
-  <section class="section" id="writing">
+  <section class="section section--alt" id="writing">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Writing</p>

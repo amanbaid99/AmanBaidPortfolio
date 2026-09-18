@@ -871,6 +871,32 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   .cert__verify { grid-column: 1; grid-row: auto; margin-top: 0.45rem; align-self: start; }
 }
 
+/* --- case studies -------------------------------------------------------- */
+
+.studies {
+  display: grid; gap: 2.75rem 3.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+}
+.study { margin: 0; padding-top: 1.75rem; border-top: 1px solid var(--line); }
+.study__meta {
+  margin: 0 0 0.85rem;
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3);
+}
+.study__title {
+  font-family: var(--heading);
+  font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em;
+  text-transform: none; line-height: 1.2; margin: 0 0 1rem;
+}
+.study__body p { margin: 0 0 1rem; font-size: 0.9375rem; line-height: 1.65; color: var(--ink-2); }
+/* The one line worth remembering from each, marked by a rule rather than a
+   box, since nothing on this page is boxed. */
+.study__insight {
+  padding-left: 1.1rem; border-left: 2px solid var(--accent);
+  color: var(--ink) !important;
+}
+.study__links { margin: 1.25rem 0 0; }
+
 /* --- endorsements --------------------------------------------------------- */
 
 .quotes {
