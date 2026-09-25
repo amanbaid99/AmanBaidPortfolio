@@ -15,6 +15,7 @@ Use the project's slug, which is its folder name under `projects/`:
 | Duplicate Ticket Detection Model     | `jira-duplicate-detection`  |
 | Translation QA Workflow              | `translation-qa-workflow`   |
 | 404Found                             | `404found`                  |
+| Workout Tracker                      | `workout-tracker`           |
 | AI-Assisted Fitness Coaching         | `fitness-coaching-platform` |
 | Crave                                | `crave`                     |
 | Human Anatomy Explorer               | `human-anatomy`             |
@@ -56,3 +57,8 @@ the commit that added it and can be recovered.
 - **Nothing for `cluckin`** either unless the numbers are fake: its page
   already says the dashboards are built on the client's own operational data
   and are not shareable.
+- **`workout-tracker` is worth screenshots** and has none yet. The app is
+  behind a sign-in, so these can only come from you. The two worth having are
+  the logger mid-workout (it is the screen the whole design argument is about)
+  and the plan editor. Crop or blank anything you would rather not publish;
+  it is your own training data, but it is still your data.

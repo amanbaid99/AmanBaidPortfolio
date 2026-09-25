@@ -1217,7 +1217,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 /* Links row on a side build. */
 .project__links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.1rem 0 0; }
 .project__links .link-under { font-size: 0.625rem; }
-.notice code {
+.notice code, .case-block__body code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.85em; background: var(--surface);
   padding: 0.1em 0.35em; border: 1px solid var(--line);
