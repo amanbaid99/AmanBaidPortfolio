@@ -684,7 +684,9 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   margin: 0 0 0.85rem;
 }
 .project__title a { color: var(--ink); }
-.project__title a::after { content: ""; position: absolute; inset: 0; }
+/* The row-wide tap overlay is declared in the phone media query further down,
+   not here. Unscoped it also covered the row on desktop, where it swallowed
+   the card's own links (Try the demo, Source) and made the text unselectable. */
 
 .project__summary { color: var(--ink-2); font-size: 0.9375rem; margin: 0 0 1rem; max-width: 44rem; }
 
