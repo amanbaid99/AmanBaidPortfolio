@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Workout Tracker &#8212; Aman Baid</title>
-<meta name="description" content="Case study: a mobile-first workout tracking PWA built to replace a Google Sheet that only kept the latest numbers. Next.js and Supabase, append-only history, 109 automated checks in CI.">
+<meta name="description" content="How I built a workout tracking PWA to replace a Google Sheet: calculated warm-ups, sets that adapt to how the last one felt, offline logging, and a post-workout analysis that runs through a Supabase webhook into my own Claude account instead of a paid API.">
 <link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/workout-tracker/">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aman Baid">
 <meta property="og:title" content="Workout Tracker &#8212; Aman Baid">
-<meta property="og:description" content="A Google Sheet that only holds the latest numbers cannot show you progression. So I built the thing that can.">
+<meta property="og:description" content="Calculated warm-ups, sets that adapt to how the last one felt, offline logging in a gym basement, and an analysis pipeline that costs nothing per workout. The full build write-up.">
 <meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/workout-tracker/">
 <meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -94,23 +94,23 @@
     <div class="container">
       <div class="case-hero">
         <a class="back-link" href="../../#projects"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All projects</a>
-        <p class="case-hero__meta"><span>Sep 2026</span> &#183; <span>Solo build</span></p>
+        <p class="case-hero__meta"><span>Sep 2026</span> &#183; <span>Solo build</span> <span>Live</span></p>
         <h1 class="case-hero__title">Workout Tracker</h1>
         <p class="case-hero__standfirst">
           I tracked my lifts in a Google Sheet that only ever held the latest numbers.
           Every session overwrote the one before it, so there was nothing to look back
-          at and no progression to see. This is the app that replaced it.
+          at and no progression to see. This is the app that replaced it, and this is
+          how it was built.
         </p>
         <div class="case-hero__actions">
-          <a class="btn btn--primary" href="https://my-fitness-tracker-tan.vercel.app/" target="_blank" rel="noopener">Open the app <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
+          <a class="btn btn--primary" href="https://my-fitness-tracker-tan.vercel.app/demo" target="_blank" rel="noopener">Try the demo <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
           <a class="btn btn--ghost" href="https://github.com/amanbaid99/myFitnessTracker" target="_blank" rel="noopener"><svg class="icon icon--sm icon--dip" aria-hidden="true"><use href="#i-github"></use></svg> Source on GitHub</a>
         </div>
         <p class="project__note">
           <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg>
-          <span>It stores personal training history, so it opens on a sign-in screen.
-          The repository is public if you would rather read how it works than sign up:
-          the build spec, the decision log, the tests and the CI configuration are all
-          in there.</span>
+          <span>The demo needs no account. It runs the real logger on a made-up lifter&#8217;s
+          data, so you can start a workout, log sets, watch the targets adjust and feel the
+          rest timer. Nothing you do there is saved anywhere.</span>
         </p>
       </div>
     </div>
@@ -118,7 +118,7 @@
     <div class="container">
 
       <section class="case-block">
-        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg> Problem</h2>
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg> The problem with the spreadsheet</h2>
         <div class="case-block__body">
           <p>
             A spreadsheet is a good enough place to write down what you lifted. It is a
@@ -134,22 +134,33 @@
             nothing useful to point an analysis at later, because the data had been
             overwritten rather than accumulated.
           </p>
+          <p>
+            There was a fourth problem that was mine rather than the spreadsheet&#8217;s:
+            I kept skipping warm-ups. Not out of principle, just because working out what
+            to warm up with is arithmetic you do not want to do while standing at a rack.
+          </p>
         </div>
       </section>
 
       <section class="case-block">
-        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg> Approach</h2>
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg> One rule: no thinking at the rack</h2>
         <div class="case-block__body">
           <p>
-            I wrote the build spec before any code existed: what the app is, the data
-            model, the screens, and a numbered list of rules the build was not allowed to
-            break. Then I built it milestone by milestone with Claude Code, approving a
-            plan before each one. The spec and the decision log are both in the repository,
-            and the decision log is where the interesting part lives, because it records
-            every place the plan changed and why.
+            Everything in the app comes back to a single design rule. You are using it
+            standing up, mid-set, with about twenty seconds of attention and a heart rate
+            that makes arithmetic unappealing. So the app never asks you a question it
+            could answer itself. It tells you the next thing to do.
           </p>
           <p>
-            Four of those rules did most of the work:
+            That rule is why a working set arrives pre-filled with a weight and a rep
+            count rather than an empty box, why the rest timer starts itself, and why the
+            warm-up is calculated instead of left to you. A field you have to think about
+            is a field you eventually stop filling in, and a log with gaps in it is worth
+            less than no log at all.
+          </p>
+          <p>
+            It also set four rules the build was not allowed to break, written into the
+            spec before any code existed:
           </p>
           <ul class="impact-list">
             <li>
@@ -171,16 +182,62 @@
             </li>
             <li>
               <strong>Logging a working set takes one tap</strong>
-              <span>The 390px phone screen is the design target, not a fallback, and
-              every value is pre-filled from the same set last session, so confirming it
-              is the whole interaction.</span>
+              <span>The 390px phone screen is the design target, not a fallback.</span>
             </li>
           </ul>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layers"></use></svg> What a workout actually looks like</h2>
+        <div class="case-block__body">
           <p>
-            The last one is the product decision the rest hangs off. The app is used
-            standing up, mid-set, with about twenty seconds of attention. Anything that
-            takes longer than that does not get logged, and an exercise log with gaps in
-            it is worth less than no log at all.
+            <strong>It picks the day for you.</strong> The app knows which day of your
+            plan comes next from what you last trained, so opening it on a training day
+            takes one tap to start. Plans come from templates (Full Body, Upper Lower,
+            Push Pull Legs, Bro Split), recommended by how many days a week you train,
+            and every one of them is editable down to the individual exercise. New
+            accounts get a short setup that adapts the plan to a gym, a pair of dumbbells
+            at home, or nothing but bodyweight.
+          </p>
+          <p>
+            <strong>The warm-up is worked out, not remembered.</strong> A checklist is
+            built from the muscles that day actually trains: cardio matched to the
+            session, then a drill for each muscle area, each one labelled with the
+            exercises it is preparing you for. Then the first exercise of the day gets
+            ramp-up sets at <strong>50% for 10 reps and 75% for 5</strong>, taken from
+            the weight you are aiming for today and rounded to 2.5&#8239;kg, because
+            2.5&#8239;kg is the plate you actually have. Later exercises skip the ramp,
+            since you are already warm. The workout ends the same way: a cool-down
+            checklist of stretches for whatever you worked hardest.
+          </p>
+          <p>
+            <strong>Every set arrives filled in.</strong> A working set shows the weight
+            and reps you are aiming for, with last session printed underneath for
+            reference: <em>Last time: 80&#8239;kg &#215; 6, 6, 6, 6</em>. Logging it is
+            one tap. Change the weight on set one and the later sets follow it. Reps have
+            a minus and plus pill so one rep more is a tap rather than a keyboard.
+          </p>
+          <p>
+            <strong>Then it asks how that felt.</strong> Four chips: Easy, Good, Hard,
+            Max. That one answer is what makes the next set adapt, and the next session
+            adapt after it. It is optional, and skipping it is read as Good.
+          </p>
+          <p>
+            <strong>The rest timer starts itself</strong> the moment you tick a set, and
+            it beeps: one short tone when the rest begins, two higher ones when it is
+            over, alongside a vibration. The tones are generated in the browser rather
+            than loaded as files, so there is nothing to download or cache. A speaker
+            button mutes them if you would rather it stayed quiet.
+          </p>
+          <p>
+            <strong>Machines get the weights machines actually have.</strong> A stack
+            gives you 2.5&#8239;kg steps, but most machines also have a small add-on
+            weight sitting on the pin, 1.25&#8239;kg or thereabouts. The app records that
+            separately, so a set reads <em>22.5 + 3.75&#8239;kg</em> rather than being
+            rounded to whatever the stack alone could do. It sounds like a detail. It is
+            the difference between the app describing your actual training and describing
+            an approximation of it.
           </p>
         </div>
       </section>
@@ -224,66 +281,236 @@
         </svg>
         <figcaption>
           A step is 2.5&#8239;kg on a barbell or machine and 1.25&#8239;kg on a cable or
-          dumbbell. How a set felt is optional: you tap Easy, Good, Hard or Max, or you
-          tap nothing and it is treated as Good. Asking is cheap, and the answer is the
-          difference between a plan that pushes and one that buries you.
+          dumbbell. Bodyweight and fixed-weight exercises progress by reps instead. This
+          is the whole reason the app asks how a set felt: without that answer, a tracker
+          can only tell you what you did, not what to do next.
         </figcaption>
       </figure>
 
       <section class="case-block">
-        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"></use></svg> What keeps it honest</h2>
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"></use></svg> The analysis, and how it runs without API credits</h2>
         <div class="case-block__body">
           <p>
-            This is a single-user app holding years of training history that cannot be
-            reconstructed if it is lost. That makes correctness worth more than features,
-            so the checks are heavier than the size of the thing suggests:
-            <strong>71 unit tests</strong> covering the progression rules, the warm-up
-            logic, the rotation, the unit conversion and the spreadsheet import, plus
-            <strong>38 database assertions</strong> that run against a real PostgreSQL 16
-            instance on every push and prove row-level security actually isolates users
-            and that the append-only guarantee holds.
+            This is the part I am happiest with, and it started as a cost problem. I
+            wanted every finished workout analysed against the last one: what moved, what
+            stalled, what to watch. The obvious way to do that is to call an AI API from
+            the server and pay per workout. For an app with one user that is a
+            subscription to run a feature I use four times a week.
           </p>
           <p>
-            The deploy order matters as much as the tests. Lint, typecheck, unit tests,
-            build and the database checks all run first; then migrations are applied;
-            then the app deploys. Getting that sequence backwards was a real bug, not a
-            hypothetical one: the app shipped ahead of its own schema and briefly told me
-            the database needed an update. Vercel&#8217;s own Git deploys are switched
-            off, so nothing reaches production without going through that pipeline.
+            So it does not call an API at all. Instead the database talks to my own Claude
+            account directly, through a routine I have already got.
+          </p>
+        </div>
+      </section>
+
+      <figure class="case-figure reveal">
+        <svg viewBox="0 0 460 512" role="img" aria-labelledby="ai-t ai-d">
+          <title id="ai-t">How a workout gets analysed</title>
+          <desc id="ai-d">Finishing a workout stamps it as ended. A Supabase database
+            webhook fires on that update and calls an Edge Function. The function checks
+            the change is a genuine finish and that the caller knows the shared secret,
+            then triggers a Claude routine running on the author&#8217;s own account. Claude
+            reads the workout from the database, compares it with previous sessions, and
+            writes a review row back into the insights table. The app shows that review on
+            the workout&#8217;s page.</desc>
+
+          <rect class="flow__box" x="110" y="6" width="240" height="52" rx="2"/>
+          <text class="flow__label" x="230" y="37">You finish a workout</text>
+          <path class="flow__line" d="M230 58 V76"/>
+          <polygon class="flow__arrow" points="230,84 226,75 234,75"/>
+
+          <rect class="flow__box" x="110" y="84" width="240" height="62" rx="2"/>
+          <text class="flow__sub" x="230" y="107">on update of workouts</text>
+          <text class="flow__label" x="230" y="127">Database webhook fires</text>
+          <path class="flow__line" d="M230 146 V166"/>
+          <polygon class="flow__arrow" points="230,174 226,165 234,165"/>
+
+          <rect class="flow__box" x="110" y="174" width="240" height="62" rx="2"/>
+          <text class="flow__sub" x="230" y="197">a real finish only</text>
+          <text class="flow__label" x="230" y="217">Edge Function checks it</text>
+          <path class="flow__line" d="M230 236 V256"/>
+          <polygon class="flow__arrow" points="230,264 226,255 234,255"/>
+
+          <rect class="flow__box" x="110" y="264" width="240" height="62" rx="2"/>
+          <text class="flow__sub" x="230" y="287">my own Claude account</text>
+          <text class="flow__label" x="230" y="307">Claude reads the workout</text>
+          <path class="flow__line" d="M230 326 V346"/>
+          <polygon class="flow__arrow" points="230,354 226,345 234,345"/>
+
+          <rect class="flow__box" x="110" y="354" width="240" height="62" rx="2"/>
+          <text class="flow__sub" x="230" y="377">into public.insights</text>
+          <text class="flow__label" x="230" y="397">Writes the review back</text>
+          <path class="flow__line" d="M230 416 V436"/>
+          <polygon class="flow__arrow" points="230,444 226,435 234,435"/>
+
+          <rect class="flow__box flow__box--accent" x="70" y="444" width="320" height="62" rx="2"/>
+          <text class="flow__sub" x="230" y="467">on the workout&#8217;s page</text>
+          <text class="flow__label flow__label--accent" x="230" y="487">The app shows it</text>
+        </svg>
+        <figcaption>
+          No API key, no per-workout cost. The database notices a workout ended and asks
+          my Claude account to go and look at it.
+        </figcaption>
+      </figure>
+
+      <section class="case-block">
+        <div class="case-block__body">
+          <p>
+            Finishing a workout stamps it as ended. A Supabase database webhook fires on
+            that one column changing and calls an Edge Function, which triggers a Claude
+            routine on my account. Claude reads the workout straight out of the database,
+            compares it against previous sessions of the same exercises, and writes a
+            review row back. The app polls for it and shows it on the workout&#8217;s page.
+          </p>
+          <p>
+            The interesting work is in what the Edge Function refuses to do. It fires only
+            when a workout goes from unfinished to finished, and only for workouts logged
+            in the app: cancelling one, importing old data from the spreadsheet, or
+            editing something afterwards all look like updates to that table, and none of
+            them should cost an analysis. It authenticates the caller with a shared secret
+            compared in constant time, so a wrong guess does not leak how wrong it was.
+            The secret and the routine&#8217;s address live only in Supabase, never in the
+            repository, and the function logs the workout id and the response status
+            without ever logging the token or what came back.
+          </p>
+          <p>
+            The database side has its own guard. The obvious permission for the insights
+            table lets you mark your own review as read, but written the obvious way it
+            also lets you rewrite the text of the review itself. Permission was narrowed to
+            that one column, so the app can mark something read and cannot edit what
+            Claude said about your training.
           </p>
         </div>
       </section>
 
       <section class="case-block">
-        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-zap"></use></svg> What broke</h2>
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chart"></use></svg> Seeing the progress</h2>
+        <div class="case-block__body">
+          <p>
+            This was the entire point of leaving the spreadsheet, so it gets real
+            treatment rather than a number on a card. Every exercise has a chart of
+            estimated one-rep max per session, its best set, and a table of the sessions
+            behind the line. The Progress tab shows how consistent you have been: a
+            streak counted in weeks rather than days, because a daily streak is the wrong
+            shape for lifting and punishes rest days, a twelve-week calendar, and sets per
+            muscle this week against last week so you can see what you have been quietly
+            neglecting.
+          </p>
+          <p>
+            All of it is computed from the raw sets at the moment you look, through
+            database views that exclude warm-ups, deleted sets and cancelled workouts. The
+            chart draws straight segments between sessions rather than a smooth curve,
+            which sounds like a styling choice and is not: a curve implies you had a value
+            on the days in between, and you did not.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-zap"></use></svg> The gym basement problem</h2>
+        <div class="case-block__body">
+          <p>
+            Gyms have bad signal, and an app that loses a set because a wall got in the
+            way is an app you stop trusting. Every change the logger makes goes into a
+            queue on the phone before it is sent anywhere. The screen updates immediately
+            and never un-ticks itself because a request failed.
+          </p>
+          <p>
+            Getting that right is mostly about being safe to repeat. Each set carries an
+            id generated on the phone, so if a request is sent twice the second one is
+            recognised as the same set rather than logged again. Updates only apply to
+            rows still in the state they expect. The queue is sent oldest first and stops
+            on the first transient failure, so an answer about how a set felt can never
+            overtake the set itself. You can finish a workout with no signal at all: it
+            saves on the phone, and syncs, and the analysis starts when it lands.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-code"></use></svg> How it was built</h2>
+        <div class="case-block__body">
+          <p>
+            Next.js on Vercel, Supabase for the database and authentication, and Claude
+            Code writing the code. I wrote the build spec first: what the app is, the data
+            model, the screens, and the numbered rules above. Then it went milestone by
+            milestone, with a plan approved before each one.
+          </p>
+          <p>
+            The honest description of my role is that I did not type the code, and I
+            decided what it should do. The repository keeps an append-only decision log,
+            and <strong>20 of its 31 entries</strong> record a change I asked for and the
+            reasoning behind it: only the first exercise ramps up, warm-ups round to
+            2.5&#8239;kg, sets start at the aim rather than last session, one exercise
+            open at a time, the rest timer beeps, the add-on weight, the cool-down, the
+            demo instead of a login wall. The spec said the app should work offline and
+            compute rather than store; the texture of actually using it came from using
+            it.
+          </p>
+          <p>
+            That log is also the part I would point a sceptical reader at. It records what
+            changed and why, including the things that were wrong the first time, which is
+            a more useful account of a build than a commit history.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"></use></svg> What keeps it honest</h2>
+        <div class="case-block__body">
+          <p>
+            This is a personal app holding training history that cannot be reconstructed
+            if it is lost, so the checks are heavier than the size of it suggests:
+            <strong>112 unit tests</strong> across the progression rules, warm-up and
+            cool-down logic, rotation, unit conversion, the offline queue and the
+            spreadsheet import, plus <strong>76 database assertions</strong> that run
+            against a real PostgreSQL instance on every push and prove that row-level
+            security actually isolates users and that the append-only guarantee holds.
+          </p>
+          <p>
+            The deploy order matters as much as the tests. Lint, typecheck, unit tests,
+            build and the database checks run first; then migrations are applied; then the
+            app deploys. Getting that sequence backwards was a real bug, not a
+            hypothetical one: the app shipped ahead of its own schema and briefly told me
+            the database needed an update. Vercel&#8217;s own Git deploys are switched off,
+            so nothing reaches production without passing through that pipeline.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg> What broke</h2>
         <div class="case-block__body">
           <p>
             <strong>A view that would have leaked every user&#8217;s data.</strong> The
             schema exposes working sets through a database view. A plain view executes as
             whoever owns it, not as whoever queries it, which would have quietly bypassed
-            row-level security and returned every account&#8217;s sets to anyone who asked.
-            It was caught reviewing the migration before it was applied, and the view is
-            created with caller-level security instead. It is the kind of bug that would
-            never have shown up in testing, because with one account in the database the
-            wrong answer and the right answer are identical.
+            row-level security and returned every account&#8217;s sets to anyone who
+            asked. It was caught reviewing the migration before it was applied. It is the
+            kind of bug that would never surface in testing, because with one account in
+            the database the wrong answer and the right answer are identical.
           </p>
           <p>
             <strong>Every request on the live site returning a 500.</strong> The two
             Supabase configuration values were set as Secret type in Vercel. Pulling the
             environment during a build returns Secret values as the literal text
-            <code>[SENSITIVE]</code>, so the built app was trying to reach a server at
-            the address &#8220;[SENSITIVE]&#8221; and failing on every single request.
-            The fix was to stop trusting the pull: the deploy now reads those two public
-            values from a known source and refuses to deploy at all if the address is not
-            a valid one.
+            <code>[SENSITIVE]</code>, so the built app was trying to reach a server at the
+            address &#8220;[SENSITIVE]&#8221; and failing on every request. The deploy now
+            reads those two public values from a known source and refuses to deploy at all
+            if the address is not a valid one.
           </p>
           <p>
             <strong>A green pipeline that was lying.</strong> A step piped its output
             through <code>tee</code> to print it, and in a shell without pipefail that
             hands back the exit code of <code>tee</code> rather than the command that
-            failed. A failed database seed reported success. Found while reviewing the
-            workflow rather than by anything going wrong, which is the only reason it is
-            in this list instead of a much worse story.
+            failed. A failed database seed reported success.
+          </p>
+          <p>
+            <strong>A sync lock that locked permanently.</strong> When the outbox tried to
+            send with no connection, the run finished immediately, and the lock was
+            cleared before it had been set, which left it stuck on and blocked every sync
+            after it. Found in testing rather than in a gym.
           </p>
         </div>
       </section>
@@ -292,27 +519,23 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg> Where it is now</h2>
         <div class="case-block__body">
           <p>
-            Live and in use for my own training. You can build a plan from a template
-            (Full Body, Upper Lower, Push Pull Legs or Bro Split, recommended by how many
-            days a week you train), edit it down to the individual exercise, and log
-            against it: a warm-up checklist built from the muscles that day trains,
-            ramp-up sets on the first exercise, working sets pre-filled from last time, a
-            rest timer that starts itself, and personal bests computed as you go. It
-            installs to a phone home screen as a PWA.
+            Live, and it is what I train with. Plans, the logger, warm-ups and cool-downs,
+            progression, the rest timer, History, Progress charts, offline logging and the
+            post-workout analysis are all working. It installs to a phone home screen. You
+            can try the whole logger in the demo without an account.
           </p>
           <p>
-            Not built yet, and named here rather than implied: the History and Progress
-            screens are still placeholders, so the progression logic runs but you cannot
-            yet chart it. Offline logging is specified and not started. The AI analysis
-            is the reason the data model looks the way it does, and it is the next thing
-            worth building, but there is no AI in the app today and I would rather say so
-            than let a tech list imply otherwise.
+            Still to come, named rather than implied: starting a workout with no signal at
+            all (a dropout mid-workout is handled, opening the app cold in a basement is
+            not), offline History and Progress, and editing warm-up templates per
+            exercise. The analysis currently reviews one workout against previous ones;
+            weekly and plateau reviews are in the schema and not yet written.
           </p>
         </div>
       </section>
 
       <section class="case-block">
-        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-code"></use></svg> Tech used</h2>
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layers"></use></svg> Tech used</h2>
         <div class="case-block__body">
           <ul class="tags">
             <li class="tag">Next.js 16</li>
@@ -322,6 +545,11 @@
             <li class="tag">Supabase</li>
             <li class="tag">PostgreSQL</li>
             <li class="tag">Row-Level Security</li>
+            <li class="tag">Edge Functions</li>
+            <li class="tag">Claude routine</li>
+            <li class="tag">IndexedDB</li>
+            <li class="tag">Recharts</li>
+            <li class="tag">Web Audio</li>
             <li class="tag">Vercel</li>
             <li class="tag">GitHub Actions</li>
             <li class="tag">Vitest</li>
