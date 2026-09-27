@@ -1054,17 +1054,14 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .project:hover::before { transform: scaleY(1); }
 .project__title a { display: inline-block; transition: transform .4s var(--ease); }
 .project:hover .project__title a { transform: translateX(6px); }
-/* The title text alone is a 25px-tall tap target on a phone, so there the
-   whole row becomes the target, which is what its hover state has been
-   implying anyway. Phones only: an overlay covering the card would also stop
-   anyone selecting the summary text, and with a mouse the title and the arrow
-   are easy enough to hit. The overlay sits above the static body copy to catch
-   the taps; the real links inside the card sit above the overlay so they still
-   work. */
-@media (max-width: 44rem) {
-  .project__title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
-  .project__links { position: relative; z-index: 2; }
-}
+/* The whole card opens the case study, at every width. The title alone used
+   to be the only way in, and nobody reads a heading as a button: each card now
+   carries an explicit "Read the case study" link as well, and this overlay
+   makes the rest of the row hit the same place. The card's own links sit above
+   the overlay, so Try the demo and Source still go where they say they do.
+   Trade-off accepted: the summary text is not selectable under the overlay. */
+.project__title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.project__links { position: relative; z-index: 2; }
 
 .js .reveal { opacity: 0; transform: translateY(18px); }
 .js .reveal.is-visible {
@@ -1218,6 +1215,17 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 /* Links row on a side build. */
 .project__links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.1rem 0 0; }
+/* The card's primary action, set apart from the secondary links beside it so
+   it reads as "this opens something" rather than as one more link. */
+.project__cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--heading); font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+  padding-bottom: 0.25rem; border-bottom: 1px solid var(--accent-wash);
+}
+.project__cta .icon { transition: transform .25s var(--ease); }
+.project:hover .project__cta { border-bottom-color: var(--accent); }
+.project:hover .project__cta .icon { transform: translateX(4px); }
 .project__links .link-under { font-size: 0.625rem; }
 .notice code, .case-block__body code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
