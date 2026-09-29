@@ -153,6 +153,23 @@ li:last-child { margin-bottom: 0; }
   max-width: var(--measure); font-size: 1.0625rem;
 }
 
+/* Desktop: title left, intro right. Stacked under a title capped at 20ch, the
+   intro left the right half of every section head empty. Heads with no intro
+   have nothing to balance them, so they just lose the extra air instead. */
+@media (min-width: 64rem) {
+  .section__head:has(.section__intro) {
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    column-gap: 4rem; align-items: end;
+  }
+  /* justify-self, or the inline-flex pill stretches to the whole column. */
+  .section__head:has(.section__intro) .section__label { grid-column: 1; justify-self: start; }
+  .section__head:has(.section__intro) .section__title { grid-column: 1; }
+  .section__head:has(.section__intro) .section__intro {
+    grid-column: 2; grid-row: 2; margin: 0 0 0.4rem; max-width: 40ch;
+  }
+  .section__head:not(:has(.section__intro)) { margin-bottom: 2.5rem; }
+}
+
 
 /* --- header --------------------------------------------------------------- */
 
@@ -1006,6 +1023,17 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .case-block__body { max-width: var(--measure); }
 .case-block__body p, .case-block__body li { color: var(--ink-2); }
 .case-block__body strong { color: var(--ink); font-weight: 600; }
+
+/* Desktop: the block's label moves into a left rail beside its text instead of
+   sitting on its own line above it. Stacked, a 38rem measure inside a 78rem
+   container left most of the row empty and made every block twice as tall as
+   it needed to be. The body is column 2 explicitly, so a block with no title
+   (the continuation blocks) still lines up with the ones that have one. */
+@media (min-width: 64rem) {
+  .case-block { display: grid; grid-template-columns: 11rem minmax(0, 44rem); column-gap: 4rem; }
+  .case-block__title { grid-column: 1; margin-bottom: 0; align-items: flex-start; }
+  .case-block__body { grid-column: 2; max-width: none; }
+}
 
 .impact-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
 .impact-list li { margin: 0; padding-block: 1.1rem; border-bottom: 1px solid var(--line); }
