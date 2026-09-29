@@ -327,7 +327,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 /* --- hero ----------------------------------------------------------------- */
 
-.hero { position: relative; padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; overflow: hidden; }
+.hero { position: relative; padding-block: clamp(2rem, 4vw, 3rem) 0; overflow: hidden; }
 
 .hero__inner {
   display: grid; grid-template-columns: minmax(0, 1fr) 21rem;
@@ -338,33 +338,40 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 /* The page's loudest element: the name, set as large as the column allows. */
 .hero__name {
   font-family: var(--display);
-  font-size: clamp(3.5rem, 11vw, 8rem);
+  font-size: clamp(3.25rem, 10vw, 7rem);
   font-weight: 400; letter-spacing: -0.02em;
   text-transform: none; line-height: 0.92;
-  margin: 0 0 1.25rem;
+  margin: 0 0 1rem;
 }
 
 .hero__role {
   display: flex; align-items: center; gap: 1rem;
   font-size: 0.6875rem; font-weight: 600;
   letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--ink-2); margin: 0 0 1.75rem;
+  color: var(--ink-2); margin: 0 0 1.25rem;
 }
 .hero__role::after { content: ""; height: 1px; flex: 1; background: var(--line); }
 
 .hero__positioning {
   font-size: clamp(1.0625rem, 1.9vw, 1.25rem);
-  line-height: 1.55; color: var(--ink-2);
-  max-width: 30rem; margin: 0 0 2.25rem;
+  line-height: 1.5; color: var(--ink-2);
+  max-width: 30rem; margin: 0 0 1.75rem;
 }
 .hero__positioning strong { color: var(--ink); font-weight: 600; }
 /* The highlight carries side padding, so a mid-phrase line break left a
    stranded word and a visible gap before the following comma. */
 .hero__positioning .mark { white-space: nowrap; }
 
+/* Supporting line under the positioning: what kind of PM, in one breath.
+   Smaller and lighter than the positioning so it reads as the subtitle. */
+.hero__intro {
+  font-size: 0.9375rem; line-height: 1.6; color: var(--ink-3);
+  max-width: 32rem; margin: -0.5rem 0 1.75rem;
+}
+
 .hero__actions {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;
-  margin-bottom: 3rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
 /* Portrait sits on an accent disc — the one device every portfolio reference
@@ -389,43 +396,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 /* Rotating seal, as on reference 1. Sits clear of the disc's lower-right
    offset so the two never collide. */
-.seal {
-  position: absolute; left: -2rem; bottom: 0.5rem; z-index: 2;
-  width: 7rem; height: 7rem;
-  display: grid; place-items: center;
-  background: var(--bg); border-radius: 50%;
-}
-.seal__ring { position: absolute; inset: 0; animation: spin 22s linear infinite; }
-.seal__ring text {
-  font-family: var(--font); font-size: 8.2px; font-weight: 600;
-  letter-spacing: 0.22em; text-transform: uppercase; fill: var(--ink-2);
-}
-.seal__core {
-  position: relative;
-  font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; text-align: center; line-height: 1.4;
-  color: var(--accent);
-}
-@keyframes spin { to { transform: rotate(360deg); } }
 
-/* Rotated rails down the page edges — reference 1's side labels. */
-.rail {
-  position: absolute; top: 8rem; z-index: 2;
-  display: flex; align-items: center; gap: 1rem;
-  font-size: 0.625rem; font-weight: 600;
-  letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-3);
-  white-space: nowrap;
-}
-.rail--left  { left: 0.5rem;  transform: rotate(180deg); writing-mode: vertical-rl; }
-.rail--right { right: 0.5rem; writing-mode: vertical-rl; }
-.rail span { display: inline-block; }
-.rail i { display: block; width: 2.5rem; height: 1px; background: var(--line); }
-
-@media (max-width: 78rem) { .rail { display: none; } }
-
-/* At avatar size the seal covers a third of the face, and it sits directly
-   above a status chip that already says the same thing. */
-@media (max-width: 62rem) { .seal { display: none; } }
 
 /* Metrics strip: full-width, hairline-divided, like a spec sheet. */
 .hero__metrics {
@@ -433,7 +404,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   list-style: none; padding: 0; margin: 0;
   border-top: 1px solid var(--line);
 }
-.metric { margin: 0; padding: 1.5rem 1.5rem 1.5rem 0; }
+.metric { margin: 0; padding: 1.15rem 1.5rem 1.15rem 0; }
 .metric + .metric { border-left: 1px solid var(--line); padding-left: 1.5rem; }
 
 .metric__value {
@@ -912,7 +883,9 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 .quotes {
   display: grid; gap: 0 3.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+  /* 21rem, not 24, so three quotes sit in one row on a wide screen instead
+     of falling to an unbalanced two-plus-one. Still drops to two, then one. */
+  grid-template-columns: repeat(auto-fit, minmax(min(21rem, 100%), 1fr));
 }
 .quote {
   margin: 0; padding-block: 2rem;
