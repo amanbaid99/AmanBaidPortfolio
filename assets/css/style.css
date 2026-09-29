@@ -687,6 +687,97 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .role--past .role__points li { font-size: 0.875rem; margin-bottom: 0.45rem; }
 
 
+
+/* --- featured work -------------------------------------------------------
+   These are the only carded elements on the page. Everything else is
+   hairline-ruled rows, so a white panel on the alt ground is enough to set
+   them apart from the ordinary project list without adding a second accent
+   colour or a heavier border. */
+
+/* One column on mobile, two on desktop, never three: auto-fit was giving a
+   third column past 1280 and the cards became too narrow to read the facts. */
+.features { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+@media (min-width: 60rem) { .features { grid-template-columns: repeat(2, 1fr); } }
+
+.feature {
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line);
+  overflow: hidden;
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.feature:hover { border-color: var(--accent-wash); transform: translateY(-3px); }
+
+/* The strongest of the three runs the full width with its screenshot beside
+   the text, so the section opens on the one piece of real product imagery. */
+@media (min-width: 60rem) {
+  .feature--lead { grid-column: 1 / -1; flex-direction: row; }
+  .feature--lead .feature__visual { flex: 0 0 46%; aspect-ratio: auto; }
+  .feature--lead .feature__body { flex: 1; padding: 2.5rem; }
+}
+
+.feature__visual {
+  display: block; position: relative; overflow: hidden;
+  background: var(--bg-alt); aspect-ratio: 16 / 9;
+  border-bottom: 1px solid var(--line);
+}
+.feature__visual img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  display: block; transition: transform .5s var(--ease);
+}
+.feature:hover .feature__visual img { transform: scale(1.02); }
+
+/* No screenshot exists for these two: the work ran on client and employer
+   systems. Rather than invent one, the panel states the verified figure. */
+.feature__visual--stat {
+  display: grid; place-content: center; gap: 0.4rem; text-align: center;
+  background: var(--bg-alt); padding: 1.5rem;
+  /* Shorter than a screenshot slot: at 16/9 a single figure left a third of
+     the card empty. This reads as a band carrying a number, not a gap. */
+  aspect-ratio: 5 / 2;
+}
+.feature__statnum {
+  font-family: var(--display); font-size: clamp(2.75rem, 6vw, 3.75rem);
+  line-height: 1; color: var(--accent); letter-spacing: -0.02em;
+}
+.feature__statlabel {
+  font-family: var(--heading); font-size: 0.625rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3);
+}
+
+.feature__body { padding: 1.75rem; display: flex; flex-direction: column; flex: 1; }
+
+.feature__meta {
+  font-size: 0.625rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-3); margin: 0 0 0.6rem;
+}
+.feature__title {
+  font-family: var(--heading); font-size: 1.3125rem; font-weight: 700;
+  letter-spacing: -0.02em; line-height: 1.2; text-transform: none;
+  margin: 0 0 1.25rem;
+}
+.feature__title a { color: var(--ink); }
+.feature__title a:hover { color: var(--accent); }
+
+/* Problem, role and outcome as labelled rows: a hiring manager should get all
+   three off the card without opening anything. */
+.feature__facts { margin: 0 0 1.5rem; }
+.feature__facts dt {
+  font-family: var(--heading); font-size: 0.5625rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3);
+  margin-bottom: 0.3rem;
+}
+.feature__facts dd {
+  margin: 0 0 1rem; font-size: 0.9375rem; line-height: 1.6; color: var(--ink-2);
+}
+.feature__facts dd:last-child { margin-bottom: 0; }
+.feature__facts strong { color: var(--ink); font-weight: 600; }
+.feature__metric { color: var(--accent); font-weight: 600; }
+
+/* Pushes the link to the bottom so the three cards' links line up. */
+.feature__body > .link-under { margin-top: auto; align-self: flex-start; }
+
+.features__all { margin: 2.5rem 0 0; }
+
 /* --- projects ------------------------------------------------------------- */
 
 .projects { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }

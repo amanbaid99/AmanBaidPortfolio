@@ -84,7 +84,7 @@
     <nav class="nav" aria-label="Primary">
       <div class="nav__links">
         <a href="#about">About</a>
-        <a href="#projects" data-spy="projects prototypes case-studies">Work</a>
+        <a href="#featured" data-spy="featured projects prototypes case-studies">Work</a>
         <a href="#experience">Experience</a>
         <a href="#writing">Writing</a>
         <a href="#contact">Contact</a>
@@ -127,7 +127,7 @@
           B2B SaaS and HealthTech.
         </p>
         <div class="hero__actions hero-in">
-          <a class="btn btn--primary" href="#projects">
+          <a class="btn btn--primary" href="#featured">
             View Featured Work <svg class="icon icon--shift" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
           </a>
           <a class="btn btn--ghost" href="https://drive.google.com/drive/folders/1PFP0w0olTXfbqnrkjfdH5UMLwqahR0_S" target="_blank" rel="noopener">
@@ -256,7 +256,93 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="projects">
+  <!-- ===== Featured work ===== -->
+  <section class="section section--alt" id="featured">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="section__label">Featured work</p>
+        <h2 class="section__title">Three I&#8217;d want to <span class="tt">talk through</span></h2>
+        <p class="section__intro">
+          Selected examples of professional product work: a client platform, a client
+          data engagement and an internal tool. Each one has a problem I can describe,
+          a decision I made, and an outcome that was measured.
+        </p>
+      </div>
+
+      <div class="features reveal">
+
+        <article class="feature feature--lead">
+          <a class="feature__visual" href="projects/swaswasthya/" tabindex="-1" aria-hidden="true">
+            <picture>
+              <source type="image/webp" srcset="assets/img/projects/swaswasthya.webp">
+              <img src="assets/img/projects/swaswasthya.jpg" width="1200" height="582"
+                   loading="lazy" decoding="async" alt="">
+            </picture>
+          </a>
+          <div class="feature__body">
+            <p class="feature__meta"><span>2026</span> &#183; <span>Client platform</span></p>
+            <h3 class="feature__title"><a href="projects/swaswasthya/">Swa-Swasthya Wellness Platform</a></h3>
+            <dl class="feature__facts">
+              <dt>Problem</dt>
+              <dd>A wellness client asked for a website, with nothing scoped behind it: no clarity on who it was for, what it had to do beyond existing, or how it would stay alive after launch.</dd>
+              <dt>My role</dt>
+              <dd>Sole owner end to end. I ran the discovery, changed the brief on the strength of it, then designed, coded and deployed the platform, blog and admin panel myself.</dd>
+              <dt>Outcome</dt>
+              <dd><span class="feature__metric">8 leads a month</span> through the enquiry form and WhatsApp handoff, on a site the client runs without a developer.</dd>
+            </dl>
+            <a class="link-under" href="projects/swaswasthya/">Read case study <svg class="icon icon--sm icon--shift" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <a class="feature__visual feature__visual--stat" href="projects/cluckin/" tabindex="-1" aria-hidden="true">
+            <span class="feature__statnum">12%</span>
+            <span class="feature__statlabel">Less food wasted</span>
+          </a>
+          <div class="feature__body">
+            <p class="feature__meta"><span>Aug 2025</span> &#183; <span>Client engagement</span></p>
+            <h3 class="feature__title"><a href="projects/cluckin/">Cluckin Dashboard</a></h3>
+            <dl class="feature__facts">
+              <dt>Problem</dt>
+              <dd>A multi-outlet QSR brand had no view of food wastage or inventory turnover at any of its <strong>10+ outlets</strong>. The stock data existed but was scattered, so wastage was treated as a fixed cost.</dd>
+              <dt>My role</dt>
+              <dd>Built the cleaning pipeline first, then the dashboards, segmenting outlets so the operations team could read them without an analyst.</dd>
+              <dt>Outcome</dt>
+              <dd><span class="feature__metric">Food wastage down 12%</span>, and a chain-wide average replaced by a per-outlet picture that named where the money was going.</dd>
+            </dl>
+            <a class="link-under" href="projects/cluckin/">Read case study <svg class="icon icon--sm icon--shift" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+        </article>
+
+        <article class="feature">
+          <a class="feature__visual feature__visual--stat" href="projects/jira-duplicate-detection/" tabindex="-1" aria-hidden="true">
+            <span class="feature__statnum">24%</span>
+            <span class="feature__statlabel">Duplicates caught</span>
+          </a>
+          <div class="feature__body">
+            <p class="feature__meta"><span>Crimson Interactive (Enago)</span> &#183; <span>Internal tool</span></p>
+            <h3 class="feature__title"><a href="projects/jira-duplicate-detection/">Duplicate Ticket Detection Model</a></h3>
+            <dl class="feature__facts">
+              <dt>Problem</dt>
+              <dd>Jira ticket volume was rising and duplicates were pure redundancy: the same problem picked up, worked and resolved more than once, at a cost that scaled with volume.</dd>
+              <dt>My role</dt>
+              <dd>Identified the pattern and built the detection model in Python, working against the team&#8217;s own Jira data on internal systems.</dd>
+              <dt>Outcome</dt>
+              <dd><span class="feature__metric">24% of duplicates caught</span> before the team spent a second round of effort on them.</dd>
+            </dl>
+            <a class="link-under" href="projects/jira-duplicate-detection/">Read case study <svg class="icon icon--sm icon--shift" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="features__all reveal">
+        <a class="btn btn--ghost" href="#projects">See all seven projects <svg class="icon icon--sm icon--shift" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Projects</p>
@@ -364,7 +450,7 @@
   </section>
 
 
-  <section class="section" id="experience">
+  <section class="section section--alt" id="experience">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Experience</p>
@@ -449,7 +535,7 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="prototypes">
+  <section class="section" id="prototypes">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Prototypes</p>
@@ -519,7 +605,7 @@
     </div>
   </section>
 
-  <section class="section" id="case-studies">
+  <section class="section section--alt" id="case-studies">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Case studies</p>
@@ -591,7 +677,7 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="certifications">
+  <section class="section" id="certifications">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Credentials</p>
@@ -654,7 +740,7 @@
     </div>
   </section>
 
-  <section class="section" id="endorsements">
+  <section class="section section--alt" id="endorsements">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Endorsements</p>
@@ -720,7 +806,7 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="writing">
+  <section class="section" id="writing">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Writing</p>
