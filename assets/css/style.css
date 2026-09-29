@@ -536,6 +536,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   }
 
   .nav__toggle > summary { min-width: 44px; min-height: 44px; }
+  .more > summary { min-height: 44px; }
 }
 
 @media (max-width: 44rem) {
@@ -632,6 +633,59 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   .role { grid-template-columns: 1fr; gap: 0.75rem; }
   .role__period { padding-top: 0; }
 }
+
+/* Scope line: who the role was responsible for, read before any achievement. */
+.role__scope {
+  font-size: 0.9375rem; color: var(--ink-2);
+  margin: 0 0 1.5rem; padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.role__scope strong { color: var(--ink); font-weight: 600; }
+
+/* The three achievements a recruiter should take away in one pass. The
+   hierarchy is type size and a single accent figure, not a coloured card:
+   the rest of the page has no boxes and these should not introduce any. */
+.wins { display: grid; gap: 1.6rem; margin: 0 0 1.75rem; }
+.win__metric {
+  display: block; font-family: var(--display);
+  font-size: 1.875rem; line-height: 1; letter-spacing: -0.01em;
+  color: var(--accent);
+}
+.win__label {
+  display: block; font-family: var(--heading);
+  font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink);
+  margin: 0.5rem 0 0.55rem;
+}
+.win__body { margin: 0; font-size: 0.9375rem; color: var(--ink-2); max-width: 46rem; }
+.win__body strong { color: var(--ink); font-weight: 600; }
+
+/* The rest of the role, folded away. <details> keeps it reachable with
+   JavaScript off and needs no script to be keyboard operable. */
+.more { border-top: 1px solid var(--line); }
+.more > summary {
+  cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  font-family: var(--heading); font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
+  padding-block: 0.9rem;
+  transition: color .2s var(--ease);
+}
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::before {
+  content: "+"; font-family: var(--font); font-size: 1rem; line-height: 1;
+  color: var(--accent);
+}
+.more[open] > summary::before { content: "\2212"; }
+.more > summary:hover, .more > summary:focus-visible { color: var(--ink); }
+.more .role__points { margin-bottom: 1rem; }
+
+/* Earlier roles stay in full, with less weight: smaller title, tighter list. */
+.role--past { padding-block: 1.75rem; }
+.role--past .role__title { font-size: 1.0625rem; margin-bottom: 0.4rem; }
+.role--past .role__company { font-size: 0.875rem; }
+.role--past .role__points li { font-size: 0.875rem; margin-bottom: 0.45rem; }
+
 
 /* --- projects ------------------------------------------------------------- */
 
