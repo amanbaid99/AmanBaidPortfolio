@@ -175,6 +175,7 @@
     function run(el) {
       var target = parseInt(el.getAttribute("data-count-to"), 10);
       var suffix = el.getAttribute("data-count-suffix") || "";
+      var prefix = el.getAttribute("data-count-prefix") || "";
       if (isNaN(target)) return;
 
       var duration = 1100, start = null;
@@ -182,7 +183,7 @@
         if (start === null) start = now;
         var p = Math.min((now - start) / duration, 1);
         var eased = 1 - Math.pow(1 - p, 3);          // ease-out cubic
-        el.textContent = Math.round(target * eased) + suffix;
+        el.textContent = prefix + Math.round(target * eased) + suffix;
         if (p < 1) window.requestAnimationFrame(step);
       }
       window.requestAnimationFrame(step);

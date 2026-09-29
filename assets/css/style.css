@@ -315,17 +315,6 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 }
 
 
-.status-chip {
-  display: inline-flex; align-items: center; gap: 0.55rem;
-  font-size: 0.6875rem; font-weight: 600;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--ink-2); margin: 0 0 1.75rem;
-}
-.status-chip__dot {
-  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
-  position: relative; flex: none;
-}
-
 /* The page's loudest element: the name, set as large as the column allows. */
 .hero__name {
   font-family: var(--display);
