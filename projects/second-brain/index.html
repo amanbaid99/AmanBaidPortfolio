@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Second Brain &#8212; Aman Baid</title>
+<meta name="description" content="A Notion workspace that gives AI chats persistent, model-agnostic memory. An index, a summary block on every page and a retrieval protocol that tells the assistant how little to read, plus focused page chats that each own one page.">
+<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/second-brain/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Aman Baid">
+<meta property="og:title" content="Second Brain &#8212; Aman Baid">
+<meta property="og:description" content="Treat context like a well-indexed database, not a long document. The assistant should navigate to what it needs, not read everything.">
+<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/second-brain/">
+<meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aman Baid, Product Manager in Mumbai">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta name="theme-color" content="#f6f2ea">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/style.css">
+
+<script src="../../assets/js/analytics.js" defer></script>
+<script src="../../assets/js/main.js" defer></script>
+</head>
+
+<body>
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+<defs>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></symbol>
+<symbol id="i-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-trending" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24"><path d="m12 2 2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7L12 2z"/></symbol>
+<symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+</defs>
+</svg>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__name" href="../../">
+      <span class="logo-mark" aria-hidden="true">AB</span>
+      <span>Aman Baid</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__links">
+        <a href="../../#about">About</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../../#projects">Projects</a>
+        <a href="../../#contact">Contact</a>
+      </div>
+      <details class="nav__toggle">
+        <summary aria-label="Open menu"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-menu"></use></svg></summary>
+        <div class="nav__panel">
+          <a href="../../#about">About</a>
+          <a href="../../#experience">Experience</a>
+          <a href="../../#projects">Projects</a>
+          <a href="../../#contact">Contact</a>
+        </div>
+      </details>
+      <a class="btn btn--ghost btn--sm" href="https://drive.google.com/drive/folders/1PFP0w0olTXfbqnrkjfdH5UMLwqahR0_S" target="_blank" rel="noopener"><svg class="icon icon--sm icon--dip" aria-hidden="true"><use href="#i-download"></use></svg> Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <article>
+
+    <div class="container">
+      <div class="case-hero">
+        <a class="back-link" href="../../#projects"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All projects</a>
+        <p class="case-hero__meta"><span>Sep 2026</span> &#183; <span>Solo build</span> <span>Personal system</span></p>
+        <h1 class="case-hero__title">Second Brain</h1>
+        <p class="case-hero__standfirst">
+          Every AI chat starts by forgetting who I am, and throws away everything I tell
+          it when the window closes. I built a Notion workspace that holds that context
+          permanently, with a retrieval protocol that tells the assistant how little to
+          read, and a start prompt that works in any tool.
+        </p>
+        <p class="project__note">
+          <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg>
+          <span>This is my own workspace and it holds personal records, so there is no link
+          and no screenshots. Everything below is structure and mechanics. The example
+          prompts are real, with page links and database identifiers removed, and any
+          content shown is invented.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg> Problem</h2>
+        <div class="case-block__body">
+          <p>
+            Three things go wrong when you use an AI assistant seriously over months
+            rather than minutes.
+          </p>
+          <p>
+            <strong>Every chat has a finite context window.</strong> A long conversation
+            starts to drift. The model contradicts something I told it an hour earlier, or
+            fills a gap with something plausible that I never said. The longer and more
+            useful the conversation gets, the less reliable it becomes.
+          </p>
+          <p>
+            <strong>Context is locked inside one platform.</strong> Whatever an assistant
+            learns about me belongs to that vendor. Moving from one tool to another means
+            re-explaining my work, my projects and my priorities from scratch. The memory
+            is not mine in any practical sense.
+          </p>
+          <p>
+            <strong>The obvious workaround makes it worse.</strong> Keeping one long
+            document about yourself and pasting it in means paying for the whole document
+            on every question. Ask something that needs two lines of it and the model
+            still reads all of it, badly, and you have spent most of the window before the
+            actual question starts.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layers"></use></svg> Why the existing options fall short</h2>
+        <div class="case-block__body">
+          <p>
+            <strong>Built-in memory features</strong> are per-vendor and mostly opaque. I
+            cannot see the whole of what has been remembered, cannot correct a specific
+            wrong belief, and cannot take it anywhere.
+          </p>
+          <p>
+            <strong>One long context document</strong> is portable and inspectable, which
+            is better, but it has no structure an assistant can navigate. Every question
+            costs the whole document.
+          </p>
+          <p>
+            <strong>Vector search over personal notes</strong> is the right answer at
+            scale. On a corpus this small it is heavy to run and the retrieval is fuzzy:
+            you get three near-identical chunks and no sense of which is current.
+          </p>
+          <p>
+            <strong>Notion search on its own</strong> finds pages but does not know when to
+            stop reading. Search is not a protocol.
+          </p>
+          <p>
+            None of them answers the question that actually matters, which is not where is
+            the information but <strong>how much should I read to answer this</strong>.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"></use></svg> The insight</h2>
+        <div class="case-block__body">
+          <p>
+            Treat context like a well-indexed database, not a long document. The assistant
+            should navigate to what it needs instead of reading everything.
+          </p>
+          <p>
+            An assistant that reads one directory page, then one summary, then one section
+            gives a better answer than one that skims forty pages, and it spends a
+            fraction of the window doing it. That reframing is the whole project. The rest
+            is the structure that makes navigation possible and the rules that make it
+            happen.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg> Architecture</h2>
+        <div class="case-block__body">
+          <p>
+            Five top-level containers, borrowed from the usual note-taking split, plus
+            three pages that exist only for the assistant.
+          </p>
+          <pre class="ascii" aria-label="Workspace structure">Second Brain
+├── Index            the directory: snapshot, map table, change log
+├── Guide for AI     the rules, including the retrieval protocol
+├── Chat Prompts     prompts that bind one chat to one page
+│
+├── Inbox            quick capture from my phone, unprocessed
+├── Areas            ongoing, no finish line
+│   └── Area page        Summary / Current status / Log
+│       └── sub-page     anything long lives here, listed in the Summary
+├── Projects         things with a finish line
+├── Resources        reference and learning
+├── Archive          inactive
+└── Tasks            database: status, due date, area, project relation</pre>
+          <p>
+            Every section page has the same three blocks, in the same order:
+          </p>
+          <ul class="impact-list">
+            <li>
+              <strong>Summary</strong>
+              <span>What is on this page, which sub-pages exist, and the date it was last
+              updated. Always at the top.</span>
+            </li>
+            <li>
+              <strong>Current status</strong>
+              <span>Short, and always describes today. Not a history.</span>
+            </li>
+            <li>
+              <strong>Log</strong>
+              <span>Dated entries, newest first, one line each. The history lives here so
+              Current status never has to carry it.</span>
+            </li>
+          </ul>
+          <p>
+            The Summary is the load-bearing block. It is not a description for a human,
+            it is a routing table for the assistant: it says whether the answer is on this
+            page, one level further down, or not here at all. Without it, every question
+            costs a full page read, and the structure stops earning its keep.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-zap"></use></svg> How retrieval works</h2>
+        <div class="case-block__body">
+          <p>
+            The Guide for AI page holds a numbered protocol. Any assistant reads it before
+            answering anything about me.
+          </p>
+          <pre class="ascii" aria-label="Retrieval flow">A question arrives
+        │
+        ▼
+Read the Index                    one page: a snapshot, plus a map of
+        │                         every section and where it lives
+        ▼
+Pick only the sections it names   ignore the rest of the workspace
+        │
+        ▼
+Read that page's Summary          what is here, what is below
+        │
+        ├──── answer is here ──────────────►  answer, stop
+        │
+        ▼
+Open Current status, the Log, or a named sub-page
+        │
+        ▼
+Answer, stop</pre>
+          <p>
+            The rule that does the work is the negative one at the end of the protocol:
+            never read the whole workspace to answer one question. Without it a capable
+            model will helpfully read everything, which is the behaviour the whole system
+            exists to prevent.
+          </p>
+          <p>
+            Writing follows the same path in reverse. When I share an update, the
+            assistant finds the right page through the Index, updates Current status, adds
+            a dated Log line, refreshes that page's Summary, and only touches the Index if
+            the change matters at the top level. Then it confirms in one line what it
+            changed. The confirmation is not politeness: it is how I catch a wrong write
+            immediately instead of three weeks later.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-code"></use></svg> Workflow: one main chat, many page chats</h2>
+        <div class="case-block__body">
+          <p>
+            <strong>The main chat owns the structure.</strong> It creates, moves and
+            deletes pages, keeps the Index and the Summaries in step, and writes the
+            prompts for every other chat. It is the only chat allowed to change the shape
+            of the workspace.
+          </p>
+          <p>
+            <strong>Page chats each own exactly one page.</strong> A chat for tasks, a
+            chat for applications, a check-in chat for a journal-style page. Each one
+            reads its page at the start of a conversation, writes back what I tell it, and
+            is explicitly forbidden from touching anything else. If something belongs
+            elsewhere, the rule is to say so rather than guess.
+          </p>
+          <p>
+            The scope limit is the point. A chat that can only see one page cannot drift
+            into an unrelated part of my life, cannot quietly restructure anything, and
+            starts every conversation grounded in current data rather than in whatever it
+            inferred twenty messages ago. Conversations stay short because the surface is
+            small, and everything said in them ends up back in Notion instead of dying
+            with the tab.
+          </p>
+          <p>
+            <strong>Portability comes from a universal start prompt.</strong> Any
+            assistant with access to the workspace loads the same context the same way.
+            The memory lives in the data, not in the vendor. Switching tools costs one
+            paste.
+          </p>
+          <p>
+            Two integrations hang off the same rules. A task with a due date also becomes
+            a calendar event with a reminder, so the list and the calendar cannot
+            disagree. Outreach is written into my mail client as a draft and never sent:
+            the draft is the handoff point, and anything that would leave in my name gets
+            a human check first.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"></use></svg> Example prompts</h2>
+        <div class="case-block__body">
+          <p>
+            Two of the real prompts, with page links and database identifiers removed and
+            the field values replaced with invented ones. First, a page chat. Note how much
+            of it is restriction rather than instruction.
+          </p>
+          <pre class="ascii" aria-label="Page chat prompt">You are my Tasks chat. You manage one Notion database only, my Tasks list.
+
+Fields: Task name, Status (Not started / In progress / Done / Archived),
+Due (date), Area (Work, Finance, Health, Personal), Project (relation to
+my project list).
+
+At the start of every conversation, query the database for open tasks,
+so you know what is pending.
+
+What you do:
+- When I dump to-dos, messy is fine, turn each into a short action-first
+  task name. Set Area and Project if obvious. Set Due only if I give a
+  date or a deadline. Status starts as Not started.
+- If the area, project or due date is unclear, add the task anyway, then
+  ask in one short line.
+- Any task with a due date also goes on my calendar as a 10:00 event with
+  a reminder. If the date changes, or the task is done or dropped, update
+  the event to match.
+- "Done X" marks it Done. "Start X" marks it In progress. "Drop X" marks
+  it Archived. Never delete tasks.
+- When I ask what is on my plate, list open tasks grouped as Overdue,
+  Today, This week, Later, No date. Short lines only.
+- After changes, confirm in one line per task.
+
+Rules:
+- Only touch the Tasks database and my calendar. Never edit other pages.
+  If something belongs elsewhere, tell me to take it to my main chat.
+- No em dashes anywhere. Use commas, colons or hyphens.</pre>
+          <p>
+            Second, the universal start prompt. This is the portability layer, and it is
+            eight lines long because the workspace carries the rest.
+          </p>
+          <pre class="ascii" aria-label="Universal start prompt">You have access to my Notion. My "Second Brain" is the source of truth
+about my life and work.
+
+Before answering anything about me:
+1. Read the "Guide for AI" page and follow its rules.
+2. Read the "Index" page, which is the directory.
+3. Open only the sections the Index points to, reading each page's
+   Summary block first. Go deeper only if needed.
+
+When I share updates, write them to the right page as the Guide
+describes. If you cannot write to Notion, tell me exactly what to change
+and where.
+No em dashes anywhere.</pre>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg> Results</h2>
+        <div class="case-block__body">
+          <p>
+            I use this every day, and four things changed.
+          </p>
+          <p>
+            <strong>Conversations got short.</strong> A page chat reads a summary and one
+            page instead of being told the story again. I stopped opening a chat with two
+            paragraphs of background.
+          </p>
+          <p>
+            <strong>Drift dropped.</strong> Not because the models got better but because
+            each chat has one job and one page. A chat that can only see a task list has
+            nothing to invent about anything else.
+          </p>
+          <p>
+            <strong>Switching tools stopped costing anything.</strong> The same eight-line
+            prompt loads the same context anywhere with access to the workspace.
+          </p>
+          <p>
+            <strong>The memory became inspectable.</strong> When an assistant is wrong
+            about me now, I can open the page and see exactly why, and fix the page rather
+            than argue with the model. That is the difference between memory I own and
+            memory a vendor keeps for me, and it is the part I did not expect to value
+            most.
+          </p>
+          <p>
+            I have not measured any of this. There is no token count, no before and after,
+            no controlled comparison. It is a working system I rely on, not an experiment
+            with numbers, and I would rather say that than put a figure here I cannot
+            stand behind.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg> Limitations</h2>
+        <div class="case-block__body">
+          <ul class="impact-list">
+            <li>
+              <strong>Inbox processing is manual</strong>
+              <span>Capture from my phone is instant, but filing is not. I have to open a
+              chat and ask for the inbox to be processed. Nothing happens on its own.</span>
+            </li>
+            <li>
+              <strong>Summaries can go stale</strong>
+              <span>Page chats edit pages the main chat is not watching. The Guide tells
+              the main chat to re-read a Summary before relying on it, but that is a
+              convention I wrote, not something the system enforces.</span>
+            </li>
+            <li>
+              <strong>The protocol is advisory</strong>
+              <span>It works because the assistant chooses to follow it. A model that
+              skips the Guide reads too much or too little, and nothing stops it. The rules
+              are a prompt, not a permission system.</span>
+            </li>
+            <li>
+              <strong>One workspace, one dependency</strong>
+              <span>If access to Notion breaks, the memory is unreachable. There is no
+              local copy and no export routine.</span>
+            </li>
+            <li>
+              <strong>The trade is deliberate</strong>
+              <span>This only works because personal context is written somewhere an
+              assistant can read it. I decide what goes in, and some things do not.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chart"></use></svg> What is next</h2>
+        <div class="case-block__body">
+          <p>
+            <strong>A scheduled weekly review.</strong> Something that reads the Logs on a
+            timer and writes a digest, so the system tells me what changed instead of
+            waiting to be asked. This is the biggest gap: right now the workspace is
+            entirely passive.
+          </p>
+          <p>
+            <strong>Automatic inbox processing.</strong> A trigger on new capture rather
+            than me remembering to file.
+          </p>
+          <p>
+            <strong>A staleness check.</strong> Flag any page whose Summary is older than
+            the newest line in its own Log. That is a rule a script can enforce, which
+            moves it out of the advisory category.
+          </p>
+          <p>
+            <strong>Actually measuring it.</strong> Context consumed per answer, with and
+            without the protocol, on the same set of questions. If the central claim is
+            that navigation beats reading everything, it should be possible to show it.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layers"></use></svg> Tech used</h2>
+        <div class="case-block__body">
+          <ul class="tags">
+            <li class="tag">Notion</li>
+            <li class="tag">Claude</li>
+            <li class="tag">ChatGPT</li>
+            <li class="tag">MCP connectors</li>
+            <li class="tag">Google Calendar</li>
+            <li class="tag">Gmail drafts</li>
+            <li class="tag">Prompt design</li>
+            <li class="tag">Information architecture</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="next-project">
+        <p><a href="../crave/">Next project: Crave <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></p>
+      </section>
+
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p>© <span data-current-year>2026</span> Aman Baid</p>
+    <p>
+      <a href="mailto:amanbaid99@gmail.com">amanbaid99@gmail.com</a> ·
+      <a href="https://www.linkedin.com/in/aman-baid-b439321b0" rel="noopener">LinkedIn</a> ·
+      <a href="https://github.com/amanbaid99" rel="noopener">GitHub</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

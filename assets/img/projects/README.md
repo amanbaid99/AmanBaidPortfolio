@@ -16,6 +16,7 @@ Use the project's slug, which is its folder name under `projects/`:
 | Translation QA Workflow              | `translation-qa-workflow`   |
 | 404Found                             | `404found`                  |
 | Workout Tracker                      | `workout-tracker`           |
+| Second Brain                         | `second-brain`              |
 | AI-Assisted Fitness Coaching         | `fitness-coaching-platform` |
 | Crave                                | `crave`                     |
 | Human Anatomy Explorer               | `human-anatomy`             |
@@ -57,6 +58,9 @@ the commit that added it and can be recovered.
 - **Nothing for `cluckin`** either unless the numbers are fake: its page
   already says the dashboards are built on the client's own operational data
   and are not shareable.
+- **Nothing for `second-brain`** either. It is my own Notion workspace and
+  every screen of it holds personal records. Its page says there are no
+  screenshots to share, and an image would contradict that.
 - **`workout-tracker` is worth screenshots** and has none yet. The app is
   behind a sign-in, so these can only come from you. The two worth having are
   the logger mid-workout (it is the screen the whole design argument is about)

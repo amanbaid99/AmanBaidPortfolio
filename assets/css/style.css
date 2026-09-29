@@ -1245,3 +1245,21 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   font-size: 0.85em; background: var(--surface);
   padding: 0.1em 0.35em; border: 1px solid var(--line);
 }
+
+/* Text diagrams and prompt blocks. These are deliberately monospace and
+   deliberately not reflowed: a tree or a flow only reads correctly if the
+   line breaks stay where they were written. Narrow screens scroll the block
+   horizontally rather than widening the page, so the diagram keeps its shape
+   and the layout keeps its gutters. */
+.ascii {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8125rem; line-height: 1.65;
+  color: var(--ink-2); background: var(--surface);
+  border: 1px solid var(--line); border-left: 2px solid var(--accent-wash);
+  padding: 1.25rem 1.4rem; margin: 1.6rem 0;
+  max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  tab-size: 2;
+}
+@media (max-width: 44rem) {
+  .ascii { font-size: 0.75rem; padding: 1rem 1.1rem; margin-inline: 0; }
+}
