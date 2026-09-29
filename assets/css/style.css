@@ -25,6 +25,11 @@
   --accent:      #bd5333;
   --accent-soft: #f0d9cf;
   --accent-wash: #e9cec1;
+  /* Small text only. #bd5333 measures 4.23:1 on the cream ground and 3.90:1
+     on the alt ground, both short of the 4.5:1 that body-size text needs.
+     This is the same hue darkened until it clears on both (4.91 and 4.54).
+     Display-size accent text keeps the brand colour: it only needs 3:1. */
+  --accent-ink:  #ac4c2e;
 
   --display: "Instrument Serif", Georgia, "Times New Roman", serif;
   --heading: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
@@ -452,7 +457,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
    for the numbered list further down the page. */
 .workstrip__num {
   font-family: var(--display); font-size: 0.875rem; font-weight: 400;
-  color: var(--accent); line-height: 1;
+  color: var(--accent-ink); line-height: 1;
   transition: color .25s var(--ease);
 }
 .workstrip__items a::after {
@@ -1043,13 +1048,17 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .study__part { margin: 0 0 1.25rem; }
 .study__part:last-child { margin-bottom: 0; }
 .study__part p:last-child { margin-bottom: 0; }
-.study__label {
+/* Scoped under .study__body: the plain "\.study__body p" rule sets font-size
+   and color and is more specific, so an unscoped .study__label lost both and
+   these rendered as ordinary 15px paragraphs. */
+.study__body .study__label {
   font-family: var(--heading); font-size: 0.5625rem; font-weight: 600;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--ink-3); margin: 0 0 0.35rem;
 }
-.study__label--proposed { color: var(--accent); }
-.study__label--untested, .study__label--none { color: var(--ink-3); font-style: normal; }
+.study__body .study__label--proposed { color: var(--accent-ink); }
+.study__body .study__label--untested,
+.study__body .study__label--none { color: var(--ink-3); font-style: normal; }
 .study__label--untested::after, .study__label--none::after {
   content: ""; display: inline-block; vertical-align: middle;
   width: 1.75rem; height: 1px; background: var(--line); margin-left: 0.6rem;
@@ -1383,7 +1392,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 }
 .cred__year {
   font-family: var(--display); font-size: 1.25rem; font-weight: 400;
-  color: var(--accent); line-height: 1;
+  color: var(--accent-ink); line-height: 1;
 }
 .cred__title {
   font-family: var(--heading); font-size: 1.0625rem; font-weight: 600;
