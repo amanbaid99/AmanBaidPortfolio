@@ -198,13 +198,24 @@
     var map = {};
     var sections = [];
     Array.prototype.forEach.call(links, function (link) {
-      var id = link.getAttribute("href").slice(1);
-      var section = document.getElementById(id);
-      if (!section) return;
-      map[id] = link;
-      sections.push(section);
+      // One nav item can stand for several sections: "Work" covers projects,
+      // prototypes and case studies, so it stays lit across all three. The
+      // link's own href is the scroll target; data-spy is what it watches.
+      var ids = (link.getAttribute("data-spy") || link.getAttribute("href").slice(1)).split(/\s+/);
+      ids.forEach(function (id) {
+        var section = document.getElementById(id);
+        if (!section) return;
+        map[id] = link;
+        sections.push(section);
+      });
     });
     if (!sections.length) return;
+
+    // "Topmost wins" below relies on this array being in document order, which
+    // it is not when one link contributes several sections.
+    sections.sort(function (a, b) {
+      return (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1;
+    });
 
     var visible = {};
     var observer = new IntersectionObserver(function (entries) {
@@ -264,8 +275,20 @@
       a.addEventListener("click", close);
     });
 
+    // <details> announces its own expanded state; the label should not keep
+    // saying "Open menu" once it is open.
+    var summary = nav.querySelector("summary");
+    if (summary) {
+      nav.addEventListener("toggle", function () {
+        summary.setAttribute("aria-label", nav.hasAttribute("open") ? "Close menu" : "Open menu");
+      });
+    }
+
     // Leaving the mobile breakpoint with the panel open would strand it.
-    var mq = window.matchMedia("(min-width: 48.0625rem)");
+    // Must match the breakpoint where .nav__links comes back in the CSS.
+    // This was left at 48rem when that moved to 64rem, so a panel left open
+    // on a tablet stayed open behind the restored inline nav.
+    var mq = window.matchMedia("(min-width: 52.0625rem)");
     (mq.addEventListener ? mq.addEventListener.bind(mq, "change") : mq.addListener.bind(mq))(
       function (e) { if (e.matches) close(); });
   }

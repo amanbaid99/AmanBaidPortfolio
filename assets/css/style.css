@@ -231,9 +231,12 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 
 .nav__toggle { display: none; }          /* replaced by the inline links on wide screens */
 
-/* The menu holds until 64rem. With six links the inline nav overflowed by
-   183px at 820 and 103px at 900; it only fits from about 1000px up. */
-@media (max-width: 64rem) {
+/* The menu holds until 52rem. Six inline links needed about 1000px, which is
+   why this used to sit at 64rem. Five need 730px (a 129px wordmark, a 529px
+   nav and the gutters), so the full nav now returns on a landscape tablet
+   instead of waiting for a laptop. Keep this in step with the matchMedia in
+   initNav, which closes a panel left open when the links come back. */
+@media (max-width: 52rem) {
   .nav__links { display: none; }
   .nav { gap: 0.6rem; }
   .site-header__inner { gap: 0.75rem; }
@@ -1205,7 +1208,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .nav__icon:hover { color: var(--ink); }
 /* At 360px the wordmark, toggle, icon and Resume button no longer fit; GitHub
    moves into the menu panel instead of being dropped. */
-@media (max-width: 64rem) { .nav__icon { display: none; } }
+@media (max-width: 52rem) { .nav__icon { display: none; } }
 
 /* At 320px the wordmark, the menu and the Resume button no longer fit on one
    row once the last two are big enough to tap. The AB mark still links home,
