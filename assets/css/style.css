@@ -791,13 +791,13 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   margin: 0;
   transition: background-color .3s var(--ease);
 }
-.project:hover { background: var(--bg-alt); }
+.project:hover, .project:focus-within { background: var(--bg-alt); }
 
 .project__index {
   font-family: var(--display); font-size: 1.75rem; font-weight: 400;
   color: var(--accent); line-height: 1; padding-top: 0.35rem;
 }
-.project:hover .project__index { color: var(--ink); }
+.project:hover .project__index, .project:focus-within .project__index { color: var(--ink); }
 
 .project__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0 0 0.75rem; }
 
@@ -813,6 +813,28 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
    not here. Unscoped it also covered the row on desktop, where it swallowed
    the card's own links (Try the demo, Source) and made the text unselectable. */
 
+
+/* Status badges. One type badge per card, plus a live badge only where a
+   public URL actually exists. Terracotta is reserved for that live state, so
+   the one thing a visitor can click through to right now is the one thing
+   carrying colour. */
+.badges { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; margin: 0 0 0.75rem; padding: 0; }
+.badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.24rem 0.6rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  font-family: var(--heading); font-size: 0.5625rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-2); background: var(--surface);
+  white-space: nowrap;
+}
+.badge--live { color: var(--accent); border-color: var(--accent-wash); }
+.badge--live::before {
+  content: ""; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent); flex: none;
+}
+.badge--muted { color: var(--ink-3); background: transparent; }
+
 .project__summary { color: var(--ink-2); font-size: 0.9375rem; margin: 0 0 1rem; max-width: 44rem; }
 
 .project__impact {
@@ -827,7 +849,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   align-self: center; display: grid; place-items: center; color: var(--ink-3);
   transition: color .3s var(--ease), transform .3s var(--ease);
 }
-.project:hover .project__go { color: var(--ink); transform: translateX(6px); }
+.project:hover .project__go, .project:focus-within .project__go { color: var(--ink); transform: translateX(6px); }
 
 
 /* The index column costs 56px of the 342px content width on a phone, which
@@ -861,17 +883,15 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
    image invites a click, and z-index 2 puts it above the row-wide tap overlay
    that phones get. */
 .project__thumb {
-  display: block; margin: 1.25rem 0 0; max-width: 30rem;
-  overflow: hidden; border: 1px solid var(--line);
-  background: var(--bg-alt);
-  position: relative; z-index: 2;
+  display: block; margin: 1.25rem 0 0; max-width: 38rem;
+  border: 1px solid var(--line); overflow: hidden; background: var(--bg-alt);
 }
 .project__thumb:hover { border-color: var(--accent); }
 .project__thumb img {
   display: block; width: 100%; height: auto;
   transition: transform .5s var(--ease);
 }
-.project:hover .project__thumb img { transform: scale(1.02); }
+.project:hover .project__thumb img, .project:focus-within .project__thumb img { transform: scale(1.02); }
 
 @media (prefers-reduced-motion: reduce) {
   .project__thumb img { transition: none; }
@@ -1018,6 +1038,23 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
 .study__body p { margin: 0 0 1rem; font-size: 0.9375rem; line-height: 1.65; color: var(--ink-2); }
 /* The one line worth remembering from each, marked by a rule rather than a
    box, since nothing on this page is boxed. */
+/* Each teardown separates what was observed from what I proposed and what is
+   still only a hypothesis, so nothing reads as a shipped result. */
+.study__part { margin: 0 0 1.25rem; }
+.study__part:last-child { margin-bottom: 0; }
+.study__part p:last-child { margin-bottom: 0; }
+.study__label {
+  font-family: var(--heading); font-size: 0.5625rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-3); margin: 0 0 0.35rem;
+}
+.study__label--proposed { color: var(--accent); }
+.study__label--untested, .study__label--none { color: var(--ink-3); font-style: normal; }
+.study__label--untested::after, .study__label--none::after {
+  content: ""; display: inline-block; vertical-align: middle;
+  width: 1.75rem; height: 1px; background: var(--line); margin-left: 0.6rem;
+}
+
 .study__insight {
   padding-left: 1.1rem; border-left: 2px solid var(--accent);
   color: var(--ink) !important;
@@ -1189,7 +1226,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
   transform: scaleY(0); transform-origin: top;
   transition: transform .4s var(--ease);
 }
-.project:hover::before { transform: scaleY(1); }
+.project:hover::before, .project:focus-within::before { transform: scaleY(1); }
 /* The hover slide is padding on the heading, NOT a transform on the link.
    A transform makes the element a containing block for its own absolutely
    positioned ::after, so the card-wide overlay below collapsed to the width of
@@ -1197,7 +1234,7 @@ a.site-header__name:hover .logo-mark { background: var(--accent); color: #fff; }
    exactly the moment you moved the mouse onto it. Padding moves the text the
    same distance and creates no containing block. */
 .project__title { transition: padding-left .4s var(--ease); }
-.project:hover .project__title { padding-left: 6px; }
+.project:hover .project__title, .project:focus-within .project__title { padding-left: 6px; }
 .project__title a { display: inline-block; }
 /* The whole card opens the case study, at every width. The title alone used
    to be the only way in, and nobody reads a heading as a button: each card now
