@@ -565,13 +565,28 @@ li:last-child { margin-bottom: 0; }
 
 /* --- about / skills ------------------------------------------------------- */
 
-.about {
-  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: 4rem; align-items: start;
-}
-@media (max-width: 58rem) { .about { grid-template-columns: 1fr; gap: 2.5rem; } }
+/* Prose across the full width, skills underneath it. Side by side, the text
+   was squeezed into half the page while the skills column ran short, so the
+   row ended with a tall gap on the right. */
+.about { display: grid; gap: 3.5rem; }
 
-.skill-group + .skill-group { margin-top: 2rem; }
+/* The prose fills the width by running its two paragraphs side by side rather
+   than stretching one column to the full container, which would push the line
+   length well past what is comfortable to read. Grid, not CSS columns, so each
+   paragraph stays whole in its own cell instead of being balanced across the
+   gutter. */
+/* While it is one column it keeps a readable measure; dropping that cap at
+   every width let the lines run to 850px in the band just below the split. */
+.about__body { max-width: var(--measure); }
+@media (min-width: 58rem) {
+  .about__body { max-width: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; }
+  .about__body p { margin: 0; }
+}
+
+/* Four skill groups, two across. */
+.about__skills { display: grid; gap: 2.25rem 4rem; grid-template-columns: 1fr; }
+@media (min-width: 46rem) { .about__skills { grid-template-columns: 1fr 1fr; } }
+.skill-group + .skill-group { margin-top: 0; }   /* the grid gap carries it now */
 .skill-group__head {
   display: flex; align-items: center; gap: 0.55rem;
   margin: 0 0 0.9rem; padding-bottom: 0.65rem;
