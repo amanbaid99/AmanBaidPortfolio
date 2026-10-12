@@ -422,65 +422,6 @@ li:last-child { margin-bottom: 0; }
   min-height: calc(2 * 1.55em);
 }
 
-/* Jump strip under the metrics. Its top rule closes the metrics block, and
-   it gives the hero a way into the work without a scroll. The flexible rule
-   before "All projects" is the same device as .hero__role: without it the
-   right-aligned link left a dead void on wide screens. */
-.workstrip {
-  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.7rem 1.5rem;
-  border-top: 1px solid var(--line);
-  padding-top: 1.15rem;
-}
-.workstrip__label {
-  margin: 0; flex: none;
-  font-size: 0.625rem; font-weight: 600;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3);
-}
-.workstrip__items {
-  display: flex; flex-wrap: wrap; align-items: baseline;
-  gap: 0.4rem 1.5rem; list-style: none; margin: 0; padding: 0;
-}
-.workstrip__items li { margin: 0; }
-
-/* Sits at --ink, not --ink-2: against the grey label either side, the darker
-   weight is what makes these read as links rather than a list of words. */
-.workstrip__items a {
-  position: relative; display: inline-flex; align-items: baseline; gap: 0.45rem;
-  font-size: 0.9375rem; color: var(--ink);
-  transition: color .25s var(--ease);
-}
-/* Small echo of .project__index, so the strip reads as the table of contents
-   for the numbered list further down the page. */
-.workstrip__num {
-  font-family: var(--display); font-size: 0.875rem; font-weight: 400;
-  color: var(--accent-ink); line-height: 1;
-  transition: color .25s var(--ease);
-}
-.workstrip__items a::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -4px;
-  height: 1px; background: var(--accent);
-  transform: scaleX(0); transform-origin: right;
-  transition: transform .35s var(--ease);
-}
-.workstrip__items a:hover::after { transform: scaleX(1); transform-origin: left; }
-.workstrip__items a:hover .workstrip__num { color: var(--ink); }
-
-/* The connector rule that used to sit here is gone. It existed to fill the
-   void left by right-aligning this link, but with four projects the row is
-   full and wraps inside the hero's text column even at 1500px, which left the
-   rule dangling after the last name instead of joining anything. The link now
-   follows the list, and lands at the left edge on the line below when the row
-   wraps. */
-.workstrip__all {
-  flex: none;
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  font-size: 0.6875rem; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
-}
-.workstrip__all .icon { transition: transform .25s var(--ease); }
-.workstrip__all:hover { color: var(--accent); }
-.workstrip__all:hover .icon { transform: translateX(4px); }
-
 /* The hero stacks well before the metrics need to: at tablet widths there is
    still room for three columns, and stacking them there wasted the page. */
 @media (max-width: 62rem) {
@@ -507,7 +448,7 @@ li:last-child { margin-bottom: 0; }
 /* 10px uppercase with wide tracking is the one size that stops being legible
    on a phone. The 11px labels are left alone; only the smallest lift. */
 @media (max-width: 44rem) {
-  .btn--sm, .link-under, .workstrip__all, .project__links .link-under { font-size: 0.6875rem; }
+  .btn--sm, .link-under, .project__links .link-under { font-size: 0.6875rem; }
   .btn--sm { padding: 0.8rem 1.05rem; }
 }
 
@@ -517,12 +458,10 @@ li:last-child { margin-bottom: 0; }
    their underlines off the text, so an invisible box grows the touch area
    without moving a pixel of what you see. */
 @media (max-width: 44rem), (pointer: coarse) {
-  .link-under, .workstrip__items a, .workstrip__all, .site-header__name,
+  .link-under, .site-header__name,
   .back-link, .next-project a, .contact__value a, .site-footer a { position: relative; }
 
   .link-under::before,
-  .workstrip__items a::before,
-  .workstrip__all::before,
   .site-header__name::before,
   .back-link::before,
   .next-project a::before {
@@ -583,16 +522,35 @@ li:last-child { margin-bottom: 0; }
   .about__body p { margin: 0; }
 }
 
-/* Four skill groups, two across. */
-.about__skills { display: grid; gap: 2.25rem 4rem; grid-template-columns: 1fr; }
-@media (min-width: 46rem) { .about__skills { grid-template-columns: 1fr 1fr; } }
-.skill-group + .skill-group { margin-top: 0; }   /* the grid gap carries it now */
+/* Skills as rows, not a 2x2 grid. Side by side, a one-line group (Data &
+   experimentation) and a three-line one (Product) had to share a row height,
+   so the short one left a block of empty page beneath it. Each group is now a
+   full-width row sized to its own content, with its label in a left rail: the
+   same shape the case-study pages use, and the wider measure means Product
+   fits on two lines instead of three. */
+.about__skills { display: grid; border-top: 1px solid var(--line); }
+.skill-group { padding-block: 1.35rem; border-bottom: 1px solid var(--line); }
+.skill-group + .skill-group { margin-top: 0; }   /* the row rules carry it now */
 .skill-group__head {
   display: flex; align-items: center; gap: 0.55rem;
-  margin: 0 0 0.9rem; padding-bottom: 0.65rem;
-  border-bottom: 1px solid var(--line);
+  margin: 0 0 0.6rem; padding: 0; border: 0;
 }
-.skill-group__head .icon { color: var(--accent); }
+.skill-group__head .icon { color: var(--accent); flex: none; }
+
+@media (min-width: 52rem) {
+  .skill-group {
+    display: grid; grid-template-columns: 13rem minmax(0, 1fr);
+    column-gap: 2.5rem; align-items: baseline;
+  }
+  .skill-group__head { margin: 0; }
+}
+
+/* No separator dots in these rows. The items are long phrases, so the list
+   wraps, and a middot that lands at the end of a line is left hanging on its
+   own in the margin. A wider gap carries the separation instead. The short
+   tech tokens on the case-study pages keep their dots, where they rarely wrap. */
+.about__skills .tags { gap: 0.1rem 1.75rem; }
+.about__skills .tag:not(:last-child)::after { content: none; }
 
 .tags {
   display: flex; flex-wrap: wrap; align-items: baseline;
@@ -703,130 +661,69 @@ li:last-child { margin-bottom: 0; }
 .role--past .role__points li { font-size: 0.875rem; margin-bottom: 0.45rem; }
 
 
-/* --- featured work -------------------------------------------------------
-   These are the only carded elements on the page. Everything else is
-   hairline-ruled rows, so a white panel on the alt ground is enough to set
-   them apart from the ordinary project list without adding a second accent
-   colour or a heavier border. */
-
-/* One column on mobile, two on desktop, never three: auto-fit was giving a
-   third column past 1280 and the cards became too narrow to read the facts. */
-.features { display: grid; gap: 2rem; grid-template-columns: 1fr; }
-@media (min-width: 60rem) { .features { grid-template-columns: repeat(2, 1fr); } }
-
-.feature {
-  display: flex; flex-direction: column;
-  background: var(--surface); border: 1px solid var(--line);
-  overflow: hidden;
-  transition: border-color .3s var(--ease), transform .3s var(--ease);
-}
-.feature:hover { border-color: var(--accent-wash); transform: translateY(-3px); }
-
-/* The strongest of the three runs the full width with its screenshot beside
-   the text, so the section opens on the one piece of real product imagery. */
-@media (min-width: 60rem) {
-  .feature--lead { grid-column: 1 / -1; flex-direction: row; }
-  .feature--lead .feature__visual { flex: 0 0 46%; aspect-ratio: auto; }
-  .feature--lead .feature__body { flex: 1; padding: 2.5rem; }
-}
-
-.feature__visual {
-  display: block; position: relative; overflow: hidden;
-  background: var(--bg-alt); aspect-ratio: 16 / 9;
-  border-bottom: 1px solid var(--line);
-}
-.feature__visual img {
-  width: 100%; height: 100%; object-fit: cover; object-position: top center;
-  display: block; transition: transform .5s var(--ease);
-}
-.feature:hover .feature__visual img { transform: scale(1.02); }
-
-/* No screenshot exists for these two: the work ran on client and employer
-   systems. Rather than invent one, the panel states the verified figure. */
-.feature__visual--stat {
-  display: grid; place-content: center; gap: 0.4rem; text-align: center;
-  background: var(--bg-alt); padding: 1.5rem;
-  /* Shorter than a screenshot slot: at 16/9 a single figure left a third of
-     the card empty. This reads as a band carrying a number, not a gap. */
-  aspect-ratio: 5 / 2;
-}
-.feature__statnum {
-  font-family: var(--display); font-size: clamp(2.75rem, 6vw, 3.75rem);
-  line-height: 1; color: var(--accent); letter-spacing: -0.02em;
-}
-.feature__statlabel {
-  font-family: var(--heading); font-size: 0.625rem; font-weight: 600;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3);
-}
-
-.feature__body { padding: 1.75rem; display: flex; flex-direction: column; flex: 1; }
-
-.feature__meta {
-  font-size: 0.625rem; font-weight: 600; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--ink-3); margin: 0 0 0.6rem;
-}
-.feature__title {
-  font-family: var(--heading); font-size: 1.3125rem; font-weight: 700;
-  letter-spacing: -0.02em; line-height: 1.2; text-transform: none;
-  margin: 0 0 1.25rem;
-}
-.feature__title a { color: var(--ink); }
-.feature__title a:hover { color: var(--accent); }
-
-/* Problem, role and outcome as labelled rows: a hiring manager should get all
-   three off the card without opening anything. */
-.feature__facts { margin: 0 0 1.5rem; }
-.feature__facts dt {
-  font-family: var(--heading); font-size: 0.5625rem; font-weight: 600;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3);
-  margin-bottom: 0.3rem;
-}
-.feature__facts dd {
-  margin: 0 0 1rem; font-size: 0.9375rem; line-height: 1.6; color: var(--ink-2);
-}
-.feature__facts dd:last-child { margin-bottom: 0; }
-.feature__facts strong { color: var(--ink); font-weight: 600; }
-.feature__metric { color: var(--accent); font-weight: 600; }
-
-/* Pushes the link to the bottom so the three cards' links line up. */
-.feature__body > .link-under { margin-top: auto; align-self: flex-start; }
-
-.features__all { margin: 2.5rem 0 0; }
-
 /* --- projects ------------------------------------------------------------- */
 
-.projects { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+/* One section, two cards to a row. Featured work and Prototypes used to be
+   separate sections that re-listed builds this one already carried, so
+   Swa-Swasthya, Cluckin and the duplicate-detection model each appeared
+   twice on the page. Everything appears exactly once now, and the badges
+   carry the distinction those sections used to carry. */
+.projects {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 52rem) {
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
+}
 
 .project {
-  position: relative;
-  display: grid; grid-template-columns: 4rem minmax(0, 1fr) 2.5rem;
-  gap: 0 2rem; align-items: start;
-  padding-block: 2.75rem;
-  border-bottom: 1px solid var(--line);
-  margin: 0;
-  transition: background-color .3s var(--ease);
+  position: relative; margin: 0;
+  display: flex; flex-direction: column;
+  padding: 1.85rem 3.25rem 1.75rem 1.85rem;   /* right padding clears the arrow */
+  background: var(--surface); border: 1px solid var(--line);
+  transition: border-color .3s var(--ease);
 }
-.project:hover, .project:focus-within { background: var(--bg-alt); }
+.project:hover, .project:focus-within { border-color: var(--accent-wash); }
 
-.project__index {
-  font-family: var(--display); font-size: 1.75rem; font-weight: 400;
-  color: var(--accent); line-height: 1; padding-top: 0.35rem;
+.project__meta {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.6rem; margin: 0 0 0.75rem;
 }
-.project:hover .project__index, .project:focus-within .project__index { color: var(--ink); }
-
-.project__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0 0 0.75rem; }
 
 .project__title {
   font-family: var(--heading);
-  font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+  font-size: 1.1875rem;
   font-weight: 700; letter-spacing: -0.02em;
-  text-transform: none; line-height: 1.15;
-  margin: 0 0 0.85rem;
+  text-transform: none; line-height: 1.2;
+  margin: 0 0 0.8rem;
 }
 .project__title a { color: var(--ink); }
-/* The row-wide tap overlay is declared in the phone media query further down,
-   not here. Unscoped it also covered the row on desktop, where it swallowed
-   the card's own links (Try the demo, Source) and made the text unselectable. */
+
+.project__summary { color: var(--ink-2); font-size: 0.9375rem; margin: 0 0 1.25rem; }
+
+/* The auto top margin bottom-aligns the impact line, so every card in a row
+   agrees on where its footer sits however long the summaries above them run. */
+.project__impact {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  margin: auto 0 0;
+  font-size: 0.8125rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--ink);
+}
+/* Pinned to the first line, not centred: on a card where the impact wraps to
+   two lines a centred arrow floats between them. */
+.project__impact .icon { align-self: flex-start; margin-top: 0.1em; color: var(--accent); flex: none; }
+
+/* The arrow lives in the top corner, not the footer: the cards carrying demo
+   and source links would have run straight into it down there. */
+.project__go {
+  position: absolute; top: 1.7rem; right: 1.35rem;
+  display: grid; place-items: center; color: var(--ink-3);
+  transition: color .3s var(--ease), transform .3s var(--ease);
+}
+.project:hover .project__go, .project:focus-within .project__go {
+  color: var(--accent); transform: translateX(4px);
+}
 
 
 /* Status badges. One type badge per card, plus a live badge only where a
@@ -850,35 +747,7 @@ li:last-child { margin-bottom: 0; }
 }
 .badge--muted { color: var(--ink-3); background: transparent; }
 
-.project__summary { color: var(--ink-2); font-size: 0.9375rem; margin: 0 0 1rem; max-width: 44rem; }
 
-.project__impact {
-  display: inline-flex; align-items: baseline; gap: 0.5rem;
-  font-size: 0.875rem; font-weight: 600;
-  letter-spacing: 0.05em; text-transform: uppercase;
-  color: var(--ink); margin: 0;
-}
-.project__impact .icon { align-self: center; color: var(--accent); }
-
-.project__go {
-  align-self: center; display: grid; place-items: center; color: var(--ink-3);
-  transition: color .3s var(--ease), transform .3s var(--ease);
-}
-.project:hover .project__go, .project:focus-within .project__go { color: var(--ink); transform: translateX(6px); }
-
-
-/* The index column costs 56px of the 342px content width on a phone, which
-   pushed every card 56px right of the section labels, titles and intros that
-   sit at the container edge. Below 44rem the numeral joins the flow instead,
-   so the cards share the page's left edge. */
-@media (max-width: 44rem) {
-  .project { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .project__index {
-    font-size: 1.125rem; padding-top: 0;
-    margin-bottom: 0.4rem; display: block;
-  }
-  .project__go { display: none; }
-}
 
 /* --- notice / disclosure -------------------------------------------------- */
 
@@ -891,27 +760,6 @@ li:last-child { margin-bottom: 0; }
 }
 .notice .icon { color: var(--accent); margin-top: 0.28em; }
 .notice strong { color: var(--ink); font-weight: 600; }
-
-
-/* Card thumbnail. A hairline and a slight zoom on hover, no frame or shadow,
-   because nothing else on the page is boxed. It is a link because a preview
-   image invites a click, and z-index 2 puts it above the row-wide tap overlay
-   that phones get. */
-.project__thumb {
-  display: block; margin: 1.25rem 0 0; max-width: 38rem;
-  border: 1px solid var(--line); overflow: hidden; background: var(--bg-alt);
-}
-.project__thumb:hover { border-color: var(--accent); }
-.project__thumb img {
-  display: block; width: 100%; height: auto;
-  transition: transform .5s var(--ease);
-}
-.project:hover .project__thumb img, .project:focus-within .project__thumb img { transform: scale(1.02); }
-
-@media (prefers-reduced-motion: reduce) {
-  .project__thumb img { transition: none; }
-  .project:hover .project__thumb img { transform: none; }
-}
 
 /* Full-width screenshot at the top of a case study, linking to the live site.
    The caption sits under it like .case-figure's, so the two read as the same
