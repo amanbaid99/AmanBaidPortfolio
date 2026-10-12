@@ -114,10 +114,6 @@ li:last-child { margin-bottom: 0; }
   margin-inline: auto; padding-inline: var(--gutter);
 }
 
-.prose { max-width: var(--measure); }
-.prose p { color: var(--ink-2); font-size: 1.0625rem; }
-.prose strong { color: var(--ink); font-weight: 600; }
-
 .section { padding-block: 6rem; position: relative; }
 .section--alt { background: var(--bg-alt); }
 
@@ -154,24 +150,15 @@ li:last-child { margin-bottom: 0; }
 .section__title .tt { display: block; color: var(--accent); }
 
 .section__intro {
-  margin: 1.25rem 0 0; color: var(--ink-2);
-  max-width: var(--measure); font-size: 1.0625rem;
+  margin: 1.1rem 0 0; color: var(--ink-2);
+  max-width: 54ch; font-size: 1.0625rem;
 }
 
-/* Desktop: title left, intro right. Stacked under a title capped at 20ch, the
-   intro left the right half of every section head empty. Heads with no intro
-   have nothing to balance them, so they just lose the extra air instead. */
+/* The intro sits under the title, not in a second column beside it. Side by
+   side, a short title and a paragraph in the opposite column read as two
+   unrelated blocks, and each one's line length was at the mercy of the other.
+   Stacked, the head is one object: title, then a line that qualifies it. */
 @media (min-width: 64rem) {
-  .section__head:has(.section__intro) {
-    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    column-gap: 4rem; align-items: end;
-  }
-  /* justify-self, or the inline-flex pill stretches to the whole column. */
-  .section__head:has(.section__intro) .section__label { grid-column: 1; justify-self: start; }
-  .section__head:has(.section__intro) .section__title { grid-column: 1; }
-  .section__head:has(.section__intro) .section__intro {
-    grid-column: 2; grid-row: 2; margin: 0 0 0.4rem; max-width: 40ch;
-  }
   .section__head:not(:has(.section__intro)) { margin-bottom: 2.5rem; }
 }
 
@@ -509,17 +496,33 @@ li:last-child { margin-bottom: 0; }
    row ended with a tall gap on the right. */
 .about { display: grid; gap: 3.5rem; }
 
-/* The prose fills the width by running its two paragraphs side by side rather
-   than stretching one column to the full container, which would push the line
-   length well past what is comfortable to read. Grid, not CSS columns, so each
-   paragraph stays whole in its own cell instead of being balanced across the
-   gutter. */
-/* While it is one column it keeps a readable measure; dropping that cap at
-   every width let the lines run to 850px in the band just below the split. */
-.about__body { max-width: var(--measure); }
+/* Two paragraphs of the same size, side by side, read as two grey blocks with
+   ragged bottoms and nothing leading. The opening one is the lede now: larger,
+   darker, and allowed its own measure. The second sits beside it as a margin
+   note, smaller and quieter behind a hairline. The asymmetry is deliberate, so
+   the uneven bottoms stop looking like a mistake. The bold on "6 years across
+   product, growth and operations" is gone with it: the heading immediately
+   above already says those words. */
+.about__body { display: grid; gap: 2.25rem; }
 @media (min-width: 58rem) {
-  .about__body { max-width: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; }
-  .about__body p { margin: 0; }
+  .about__body {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    column-gap: 4.5rem; align-items: start;
+  }
+}
+.about__lede {
+  margin: 0; max-width: 34rem;
+  font-size: 1.25rem; line-height: 1.6; letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.about__note {
+  /* The cap matters only while it is stacked under the lede: without it the
+     note ran to 852px lines at a 900px viewport. In the two-column layout the
+     column is narrower than this anyway. */
+  margin: 0; max-width: var(--measure); padding-left: 1.6rem;
+  border-left: 1px solid var(--line);
+  font-size: 0.9375rem; line-height: 1.8;
+  color: var(--ink-2);
 }
 
 /* Skills as rows, not a 2x2 grid. Side by side, a one-line group (Data &
@@ -837,26 +840,48 @@ li:last-child { margin-bottom: 0; }
 /* Education and certifications side by side rather than in one list. A B.Sc.
    and a two-hour online course were getting identical rows, which made the
    degree look smaller rather than the courses look bigger. */
-.creds-split {
-  display: grid; gap: 2.5rem 4rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
-}
+/* Education is one line and Certifications are seven, so the two-column split
+   left most of a page column empty under the degree, with a rule under every
+   single entry. Both are rows now, label in the left rail, and the
+   certificates run two across in the space the empty column used to hold.
+   The only rules left are the ones between the two rows. */
+.creds-split { display: grid; border-top: 1px solid var(--line); }
+.cred-row { padding-block: 1.6rem; border-bottom: 1px solid var(--line); }
 .creds__head {
-  margin: 0 0 1.1rem; padding-bottom: 0.65rem;
-  border-bottom: 1px solid var(--line);
+  margin: 0 0 0.9rem; padding: 0; border: 0;
   font-size: 0.6875rem; font-weight: 600;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3);
 }
+@media (min-width: 52rem) {
+  .cred-row {
+    display: grid; grid-template-columns: 13rem minmax(0, 1fr);
+    column-gap: 2.5rem; align-items: baseline;
+  }
+  .creds__head { margin: 0; }
+}
 
-.certs { list-style: none; margin: 0; padding: 0; }
+.cred-line {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 0.2rem 1rem; margin: 0;
+}
+.cred__year {
+  font-family: var(--display); font-size: 1.25rem; font-weight: 400;
+  color: var(--accent-ink); line-height: 1;
+}
+.cred__title {
+  font-family: var(--heading); font-size: 1.0625rem; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--ink);
+}
+.cred__org { font-size: 0.875rem; color: var(--ink-2); margin: 0; }
+
+.certs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.15rem 2.5rem; }
+@media (min-width: 46rem) { .certs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .cert {
   display: grid; gap: 0.1rem 1rem;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
-  margin: 0; padding-block: 0.8rem;
-  border-bottom: 1px solid var(--line);
+  margin: 0; padding: 0;
 }
-.cert:first-child { padding-top: 0; }
 .cert__name {
   grid-column: 1; font-family: var(--heading); font-weight: 600;
   font-size: 0.9375rem; letter-spacing: -0.01em; color: var(--ink);
@@ -878,16 +903,30 @@ li:last-child { margin-bottom: 0; }
 @media (max-width: 30rem) {
   /* At this width the verify link and a long title fight for the same row. */
   .cert { grid-template-columns: minmax(0, 1fr); }
-  .cert__verify { grid-column: 1; grid-row: auto; margin-top: 0.45rem; align-self: start; }
+  /* justify-self, or the link stretches the full column and its underline
+     runs edge to edge like a separator rule. */
+  .cert__verify { grid-column: 1; grid-row: auto; margin-top: 0.45rem; align-self: start; justify-self: start; }
 }
 
 /* --- case studies -------------------------------------------------------- */
 
+/* Cards, like the work section's: the teardowns are two self-contained
+   pieces of writing and the hairline-over-a-column treatment made them read as
+   a continuation of the section head. */
 .studies {
-  display: grid; gap: 2.75rem 3.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+  display: grid; gap: 1.75rem;
+  grid-template-columns: minmax(0, 1fr);
 }
-.study { margin: 0; padding-top: 1.75rem; border-top: 1px solid var(--line); }
+@media (min-width: 52rem) {
+  .studies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.study {
+  display: flex; flex-direction: column;
+  margin: 0; padding: 1.85rem;
+  background: var(--surface); border: 1px solid var(--line);
+  transition: border-color .3s var(--ease);
+}
+.study:hover { border-color: var(--accent-wash); }
 .study__meta {
   margin: 0 0 0.85rem;
   font-size: 0.6875rem; font-weight: 600;
@@ -926,7 +965,7 @@ li:last-child { margin-bottom: 0; }
   padding-left: 1.1rem; border-left: 2px solid var(--accent);
   color: var(--ink) !important;
 }
-.study__links { margin: 1.25rem 0 0; }
+.study__links { margin: auto 0 0; padding-top: 1.35rem; }
 
 /* --- endorsements --------------------------------------------------------- */
 
@@ -1238,27 +1277,6 @@ li:last-child { margin-bottom: 0; }
 
 
 /* --- credentials ---------------------------------------------------------- */
-
-.creds { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.cred {
-  display: grid; grid-template-columns: 5rem minmax(0, 1fr);
-  gap: 0 1.5rem; align-items: baseline;
-  margin: 0; padding-block: 1.4rem;
-  border-bottom: 1px solid var(--line);
-}
-.cred__year {
-  font-family: var(--display); font-size: 1.25rem; font-weight: 400;
-  color: var(--accent-ink); line-height: 1;
-}
-.cred__title {
-  font-family: var(--heading); font-size: 1.0625rem; font-weight: 600;
-  letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 0.2rem;
-}
-.cred__org { font-size: 0.875rem; color: var(--ink-2); margin: 0; }
-
-@media (max-width: 34rem) {
-  .cred { grid-template-columns: 1fr; gap: 0.35rem; }
-}
 
 /* Links row on a side build. */
 .project__links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.1rem 0 0; }
