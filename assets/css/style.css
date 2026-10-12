@@ -142,12 +142,17 @@ li:last-child { margin-bottom: 0; }
   font-weight: 400;
   letter-spacing: -0.015em;
   text-transform: none;
-  line-height: 1;
+  line-height: 1.05;
   margin: 0;
-  max-width: 20ch;
 }
 /* Second line in the accent — the two-tone heading in reference 1. */
-.section__title .tt { display: block; color: var(--accent); }
+/* One line, both colours, running the width of the container. The accent half
+   used to be its own block under a title capped at 20ch, which held every
+   heading to about a third of the page. Inline, it wraps naturally instead:
+   still two lines on a phone, but broken where the words run out rather than
+   where the markup says. line-height 1.05 rather than 1, because a wrap now
+   happens inside one block and the descenders need the room. */
+.section__title .tt { color: var(--accent); }
 
 .section__intro {
   margin: 1.1rem 0 0; color: var(--ink-2);
