@@ -12,7 +12,6 @@ Use the project's slug, which is its folder name under `projects/`:
 | ------------------------------------ | --------------------------- |
 | Swa-Swasthya Wellness Platform        | `swaswasthya`               |
 | Cluckin Dashboard                    | `cluckin`                   |
-| Translation QA Workflow              | `translation-qa-workflow`   |
 | 404Found                             | `404found`                  |
 | Workout Tracker                      | `workout-tracker`           |
 | Second Brain                         | `second-brain`              |
