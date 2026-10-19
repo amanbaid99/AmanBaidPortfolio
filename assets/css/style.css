@@ -789,6 +789,82 @@ li:last-child { margin-bottom: 0; }
   .case-shot a:hover img { transform: none; }
 }
 
+
+/* --- numbered steps ------------------------------------------------------- */
+
+/* A short sequence told in order: the numeral in the left rail, the step beside
+   it, the same shape as the credentials rows and the case-block labels. */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
+.step {
+  display: grid; grid-template-columns: 2.75rem minmax(0, 1fr);
+  gap: 0 1rem; align-items: baseline; margin: 0;
+}
+.step__num {
+  font-family: var(--display); font-size: 1.375rem; font-weight: 400;
+  color: var(--accent-ink); line-height: 1;
+}
+.step__title {
+  font-family: var(--heading); font-size: 1rem; font-weight: 600;
+  letter-spacing: -0.01em; text-transform: none; color: var(--ink);
+  margin: 0 0 0.3rem;
+}
+.step__body { margin: 0; font-size: 0.9375rem; color: var(--ink-2); }
+
+@media (max-width: 30rem) {
+  .step { grid-template-columns: 2.25rem minmax(0, 1fr); gap: 0 0.75rem; }
+}
+
+
+/* --- phone screenshots ---------------------------------------------------- */
+
+/* These are tall phone captures. Stretched to the width of the text column a
+   390x844 screenshot would stand over 2,000px high, so each one is held to a
+   phone-sized frame and the set scrolls sideways instead. The frame is a
+   hairline and a pale ground, the same treatment as .case-shot, because nothing
+   on this site is boxed in a shadow. */
+.shots { margin: 2.75rem auto; }
+.shots figcaption,
+.shots > figcaption {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 1rem; font-size: 0.8125rem; color: var(--ink-3);
+}
+
+.shot { flex: none; width: min(17rem, 72vw); }
+.shot img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--line); background: var(--bg-alt);
+}
+.shot__cap {
+  margin: 0.7rem 0 0;
+  font-family: var(--heading); font-size: 0.625rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+}
+
+/* One screenshot: centred, and never wider than a phone actually is. */
+.shots--single .shot { width: min(17rem, 72vw); margin-inline: auto; }
+
+/* Several: a row that scrolls on a narrow screen and simply sits there on a
+   wide one. Snap points so a swipe lands on a frame rather than between two,
+   and padding on the track so the first and last frames are not flush against
+   the edge of the scroll area. */
+.shots--row .shots__track {
+  display: flex; gap: 1.25rem;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+.shots--row .shot { scroll-snap-align: start; }
+
+@media (min-width: 64rem) {
+  /* Four frames and their gaps come to about 70rem, so at this width the row
+     fits whole and the scrolling never starts. */
+  .shots--row .shots__track { overflow-x: visible; justify-content: space-between; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shots--row .shots__track { scroll-behavior: auto; }
+}
+
 /* The brief against what discovery actually found: the turn the whole case
    study rests on, so it gets its own shape rather than another paragraph. */
 .compare {

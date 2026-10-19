@@ -13,7 +13,7 @@ Use the project's slug, which is its folder name under `projects/`:
 | Swa-Swasthya Wellness Platform        | `swaswasthya`               |
 | Cluckin Dashboard                    | `cluckin`                   |
 | 404Found                             | `404found`                  |
-| Workout Tracker                      | `workout-tracker`           |
+| Repd                                 | `repd`                      |
 | Second Brain                         | `second-brain`              |
 | AI-Assisted Fitness Coaching         | `fitness-coaching-platform` |
 | Crave                                | `crave`                     |
@@ -59,7 +59,7 @@ the commit that added it and can be recovered.
 - **Nothing for `second-brain`** either. It is my own Notion workspace and
   every screen of it holds personal records. Its page says there are no
   screenshots to share, and an image would contradict that.
-- **`workout-tracker` is worth screenshots** and has none yet. The app is
+- **`repd` is worth screenshots** and has none yet. The app is
   behind a sign-in, so these can only come from you. The two worth having are
   the logger mid-workout (it is the screen the whole design argument is about)
   and the plan editor. Crop or blank anything you would rather not publish;

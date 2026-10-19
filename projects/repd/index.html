@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Workout Tracker &#8212; Aman Baid</title>
-<meta name="description" content="How I built a workout tracking PWA to replace a Google Sheet: calculated warm-ups, sets that adapt to how the last one felt, offline logging, and a post-workout analysis that runs through a Supabase webhook into my own Claude account instead of a paid API.">
-<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/workout-tracker/">
+<title>Repd &#8212; Aman Baid</title>
+<meta name="description" content="Repd is a workout app I built to replace a Google Sheet that only held my current numbers. Calculated warm-ups, sets that adapt to how the last one felt, offline logging, and an AI coach that drafts plans, reviews each session and answers follow-up questions on free models.">
+<link rel="canonical" href="https://amanbaid99.github.io/AmanBaidPortfolio/projects/repd/">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aman Baid">
-<meta property="og:title" content="Workout Tracker &#8212; Aman Baid">
-<meta property="og:description" content="Calculated warm-ups, sets that adapt to how the last one felt, offline logging in a gym basement, and an analysis pipeline that costs nothing per workout. The full build write-up.">
-<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/workout-tracker/">
+<meta property="og:title" content="Repd &#8212; Aman Baid">
+<meta property="og:description" content="A workout app built with Claude Code on Supabase and Vercel, with an AI coach that drafts plans, reviews each session and costs close to nothing to run. The full build write-up.">
+<meta property="og:url" content="https://amanbaid99.github.io/AmanBaidPortfolio/projects/repd/">
 <meta property="og:image" content="https://amanbaid99.github.io/AmanBaidPortfolio/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -95,26 +95,37 @@
     <div class="container">
       <div class="case-hero">
         <a class="back-link" href="../../#projects"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-left"></use></svg> All projects</a>
-        <p class="case-hero__meta"><span>Sep 2026</span> &#183; <span>Solo build</span> <span>Live</span></p>
-        <h1 class="case-hero__title">Workout Tracker</h1>
+        <p class="case-hero__meta"><span>2026</span> &#183; <span>Solo build</span> <span>Live</span></p>
+        <h1 class="case-hero__title">Repd</h1>
         <p class="case-hero__standfirst">
-          I tracked my lifts in a Google Sheet that only ever held the latest numbers.
-          Every session overwrote the one before it, so there was nothing to look back
-          at and no progression to see. This is the app that replaced it, and this is
-          how it was built.
+          I tracked my lifts in a Google Sheet that only held the current numbers. Every
+          session wrote over the one before it, so there was no history to look at and no
+          way to see whether I was getting stronger. Repd is the app that replaced it. I
+          built it for my own training, then shared it with family and friends, and it is
+          now open for anyone to use.
         </p>
         <div class="case-hero__actions">
-          <a class="btn btn--primary" href="https://my-fitness-tracker-tan.vercel.app/demo" target="_blank" rel="noopener">Try the demo <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
+          <a class="btn btn--primary" href="https://my-fitness-tracker-tan.vercel.app/" target="_blank" rel="noopener">Try Repd <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
           <a class="btn btn--ghost" href="https://github.com/amanbaid99/myFitnessTracker" target="_blank" rel="noopener"><svg class="icon icon--sm icon--dip" aria-hidden="true"><use href="#i-github"></use></svg> Source on GitHub</a>
         </div>
-        <p class="project__note">
-          <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg>
-          <span>The demo needs no account. It runs the real logger on a made-up lifter&#8217;s
-          data, so you can start a workout, log sets, watch the targets adjust and feel the
-          rest timer. Nothing you do there is saved anywhere.</span>
-        </p>
       </div>
     </div>
+
+    <!-- HERO SCREENSHOT. Drop the home screen in as
+         assets/img/projects/repd/home.png (and home.webp if you have it), then
+         delete these two comment lines. Sizes and names: assets/img/projects/repd/README.md
+    <figure class="container shots shots--single reveal">
+      <div class="shot">
+        <picture>
+          <source type="image/webp" srcset="../../assets/img/projects/repd/home.webp">
+          <img src="../../assets/img/projects/repd/home.png" width="390" height="844"
+               loading="lazy" decoding="async"
+               alt="The Repd home screen on a phone: the next training day ready to start, the current streak counted in weeks, and this week's progress below it.">
+        </picture>
+      </div>
+      <figcaption>The home screen. The next training day is one tap from here.</figcaption>
+    </figure>
+    -->
 
     <div class="container">
 
@@ -289,98 +300,132 @@
       </figure>
 
       <section class="case-block">
-        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"></use></svg> The analysis, and how it runs without API credits</h2>
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"></use></svg> The AI coach</h2>
         <div class="case-block__body">
           <p>
-            This is the part I am happiest with, and it started as a cost problem. I
-            wanted every finished workout analysed against the last one: what moved, what
-            stalled, what to watch. The obvious way to do that is to call an AI API from
-            the server and pay per workout. For an app with one user that is a
-            subscription to run a feature I use four times a week.
+            The newest part of the app is a coach that runs on free models from
+            OpenRouter. That choice is the whole reason it exists. Calling a paid API on
+            every workout would be a monthly bill to run a feature I use four times a
+            week, and a bill that grows with every person I share the app with. On free
+            models it costs close to nothing, which means I can leave it switched on for
+            everybody.
           </p>
           <p>
-            So it does not call an API at all. Instead the database talks to my own Claude
-            account directly, through a routine I have already got.
+            It does three things.
+          </p>
+          <p>
+            <strong>It drafts a plan.</strong> You describe what you want in your own
+            words, or paste a plan you already follow, and the AI turns it into a
+            structured plan in the app. Nothing is saved until you have read it: you check
+            every exercise, every set and every rep count, change what you disagree with,
+            and approve it. The AI writes the first draft and you decide what you actually
+            train.
+          </p>
+          <p>
+            <strong>It reviews each session.</strong> When you finish a workout it
+            compares what you just lifted against your past personal records, and it reads
+            the note you left about how the session felt. The numbers alone do not say
+            whether a hard set was a bad night or a real plateau, and the note is what
+            tells it apart.
+          </p>
+          <p>
+            <strong>It answers follow-up questions.</strong> The review is a starting
+            point, not the last word, so there is a chat beside it. You can ask why it
+            said something, or ask a general training question, and carry on from there.
           </p>
         </div>
       </section>
 
-      <figure class="case-figure reveal">
-        <svg viewBox="0 0 460 512" role="img" aria-labelledby="ai-t ai-d">
-          <title id="ai-t">How a workout gets analysed</title>
-          <desc id="ai-d">Finishing a workout stamps it as ended. A Supabase database
-            webhook fires on that update and calls an Edge Function. The function checks
-            the change is a genuine finish and that the caller knows the shared secret,
-            then triggers a Claude routine running on the author&#8217;s own account. Claude
-            reads the workout from the database, compares it with previous sessions, and
-            writes a review row back into the insights table. The app shows that review on
-            the workout&#8217;s page.</desc>
+      <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"></use></svg> How a plan gets made</h2>
+        <div class="case-block__body">
+          <ol class="steps">
+            <li class="step">
+              <span class="step__num" aria-hidden="true">01</span>
+              <div>
+                <h3 class="step__title">Describe the plan</h3>
+                <p class="step__body">Say what you want in plain words, or paste a plan you already follow.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">02</span>
+              <div>
+                <h3 class="step__title">The AI builds it</h3>
+                <p class="step__body">It turns the description into training days, exercises, sets and reps.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">03</span>
+              <div>
+                <h3 class="step__title">Check and approve</h3>
+                <p class="step__body">You read every exercise, set and rep, edit anything you disagree with, and approve it. Nothing is saved before this.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">04</span>
+              <div>
+                <h3 class="step__title">Train it</h3>
+                <p class="step__body">The plan days go live, and the app knows which one comes next.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
 
-          <rect class="flow__box" x="110" y="6" width="240" height="52" rx="2"/>
-          <text class="flow__label" x="230" y="37">You finish a workout</text>
-          <path class="flow__line" d="M230 58 V76"/>
-          <polygon class="flow__arrow" points="230,84 226,75 234,75"/>
-
-          <rect class="flow__box" x="110" y="84" width="240" height="62" rx="2"/>
-          <text class="flow__sub" x="230" y="107">on update of workouts</text>
-          <text class="flow__label" x="230" y="127">Database webhook fires</text>
-          <path class="flow__line" d="M230 146 V166"/>
-          <polygon class="flow__arrow" points="230,174 226,165 234,165"/>
-
-          <rect class="flow__box" x="110" y="174" width="240" height="62" rx="2"/>
-          <text class="flow__sub" x="230" y="197">a real finish only</text>
-          <text class="flow__label" x="230" y="217">Edge Function checks it</text>
-          <path class="flow__line" d="M230 236 V256"/>
-          <polygon class="flow__arrow" points="230,264 226,255 234,255"/>
-
-          <rect class="flow__box" x="110" y="264" width="240" height="62" rx="2"/>
-          <text class="flow__sub" x="230" y="287">my own Claude account</text>
-          <text class="flow__label" x="230" y="307">Claude reads the workout</text>
-          <path class="flow__line" d="M230 326 V346"/>
-          <polygon class="flow__arrow" points="230,354 226,345 234,345"/>
-
-          <rect class="flow__box" x="110" y="354" width="240" height="62" rx="2"/>
-          <text class="flow__sub" x="230" y="377">into public.insights</text>
-          <text class="flow__label" x="230" y="397">Writes the review back</text>
-          <path class="flow__line" d="M230 416 V436"/>
-          <polygon class="flow__arrow" points="230,444 226,435 234,435"/>
-
-          <rect class="flow__box flow__box--accent" x="70" y="444" width="320" height="62" rx="2"/>
-          <text class="flow__sub" x="230" y="467">on the workout&#8217;s page</text>
-          <text class="flow__label flow__label--accent" x="230" y="487">The app shows it</text>
-        </svg>
-        <figcaption>
-          No API key, no per-workout cost. The database notices a workout ended and asks
-          my Claude account to go and look at it.
-        </figcaption>
+      <!-- PLAN FLOW SCREENSHOTS. Drop these four in as
+           assets/img/projects/repd/plan-1-describe.png, plan-2-building.png,
+           plan-3-approve.png and plan-4-days.png, then delete these two comment
+           lines. Sizes and names: assets/img/projects/repd/README.md
+      <figure class="container shots shots--row reveal">
+        <div class="shots__track">
+          <div class="shot">
+            <img src="../../assets/img/projects/repd/plan-1-describe.png" width="390" height="844"
+                 loading="lazy" decoding="async"
+                 alt="Step one in Repd: a text box where the lifter describes the plan they want in their own words, or pastes a plan they already follow.">
+            <p class="shot__cap">01 Describe the plan</p>
+          </div>
+          <div class="shot">
+            <img src="../../assets/img/projects/repd/plan-2-building.png" width="390" height="844"
+                 loading="lazy" decoding="async"
+                 alt="Step two in Repd: the app building the plan, showing progress while the AI turns the description into training days.">
+            <p class="shot__cap">02 The AI builds it</p>
+          </div>
+          <div class="shot">
+            <img src="../../assets/img/projects/repd/plan-3-approve.png" width="390" height="844"
+                 loading="lazy" decoding="async"
+                 alt="Step three in Repd: the drafted plan laid out exercise by exercise with sets and reps, each one editable, and an approve button at the bottom.">
+            <p class="shot__cap">03 Check and approve</p>
+          </div>
+          <div class="shot">
+            <img src="../../assets/img/projects/repd/plan-4-days.png" width="390" height="844"
+                 loading="lazy" decoding="async"
+                 alt="Step four in Repd: the approved plan shown as training days, with the next day ready to start.">
+            <p class="shot__cap">04 Train it</p>
+          </div>
+        </div>
+        <figcaption>The four steps in order. Nothing is saved until step three is approved.</figcaption>
       </figure>
+      -->
 
       <section class="case-block">
+        <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg> Keeping personal details out of the AI</h2>
         <div class="case-block__body">
           <p>
-            Finishing a workout stamps it as ended. A Supabase database webhook fires on
-            that one column changing and calls an Edge Function, which triggers a Claude
-            routine on my account. Claude reads the workout straight out of the database,
-            compares it against previous sessions of the same exercises, and writes a
-            review row back. The app polls for it and shows it on the workout&#8217;s page.
+            Free models come with a condition worth stating plainly: on OpenRouter, free
+            models may use what you send them as training data. A workout app holds
+            training history and whatever someone types into a note, so that condition had
+            to shape the feature rather than sit in a policy page.
           </p>
           <p>
-            The interesting work is in what the Edge Function refuses to do. It fires only
-            when a workout goes from unfinished to finished, and only for workouts logged
-            in the app: cancelling one, importing old data from the spreadsheet, or
-            editing something afterwards all look like updates to that table, and none of
-            them should cost an analysis. It authenticates the caller with a shared secret
-            compared in constant time, so a wrong guess does not leak how wrong it was.
-            The secret and the routine&#8217;s address live only in Supabase, never in the
-            repository, and the function logs the workout id and the response status
-            without ever logging the token or what came back.
+            There are guardrails on what leaves the app. Names and personal details are
+            kept out of anything sent to the model, so what goes out is the training
+            content and not who it belongs to. The app also tells the user before anything
+            is sent, rather than letting them find out later.
           </p>
-          <p>
-            The database side has its own guard. The obvious permission for the insights
-            table lets you mark your own review as read, but written the obvious way it
-            also lets you rewrite the text of the review itself. Permission was narrowed to
-            that one column, so the app can mark something read and cannot edit what
-            Claude said about your training.
+          <p class="notice">
+            <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg>
+            <span>Said in one line: the free model is what makes the coach affordable, and
+            stripping personal details before sending is the price of using it.</span>
           </p>
         </div>
       </section>
@@ -404,6 +449,13 @@
             chart draws straight segments between sessions rather than a smooth curve,
             which sounds like a styling choice and is not: a curve implies you had a value
             on the days in between, and you did not.
+          </p>
+          <p>
+            The home screen was rebuilt around that. It used to be a way in to the logger
+            and little else. It now opens on the next training day, the streak and what
+            you have done this week, so the first thing you see is where you are rather
+            than a menu. The app also has themes now, which is the one change people who
+            are not me asked for first.
           </p>
         </div>
       </section>
@@ -520,17 +572,24 @@
         <h2 class="case-block__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg> Where it is now</h2>
         <div class="case-block__body">
           <p>
-            Live, and it is what I train with. Plans, the logger, warm-ups and cool-downs,
-            progression, the rest timer, History, Progress charts, offline logging and the
-            post-workout analysis are all working. It installs to a phone home screen. You
-            can try the whole logger in the demo without an account.
+            Live, and it is what I train with. It started as an app for me, then I shared
+            it with family and friends, and it is now open for anyone to use. Plans, the
+            logger, warm-ups and cool-downs, progression, the rest timer, History,
+            Progress charts, offline logging, themes and the AI coach are all working. It
+            installs to a phone home screen.
           </p>
           <p>
-            Still to come, named rather than implied: starting a workout with no signal at
-            all (a dropout mid-workout is handled, opening the app cold in a basement is
-            not), offline History and Progress, and editing warm-up templates per
-            exercise. The analysis currently reviews one workout against previous ones;
-            weekly and plateau reviews are in the schema and not yet written.
+            The next piece of work is making the coach better rather than adding more to
+            it. Right now it reviews a session against your past records. It should be
+            reading more of your history than that: how a lift has moved over months, what
+            you keep skipping, which weeks you train well and which you do not. The
+            reviews get more useful the more of that it is given.
+          </p>
+          <p>
+            Also still to come, named rather than implied: starting a workout with no
+            signal at all (a dropout mid-workout is handled, opening the app cold in a
+            basement is not), offline History and Progress, and editing warm-up templates
+            per exercise.
           </p>
         </div>
       </section>
@@ -547,7 +606,7 @@
             <li class="tag">PostgreSQL</li>
             <li class="tag">Row-Level Security</li>
             <li class="tag">Edge Functions</li>
-            <li class="tag">Claude routine</li>
+            <li class="tag">OpenRouter</li>
             <li class="tag">IndexedDB</li>
             <li class="tag">Recharts</li>
             <li class="tag">Web Audio</li>
