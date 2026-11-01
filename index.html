@@ -47,7 +47,7 @@
 </script>
 </head>
 
-<body>
+<body class="portfolio-home">
 <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
 <defs>
 <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
@@ -117,14 +117,10 @@
         <h1 class="hero__name hero-in">Aman Baid</h1>
         <p class="hero__role hero-in">Product Manager · Mumbai, India</p>
         <p class="hero__positioning hero-in">
-          A spec is a guess until someone builds it. So I start from what customers
-          actually do, <span class="mark">ship the thing,</span> and let the numbers
-          say whether it worked.
+          I turn customer insights into products, <span class="mark">ship the thing,</span>
+          and let the numbers say whether it worked.
         </p>
-        <p class="hero__intro hero-in">
-          Product strategy, experimentation and AI-assisted development, across B2C,
-          B2B SaaS and HealthTech.
-        </p>
+        <p class="hero__intro hero-in">Product strategy, experimentation and hands-on building with AI.</p>
         <div class="hero__actions hero-in">
           <a class="btn btn--primary" href="#projects">
             View the Work <svg class="icon icon--shift" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
@@ -163,134 +159,52 @@
     </div>
   </section>
 
-  <section class="section" id="about">
-    <div class="container">
-      <div class="section__head reveal">
-        <p class="section__label">About</p>
-        <h2 class="section__title"><span data-since="2020-11" data-words="1">Six</span> years of <span class="tt">product, growth &amp; operations</span></h2>
-      </div>
-
-      <div class="about">
-        <div class="about__body reveal">
-          <p class="about__lede">
-            I'm a Product Manager in Mumbai with 6 years across product, growth and
-            operations in B2C, B2B SaaS and HealthTech. My work has a consistent
-            throughline: turning data into product decisions with SQL, Amplitude and
-            A/B testing, rather than shipping on instinct.
-          </p>
-          <p class="about__note">
-            Alongside that, I build. I'm hands-on with AI-assisted development and LLM
-            workflow automation: designing, coding and deploying live products myself
-            instead of handing a spec across the table. It makes me faster at validating
-            an idea, and sharper about what's actually cheap or expensive to build.
-          </p>
-        </div>
-
-        <div class="about__skills reveal">
-          <div class="skill-group">
-            <h3 class="skill-group__head"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg> Product</h3>
-            <ul class="tags">
-              <li class="tag">Product Strategy &amp; Roadmap</li>
-              <li class="tag">0→1 MVP Launches</li>
-              <li class="tag">RICE/MoSCoW Prioritization</li>
-              <li class="tag">Go-to-Market Planning</li>
-              <li class="tag">Product Discovery &amp; Research</li>
-              <li class="tag">PRD &amp; SRS</li>
-              <li class="tag">Journey Mapping</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-group__head"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chart"></use></svg> Data &amp; experimentation</h3>
-            <ul class="tags">
-              <li class="tag">SQL</li>
-              <li class="tag">A/B Testing</li>
-              <li class="tag">Amplitude</li>
-              <li class="tag">PostHog</li>
-              <li class="tag">Looker</li>
-              <li class="tag">Tableau</li>
-              <li class="tag">Python</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-group__head"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-briefcase"></use></svg> Leadership &amp; stakeholders</h3>
-            <ul class="tags">
-              <li class="tag">Cross-functional Coordination</li>
-              <li class="tag">C-Suite Stakeholder Alignment</li>
-              <li class="tag">Team Leadership</li>
-              <li class="tag">Scrum Master</li>
-              <li class="tag">Sprint Planning &amp; Backlog Grooming</li>
-              <li class="tag">Client Discovery Workshops</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-group__head"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-code"></use></svg> Build &amp; tools</h3>
-            <ul class="tags">
-              <li class="tag">Figma</li>
-              <li class="tag">Jira</li>
-              <li class="tag">Supabase</li>
-              <li class="tag">Claude Code</li>
-              <li class="tag">Claude API</li>
-              <li class="tag">Cursor</li>
-              <li class="tag">AWS EC2</li>
-              <li class="tag">LLM Workflow Automation</li>
-              <li class="tag">ML Experiment Integration</li>
-              <li class="tag">MoEngage</li>
-              <li class="tag">Razorpay / Payment Gateways</li>
-              <li class="tag">n8n</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Featured work ===== -->
-  <section class="section section--alt" id="projects">
+<section class="section section--alt" id="projects">
     <div class="container">
       <div class="section__head reveal">
         <p class="section__label">Work</p>
-        <h2 class="section__title">Everything I've built, <span class="tt">in one place</span></h2>
+        <h2 class="section__title">Selected work, <span class="tt">shipped end to end</span></h2>
       </div>
 
-      <ol class="projects">
-          <li class="project reveal">
+      <ol class="projects projects--selected"><li class="project project--selected reveal"><div class="project-preview project-preview--repd"><p class="preview-label">Repd · training workflow</p><p class="preview-title">Less logging.<br>More lifting.</p><ol class="preview-flow"><li>Plan</li><li>Train</li><li>Review</li></ol><p class="preview-caption">Adaptive targets + a coach in the loop</p></div>
             <p class="project__meta"><span>Sep 2026</span> &#183; <span>Solo build</span></p>
             <ul class="badges">
               <li class="badge badge--type">Shipped product</li>
               <li class="badge badge--live">Live demo</li>
             </ul>
             <h3 class="project__title"><a href="projects/repd/">Repd</a></h3>
-            <p class="project__summary">I tracked my lifts in a Google Sheet that only held the current numbers, so every session wrote over the one before it and there was no history to see. I specced and built the replacement: calculated warm-ups, one tap per set, targets that adapt to how the last set felt, and an AI coach that drafts plans and reviews each session on free models, so it costs almost nothing to run.</p>
+            <p class="project__summary">A workout tracker that replaces overwritten spreadsheets with session history, adaptive targets and an AI coach. I scoped and built it for my own training, then opened it to everyone.</p>
             <p class="project__impact"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg><span>Built for me, now <strong>open for anyone to use</strong></span></p>
             <p class="project__links">
               <a class="link-under" href="https://my-fitness-tracker-tan.vercel.app/" target="_blank" rel="noopener">Try Repd <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
               <a class="link-under" href="https://github.com/amanbaid99/myFitnessTracker" target="_blank" rel="noopener">Source <svg class="icon icon--sm" aria-hidden="true"><use href="#i-github"></use></svg></a>
             </p>
-            <span class="project__go" aria-hidden="true"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            <p class="project__case"><a class="link-under" href="projects/repd/">Read the case study →</a></p><span class="project__go" aria-hidden="true"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </li>
-          <li class="project reveal">
+          <li class="project project--selected reveal"><div class="project-preview project-preview--wellness"><p class="preview-label">Swa-Swasthya · growth loop</p><p class="preview-title">From discovery<br>to daily wellbeing.</p><ol class="preview-flow"><li>Learn</li><li>Engage</li><li>Enquire</li></ol><p class="preview-caption">Content, useful tools and lead capture</p></div>
             <p class="project__meta"><span>2026</span> &#183; <span>Solo build</span></p>
             <ul class="badges">
               <li class="badge badge--type">Client engagement</li>
               <li class="badge badge--live">Live</li>
             </ul>
             <h3 class="project__title"><a href="projects/swaswasthya/">Swa-Swasthya Wellness Platform</a></h3>
-            <p class="project__summary">The brief was "a website". I went to one of the yoga sessions and talked to the people there, and it turned into something else: what they wanted was teaching about diet, and a link they could forward. I designed, coded and deployed the whole thing solo, blog and admin panel and all.</p>
+            <p class="project__summary">Turned a brief for “a website” into a wellness platform through conversations with yoga students. Built the site, blog and client-managed admin panel end to end.</p>
             <p class="project__impact"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg><span>Live at <a href="https://swaswasthya.com" target="_blank" rel="noopener">swaswasthya.com</a> &#183; <strong>8 new leads a month</strong></span></p>
-            <span class="project__go" aria-hidden="true"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            <p class="project__case"><a class="link-under" href="projects/swaswasthya/">Read the case study →</a></p><span class="project__go" aria-hidden="true"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </li>
-          <li class="project reveal">
+          <li class="project project--selected reveal"><div class="project-preview project-preview--data"><p class="preview-label">Cluckin · measured outcome</p><p class="preview-number">12%<span>less food wastage</span></p><ol class="preview-flow"><li>Clean data</li><li>Compare outlets</li><li>Act</li></ol><p class="preview-caption">Operational data remains confidential</p></div>
             <p class="project__meta"><span>Aug 2025</span></p>
             <ul class="badges">
               <li class="badge badge--type">Client engagement</li>
             </ul>
             <h3 class="project__title"><a href="projects/cluckin/">Cluckin Dashboard</a></h3>
-            <p class="project__summary">A multi-outlet QSR brand had no visibility into food wastage or inventory turnover across its <strong>10+ outlets</strong>. I built the cleaning pipeline and the dashboards that gave them one.</p>
+            <p class="project__summary">Built a data-cleaning pipeline and outlet-level dashboards so a QSR team could act on wastage across 10+ locations.</p>
             <p class="project__impact"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trending"></use></svg><span>Reduced food wastage by 12%</span></p>
             <p class="project__note"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg><span>Built on the client's own operational data, so the dashboards aren't shareable.</span></p>
-            <span class="project__go" aria-hidden="true"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            <p class="project__case"><a class="link-under" href="projects/cluckin/">Read the case study →</a></p><span class="project__go" aria-hidden="true"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </li>
-          <li class="project reveal">
+          </ol>
+<details class="portfolio-more"><summary>Explore 5 more projects</summary><ol class="projects projects--more"><li class="project reveal">
             <p class="project__meta"><span>Solo build</span></p>
             <ul class="badges">
               <li class="badge badge--type">Freelance build</li>
@@ -352,9 +266,14 @@
             <p class="project__note"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg><span>This one is confidential, so there is no link or demo to share.</span></p>
             <span class="project__go" aria-hidden="true"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </li>
-      </ol>
+      </ol></details>
     </div>
   </section>
+
+  
+
+  <!-- ===== Featured work ===== -->
+  
 
 
   <section class="section" id="experience">
@@ -434,6 +353,83 @@
       <p style="margin-top:2.5rem" class="reveal">
         <a class="link-under" href="https://drive.google.com/drive/folders/1PFP0w0olTXfbqnrkjfdH5UMLwqahR0_S" target="_blank" rel="noopener">Full resume (PDF) <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </p>
+    </div>
+  </section>
+
+<section class="section" id="about">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="section__label">About</p>
+        <h2 class="section__title"><span data-since="2020-11" data-words="1">Six</span> years of <span class="tt">product, growth &amp; operations</span></h2>
+      </div>
+
+      <div class="about">
+        <div class="about__body reveal">
+          <p class="about__lede">I’m a Product Manager in Mumbai, working across B2C, B2B SaaS and HealthTech. I use customer research, SQL and experimentation to find what matters, then build and ship to test it.</p>
+          <p class="about__note">
+            Alongside that, I build. I'm hands-on with AI-assisted development and LLM
+            workflow automation: designing, coding and deploying live products myself
+            instead of handing a spec across the table. It makes me faster at validating
+            an idea, and sharper about what's actually cheap or expensive to build.
+          </p>
+        </div>
+
+        <details class="portfolio-more skills-more"><summary>Skills &amp; tools</summary><div class="about__skills">
+          <div class="skill-group">
+            <h3 class="skill-group__head"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-target"></use></svg> Product</h3>
+            <ul class="tags">
+              <li class="tag">Product Strategy &amp; Roadmap</li>
+              <li class="tag">0→1 MVP Launches</li>
+              <li class="tag">RICE/MoSCoW Prioritization</li>
+              <li class="tag">Go-to-Market Planning</li>
+              <li class="tag">Product Discovery &amp; Research</li>
+              <li class="tag">PRD &amp; SRS</li>
+              <li class="tag">Journey Mapping</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__head"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chart"></use></svg> Data &amp; experimentation</h3>
+            <ul class="tags">
+              <li class="tag">SQL</li>
+              <li class="tag">A/B Testing</li>
+              <li class="tag">Amplitude</li>
+              <li class="tag">PostHog</li>
+              <li class="tag">Looker</li>
+              <li class="tag">Tableau</li>
+              <li class="tag">Python</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__head"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-briefcase"></use></svg> Leadership &amp; stakeholders</h3>
+            <ul class="tags">
+              <li class="tag">Cross-functional Coordination</li>
+              <li class="tag">C-Suite Stakeholder Alignment</li>
+              <li class="tag">Team Leadership</li>
+              <li class="tag">Scrum Master</li>
+              <li class="tag">Sprint Planning &amp; Backlog Grooming</li>
+              <li class="tag">Client Discovery Workshops</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="skill-group__head"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-code"></use></svg> Build &amp; tools</h3>
+            <ul class="tags">
+              <li class="tag">Figma</li>
+              <li class="tag">Jira</li>
+              <li class="tag">Supabase</li>
+              <li class="tag">Claude Code</li>
+              <li class="tag">Claude API</li>
+              <li class="tag">Cursor</li>
+              <li class="tag">AWS EC2</li>
+              <li class="tag">LLM Workflow Automation</li>
+              <li class="tag">ML Experiment Integration</li>
+              <li class="tag">MoEngage</li>
+              <li class="tag">Razorpay / Payment Gateways</li>
+              <li class="tag">n8n</li>
+            </ul>
+          </div>
+        </div>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -543,49 +539,39 @@
 
         <div class="cred-row">
           <h3 class="creds__head">Certifications</h3>
-          <ul class="certs">
-          <li class="cert">
-            <span class="cert__name">NISM-Series-V-A: Mutual Fund Distributors</span>
-            <span class="cert__org">National Institute of Securities Markets</span>
-          </li>
-          <li class="cert">
-            <span class="cert__name">AMFI-Registered Mutual Fund Distributor</span>
-            <span class="cert__org">Association of Mutual Funds in India</span>
-          </li>
-          <li class="cert">
+          <ul class="certs"><li class="cert">
             <span class="cert__name">Machine Learning Foundations for Product Managers</span>
             <span class="cert__org">Duke University &#183; Coursera <span class="cert__when">Nov 2025</span></span>
             <a class="cert__verify" href="https://www.coursera.org/account/accomplishments/verify/9VEIM3C3TDPJ" target="_blank" rel="noopener">Verify <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
-          </li>
-          <li class="cert">
+          </li><li class="cert">
             <span class="cert__name">Product Management: Building a Product Strategy</span>
             <span class="cert__org">LinkedIn Learning <span class="cert__when">Aug 2025</span></span>
             <a class="cert__verify" href="https://www.linkedin.com/learning/certificates/7a3f0aff194474ad169f16a5d5051c2510a5a98f578239b304fb4882b6144ce8" target="_blank" rel="noopener">Verify <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
-          </li>
-          <li class="cert">
+          </li><li class="cert">
+            <span class="cert__name">AI for Product Managers</span>
+            <span class="cert__org">Pendo.io <span class="cert__when">2025</span></span>
+          </li></ul><details class="portfolio-more"><summary>View 6 more certifications</summary><ul class="certs"><li class="cert">
+            <span class="cert__name">NISM-Series-V-A: Mutual Fund Distributors</span>
+            <span class="cert__org">National Institute of Securities Markets</span>
+          </li><li class="cert">
+            <span class="cert__name">AMFI-Registered Mutual Fund Distributor</span>
+            <span class="cert__org">Association of Mutual Funds in India</span>
+          </li><li class="cert">
             <span class="cert__name">Becoming a Product Manager</span>
             <span class="cert__org">LinkedIn Learning <span class="cert__when">Aug 2025</span></span>
             <a class="cert__verify" href="https://www.linkedin.com/learning/certificates/a4eefd8ebe001c8b3345447853ec56e9160a3bc5bb2c5649dd10d2c299e5a323" target="_blank" rel="noopener">Verify <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
-          </li>
-          <li class="cert">
+          </li><li class="cert">
             <span class="cert__name">Foundations: Data, Data, Everywhere</span>
             <span class="cert__org">Google &#183; Coursera <span class="cert__when">Apr 2025</span></span>
             <a class="cert__verify" href="https://coursera.org/share/1e25c98d615dded61eb6cff8380f1be8" target="_blank" rel="noopener">Verify <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
-          </li>
-          <li class="cert">
+          </li><li class="cert">
             <span class="cert__name">Generative AI</span>
             <span class="cert__org">Microsoft <span class="cert__when">2025</span></span>
-          </li>
-          <li class="cert">
-            <span class="cert__name">AI for Product Managers</span>
-            <span class="cert__org">Pendo.io <span class="cert__when">2025</span></span>
-          </li>
-          <li class="cert">
+          </li><li class="cert">
             <span class="cert__name">Business Analysis Fundamentals</span>
             <span class="cert__org">Udemy &#183; ECBA/CCBA/CBAP endorsed <span class="cert__when">Nov 2023</span></span>
             <a class="cert__verify" href="https://www.udemy.com/certificate/UC-c551c39a-99ce-407b-8d1d-a6d3d6ce6912/" target="_blank" rel="noopener">Verify <svg class="icon icon--sm" aria-hidden="true"><use href="#i-external"></use></svg></a>
-          </li>
-          </ul>
+          </li></ul></details>
         </div>
       </div>
     </div>
@@ -604,7 +590,7 @@
 
       <div class="quotes reveal">
         <figure class="quote">
-          <blockquote>
+          <blockquote><p>He had a strong ability to bridge the gap between technical teams and business stakeholders, ensuring everyone was aligned and reducing ambiguity in implementation.</p></blockquote><details class="quote-more"><summary>Read full excerpt</summary><blockquote>
             <p>Aman joined the team as a developer, but what truly set him apart was his
             initiative and ability to grow beyond his initial role. Over time, he
             proactively transitioned into a Business Analyst role.</p>
@@ -613,7 +599,7 @@
             implementation.</p>
             <p>I strongly recommend him to any organization looking for a business analyst
             who understands technology deeply and adds value beyond their defined role.</p>
-          </blockquote>
+          </blockquote></details>
           <figcaption>
             <span class="quote__name">Mohit Sehgal</span>
             <span class="quote__role">CTO, Relife Medicare Systems</span>
@@ -621,7 +607,7 @@
         </figure>
 
         <figure class="quote">
-          <blockquote>
+          <blockquote><p>Aman approaches problems with structure, thinks through user impact and edge cases, and works well with tech and stakeholders to ensure smooth execution.</p></blockquote><details class="quote-more"><summary>Read full excerpt</summary><blockquote>
             <p>I worked with Aman at Crimson Interactive, where he was part of the product
             team reporting to me.</p>
             <p>He led the launch of enhanced client enquiry forms, which resulted in a
@@ -630,7 +616,7 @@
             client dashboard, focusing on usability and clarity.</p>
             <p>Aman approaches problems with structure, thinks through user impact and edge
             cases, and works well with tech and stakeholders to ensure smooth execution.</p>
-          </blockquote>
+          </blockquote></details>
           <figcaption>
             <span class="quote__name">Shubham Mishra</span>
             <span class="quote__role">Senior Product Manager, ICICI Lombard</span>
@@ -638,14 +624,14 @@
         </figure>
 
         <figure class="quote">
-          <blockquote>
+          <blockquote><p>I&#8217;d highly recommend Aman to any team looking for someone who can think strategically and execute with impact.</p></blockquote><details class="quote-more"><summary>Read full excerpt</summary><blockquote>
             <p>I had the opportunity to work with Aman during my time at Crimson. He
             possesses exceptional leadership qualities, and what truly sets him apart is
             his sharp product thinking and his ability to deeply understand client pain
             points and translate them into meaningful solutions.</p>
             <p>I&#8217;d highly recommend Aman to any team looking for someone who can
             think strategically and execute with impact.</p>
-          </blockquote>
+          </blockquote></details>
           <figcaption>
             <span class="quote__name">Allan Rose</span>
             <span class="quote__role">Product Manager &#183; reported to Aman at Crimson Interactive</span>
@@ -665,26 +651,7 @@
         </p>
       </div>
 
-      <ul class="posts posts--three reveal">
-        <li class="post">
-          <iframe class="post__frame"
-                  src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7510701813017546753?collapsed=1"
-                  title="LinkedIn post by Aman Baid" loading="lazy"
-                  frameborder="0" allowfullscreen></iframe>
-        </li>
-        <li class="post">
-          <iframe class="post__frame"
-                  src="https://www.linkedin.com/embed/feed/update/urn:li:share:7496955160905027584?collapsed=1"
-                  title="LinkedIn post by Aman Baid" loading="lazy"
-                  frameborder="0" allowfullscreen></iframe>
-        </li>
-        <li class="post">
-          <iframe class="post__frame"
-                  src="https://www.linkedin.com/embed/feed/update/urn:li:share:7488834573854859264?collapsed=1"
-                  title="LinkedIn post by Aman Baid" loading="lazy"
-                  frameborder="0" allowfullscreen></iframe>
-        </li>
-      </ul>
+      <ul class="posts posts--three writing-cards reveal"><li class="post writing-card"><p class="preview-label">AI &amp; building</p><h3>Giving AI a memory that travels</h3><p>How I keep useful context across tools and conversations.</p><a class="link-under" href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7510701813017546753/" target="_blank" rel="noopener">Read on LinkedIn ↗</a></li><li class="post writing-card"><p class="preview-label">Product discovery</p><h3>Discovery is a continuous habit</h3><p>A takeaway from Teresa Torres on connecting discovery to everyday product work.</p><a class="link-under" href="https://www.linkedin.com/feed/update/urn:li:share:7496955160905027584/" target="_blank" rel="noopener">Read on LinkedIn ↗</a></li><li class="post writing-card"><p class="preview-label">Product thinking</p><h3>A small payment interaction, less friction</h3><p>A closer look at how a familiar payment experience handles the details.</p><a class="link-under" href="https://www.linkedin.com/feed/update/urn:li:share:7488834573854859264/" target="_blank" rel="noopener">Read on LinkedIn ↗</a></li></ul>
 
       <p class="posts__cta reveal">
         <a class="btn btn--primary" href="writing/">View all 8 posts <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
@@ -744,3 +711,4 @@
 
 </body>
 </html>
+
