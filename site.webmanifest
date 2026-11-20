@@ -1,0 +1,25 @@
+{
+  "id": "/AmanBaidPortfolio/",
+  "name": "Aman Baid — Product Manager",
+  "short_name": "Aman Baid",
+  "description": "Product strategy, experimentation and products built by Aman Baid.",
+  "start_url": "/AmanBaidPortfolio/",
+  "scope": "/AmanBaidPortfolio/",
+  "display": "standalone",
+  "background_color": "#f6f2ea",
+  "theme_color": "#f6f2ea",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
